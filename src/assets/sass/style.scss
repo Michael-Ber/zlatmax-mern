@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+//HEADER
+
+.header {
+    position: relative;
+    padding: 10px 20px;
+}
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo {
+    width: 50px;
+    height: 30px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.header__main {
+    max-width: 35%;
+    @media(max-width: 991px) {
+        display: none;
+    }
+}
+.header__nav-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.header__nav-item {
+    margin-right: 55px;
+    // &:nth-child(n) {
+        // margin-right: 0;
+    // }
+}
+.header__nav-link {
+    position: relative;
+    font-size: 14px;
+    color: #000;
+    text-decoration: underline;
+    &:hover {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(#000, 1);
+            animation: widthRamp .3s;
+        }
+    }
+}
+.header__submain {
+    position: relative;
+    @media(max-width: 991px) {
+        display: none;
+    }
+}
+.header__tel-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+.header__arrow {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    transform: translateX(100%) rotate(0deg);
+    transition: .2s all;
+    cursor: pointer;
+    &_active {
+        transform: translateX(100%) rotate(180deg);
+    }
+}
+.header__tel-item {
+    & + & {
+        margin-top: 10px;
+    }
+}
+.header__tel-sublist {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    overflow: hidden;
+    visibility: hidden;
+    list-style: none;
+    background-color: rgba(red, .5);
+    border-radius: 3px;
+    padding: 5px;
+    box-sizing: content-box;
+    &_active {
+        visibility: visible;
+        animation: fadeoutVis .5s;
+    }
+}
+.header__tel-link {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    &:hover {
+        color: lighten(#000, 20%);
+    }
+}
+
+.burgerBtn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    &_active {
+        .burgerBtn__line {
+            transition: .5s all;
+            &:nth-child(1) {
+                transform: rotate(45deg) translateY(5px);
+            }
+            &:nth-child(2) {
+                display: none;
+            }
+            &:nth-child(3) {
+                transform: rotate(-45deg) translateY(-5px);
+            }
+        }    
+    }
+    &__line {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #000;
+        & + & {
+            margin-top: 5px;
+        }
+       
+    }
+    @media(max-width: 991px) {
+        display: block;
+    }
+}
+.burgerMenu {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateY(-100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    list-style: none;
+    z-index: 10;
+    background-color: #fff;
+    transition: .3s all;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+    @media(max-width: 991px) {
+        &_active {
+            transform: translateY(0);
+            box-shadow: 0 0 10px #000;
+        }
+    }
+}
+
+.burgerMenu__link {
+    color: #000;
+    text-decoration: none;
+    &:hover {
+        color: lighten(#000, 40%);
+    }
+}
+
+
+
+.recall-btn {
+    display: block;
+    width: 80px;
+    color: #000;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    background-color: rgba(#555, .8);
+    &:hover {
+        box-shadow: 0 0 0 1px #555, 0 0 0 2px #000;
+    }
+}
+
+// END HEADER
