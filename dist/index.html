@@ -4,53 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Play:wght@700&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Logo</title>
 </head>
 <body>
     <!-- HEADER -->
     <header class="header">
-        
+        <img src="./assets/img/main/header_bg.jpg" alt="heade_background" class="header__bg">
         <div class="container">
             <div class="header__wrapper">
                 <div class="header__main">
                     <nav class="header__nav">
                         <ul class="header__nav-list">
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Бренды</a>
-                            </li>
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Распродажа</a>
-                            </li>
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Доставка и сборка</a>
-                            </li>
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Гарантия</a>
-                            </li>
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Оплата</a>
-                            </li>
-                            <li class="header__nav-item">
-                                <a href="#" class="header__nav-link">Контакты</a>
-                            </li>
+                            <div class="header__nav-wrapper">
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Бренды</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Гарантия</a>
+                                </li>
+                            </div>
+                            <div class="header__nav-wrapper">
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Распродажа</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Оплата</a>
+                                </li>
+                            </div>
+                            <div class="header__nav-wrapper">
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Доставка и сборка</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Контакты</a>
+                                </li>
+                            </div>
                         </ul>
                     </nav>
                 </div>
-                <div class="header__logo">
-                    <img src="" alt="logo">
-                </div>
+                <a href="#" class="header__logo">
+                    <div class="header__logo-title">LOGO</div>
+                    <div class="header__logo-subtitle">Спортивный магазин</div>
+                </a>
                 <div class="header__submain">
                     <ul class="header__tel-list">
                         <li class="header__tel-item">
-                            <a href="tel:89999999999" class="header__tel-link">89999999999</a>
+                            <span>Москва</span>
+                            <a href="tel:84991234567" class="header__tel-link">8-499-123-45-67</a>
                         </li>
-                        <img src="../icons/arrow.svg" alt="arrow" class="header__arrow">
+                        <li class="header__tel-item">
+                            <span>Бесплатно для России</span>
+                            <a href="tel:88001234567" class="header__tel-link">8-800-123-45-67</a>
+                        </li>
                     </ul>
-                    
                 </div>
                 <!-- <div class="header__burger"> -->
-                <div class="burgerBtn">
+                <!-- <div class="burgerBtn">
                     <span class="burgerBtn__line"></span>
                     <span class="burgerBtn__line"></span>
                     <span class="burgerBtn__line"></span>
@@ -65,13 +76,91 @@
                     <li class="burgerMenu__item">
                         <a href="#" class="burgerMenu__link">Link 3</a>
                     </li>
-                </ul>
+                </ul> -->
                 
                 <!-- </div> -->
+            </div>
+            <div class="subheader">
+                <div class="subheader__left">
+                    <a href="#" class="subheader__link">Вход</a>
+                    <a href="#" class="subheader__link">Регистрация</a>
+                    <a href="#" class="subheader__link">sport@gmail.com</a>
+                </div>
+                <div class="subheader__right">
+                    <a href="#" class="subheader__call">Обратный звонок</a>
+                    <div class="subheader__opening">
+                        <span>
+                            <strong>Пн-Вт:</strong>
+                            09:00-21:00
+                        </span>
+                        <span>
+                            <strong>Сб-Вс:</strong>
+                            10:00-20:00
+                        </span>
+                    </div>
+                    <div class="subheader__order">
+                        <div class="subheader__dumpster">
+                            <img src="./assets/icons/main/dump.png" alt="dumpster">
+                        </div>
+                        <div class="subheader__counts">
+                            <span>12</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
     <!-- /HEADER -->
+
+    <!-- CATALOG -->
+
+    <section class="main">
+        <div class="container">
+            <div class="main__catalog">
+                <div class="catalog__header">
+                    <span class="catalog__title">
+                        Каталог товаров
+                    </span>
+                    <div class="catalog__burger burgerBtn"></div>
+                </div>
+                <ul class="catalog__list">
+                    <li class="catalog__item">
+                        <span>Беговые дорожки</span> 
+                        <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
+                    </li>
+                    <li class="catalog__item">
+                        <span>Эллиптические тренажеры</span>
+                        <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
+                    </li>
+                    <li class="catalog__item"><span>Велотренажеры</span></li>
+                    <li class="catalog__item"><span>Гребные тренажеры</span></li>
+                    <li class="catalog__item"><span>Вибромассажеры</span></li>
+                    <li class="catalog__item">
+                        <span>Теннисные столы</span>
+                        <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
+                    </li>
+                    <li class="catalog__item"><span>Баскетбол</span></li>
+                    <li class="catalog__item">
+                        <span>Массажные кресла</span>
+                        <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
+                    </li>
+                    <li class="catalog__item">
+                        <span>Массажные столы</span>
+                        <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
+                    </li>
+                    <li class="catalog__item"><span>Силовые тренажеры</span></li>
+                    <li class="catalog__item"><span>Батуты</span></li>
+                    <li class="catalog__item"><span>Детские городки</span></li>
+                    <li class="catalog__item"><span>Дачная мебель</span></li>
+                    <li class="catalog__item"><span>Уличные спортивные комплексы</span></li>
+                    <li class="catalog__item"><span>Аксессуары</span></li>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- /CATALOG -->
     
     <script src="script.js"></script>
 </body>
