@@ -426,12 +426,20 @@
 
 .main {
     margin-top: 35px;
+    &__wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
     &__catalog {
         width: 261px;
         // padding: 20px 20px 5px 20px;
         background: url('./assets/img/main/catalog_bg.jpg') center center/cover no-repeat;
     }
     .catalog {
+        &__header {
+            position: relative;
+        }
         &__title {
             @include opensans;
             display: block;
@@ -483,8 +491,122 @@
                 background-color: $six-color;
             }
         }
+        &__burger {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            padding: 10px 6px;
+            background-color: $seventh-color;
+            cursor: pointer;
+            span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background-color: #ffffff;
+                transition: all .1s;
+                &:nth-child(n):not(:last-child) {
+                    margin-bottom: 5px;
+                }
+            }
+            
+        }
     }
-
+    &__popup {
+        display: none;
+        max-width: 281px;
+        border: 2px solid $six-color;
+        padding-top: 20px;
+        .popup__list {
+            list-style-type: none;
+            margin-bottom: 10px;
+            &::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: $thirteen-color;
+            }
+        }
+        .popup__item {
+            @include roboto;
+            font-size: 12px;
+            line-height: 36px;
+            font-weight: 300;
+            color: $eight-color;
+            background-color: #ffffff;
+            cursor: pointer;
+            &:hover {
+                color: #ffffff;
+                background-color: $nine-color;
+            }
+            span {
+                margin-left: 40px;
+            }
+            &:last-child {
+                margin-bottom: 20px;
+            }
+        }
+        .popup__dayproduct {
+            .dayproduct__title {
+                @include roboto;
+                position: relative;
+                display: inline-block;
+                font-size: 14px;
+                line-height: 13px;
+                font-weight: 900;
+                padding: 6px 14px 3px 14px;
+                margin-left: 30px;
+                background-color: $ten-color;
+                border-radius: 20px;
+                text-transform: uppercase;
+                color: #ffffff;
+            }
+            .dayproduct__image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .dayproduct__descr {
+                .dayproduct__link {
+                    @include roboto;
+                    display: block;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 300;
+                    color: $eleven-color;
+                    text-decoration: none;
+                    margin-top: 10px;
+                    margin-left: 40px;
+                    &:hover {
+                        color: darken($eleven-color, 30%);
+                    }
+                }
+            }
+            .dayproduct__buy {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 30px 33px 0 40px;
+            }
+            .dayproduct__dump {
+                width: 40px;
+                height: 40px;
+                background: url('./assets/icons/main/dump_white.svg') center center/cover no-repeat;
+                cursor: pointer;
+                transition: .3s all;
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+            .dayproduct__cost {
+                @include roboto;
+                font-size: 24px;
+                line-height: 24px;
+                font-weight: 900;
+                color: $twelve-color;
+            }
+        }
+    }
 }
 
 // END MAIN
