@@ -1068,6 +1068,7 @@
         justify-content: space-between;
         align-items: center;
         .arrow {
+            cursor: pointer;
             &__prev {
                 left: 0;
             }
@@ -1079,3 +1080,273 @@
 }
 
 //END SPONSORS
+
+//ABOUT
+
+.about {
+    margin-top: 30px;
+    &__wrapper {
+        position: relative;
+        padding: 33px 57px 22px 32px;
+        background: url('./assets/img/main/about_bg.jpg') center center/cover no-repeat;
+    }
+    &__title {
+        @include opensans;
+        font-size: 30px;
+        line-height: 1.2;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        color: $twenty-color;
+    }
+    &__img {
+        position: absolute;
+        bottom: -123px;
+        right: 0;
+    }
+    &__text {
+        @include roboto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 33px;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 400;
+        letter-spacing: 0.025em;
+        color: #ffffff;
+    }
+    &__left {
+        width: calc(51% - 30px);
+        .left__first-paragraph {
+            margin-bottom: 20px;
+        }
+    }
+    &__polygon {
+        width: 255px;
+        height: 180px;
+        text-align: right;
+        margin-right: -57px;
+        shape-outside: polygon(72% 0, 5% 56%, 0 100%, 100% 100%, 100% 0%);
+        clip-path: polygon(72% 0, 5% 56%, 0 100%, 100% 100%, 100% 0%);
+        float: right;
+    }
+    &__right {
+        width: calc(48% - 30px);
+        span {
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .right__paragraph {
+            &::before {
+                content: url('./assets/icons/main/catalog_arrow.png');
+                margin-right: 17px;
+                margin-left: 7px; 
+            }
+        }
+    }
+}
+
+// END ABOUT
+
+// HELP LINKS
+
+.sitelinks {
+    border-top: 3px dashed $sixteen-color;
+    border-bottom: 3px dashed $sixteen-color;
+    padding: 25px 0;
+    margin-top: 38px; 
+    &__row {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        & + & {
+            margin-top: 30px;
+        }
+    }
+    &__item {
+        & + & {
+            margin-left: 35px;
+        }
+    }
+    &__title {
+        @include roboto;
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 900;
+        letter-spacing: 0.025em;
+        color: $twelve-color;
+    }
+    &__link {
+        @include roboto;
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 300;
+        color: $eight-color;
+        text-decoration: none;
+        &:hover {
+            &::after {
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: $eight-color;
+                display: block;
+            }
+        }
+        &_active {
+            color: $twelve-color;
+            &:hover {
+                text-decoration: none;
+                &::after {
+                    content: '';
+                    width: 0;
+                }
+            }
+        }
+    }
+}
+
+// END HELP LINKS
+
+//FOOTER
+
+.footer {
+    margin-top: 35px;
+    &__main {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid $sixteen-color;
+        padding-bottom: 25px;
+    }
+    &__left {
+        width: 49%;
+    }
+    &__right {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 51%;
+    }
+    &__links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+    &__delivery {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        
+    }
+    &__logo {
+        background-color: $fifth-color;
+        padding: 18px 15px 14px 21px;
+        .logo__text {
+            display: block;
+            text-align: center;
+            &:first-child {
+                @include play;
+                font-size: 48px;
+                line-height: 48px;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: #ffffff;
+            }
+            &:last-child {
+                @include roboto;
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: 300;
+                letter-spacing: 0.05em;
+                color: #ffffff;
+            }
+        }
+    }
+    &__tel-list {
+        position: relative;
+        margin-top: 28px;
+        padding-right: 7px;
+        list-style-type: none;
+        &::before {
+            content: url('./assets/icons/main/phone_black.png');
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+    }
+    &__tel-item {
+        @include roboto;
+        display: block;
+        text-align: right;
+        & + & {
+            margin-top: 5px;
+        }
+    }
+    &__tel-link {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $twelve-color;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__transport {
+        margin-left: 45px;
+        &-title {
+            @include roboto;
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            color: $sec-color;
+        }
+        &-list {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style-type: none;
+            margin-top: 30px;
+            gap: 25px;
+        }
+    }
+    &__payment-list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        list-style-type: none;
+        margin-top: 50px;
+    }
+    &__payment-item {
+        & + & {
+            margin-left: 25px;
+        }
+    }
+    &__socials {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+    }
+    &__socials-item {
+        & + & {
+            margin-left: 15px;
+        }
+    }
+    &__rights {
+        @include roboto;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 300;
+        color: $sec-color;
+    }
+}
+
+// END FOOTER
