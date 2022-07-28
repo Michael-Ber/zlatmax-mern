@@ -138,54 +138,22 @@
 
     <!-- CATALOG -->
 
-    <section class="main">
+    <section class="main main_page-catalog">
         <div class="container">
-            <div class="main__wrapper">
-                <div class="main__left">
-                    <div class="main__catalog">
-                        <div class="catalog__header">
-                            <span class="catalog__title">
+            <div class="main__wrapper main__wrapper_page-catalog">
+                <div class="main__left main__left_page-catalog">
+                    <div class="main__catalog main__catalog_page-catalog">
+                        <div class="catalog__header catalog__header_page-catalog">
+                            <span class="catalog__title catalog__title_page-catalog">
                                 Каталог товаров
                             </span>
-                            <div class="catalog__burger burgerBtn">
-                                <span class="catalog__burger-btn-line"></span>
-                                <span class="catalog__burger-btn-line"></span>
-                                <span class="catalog__burger-btn-line"></span>
+                            <div class="catalog__burger burgerBtn catalog__burger_page-catalog">
+                                <span class="catalog__burger-btn-line catalog__burger-btn-line_page-catalog"></span>
+                                <span class="catalog__burger-btn-line catalog__burger-btn-line_page-catalog"></span>
+                                <span class="catalog__burger-btn-line catalog__burger-btn-line_page-catalog"></span>
                             </div>
                         </div>
-                        <ul class="catalog__list">
-                            <li class="catalog__item">
-                                <span>Беговые дорожки</span> 
-                                <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
-                            </li>
-                            <li class="catalog__item">
-                                <span>Эллиптические тренажеры</span>
-                                <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
-                            </li>
-                            <li class="catalog__item"><span>Велотренажеры</span></li>
-                            <li class="catalog__item"><span>Гребные тренажеры</span></li>
-                            <li class="catalog__item"><span>Вибромассажеры</span></li>
-                            <li class="catalog__item">
-                                <span>Теннисные столы</span>
-                                <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
-                            </li>
-                            <li class="catalog__item"><span>Баскетбол</span></li>
-                            <li class="catalog__item">
-                                <span>Массажные кресла</span>
-                                <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
-                            </li>
-                            <li class="catalog__item">
-                                <span>Массажные столы</span>
-                                <img src="./assets/icons/main/catalog_arrow.png" alt="arrow">
-                            </li>
-                            <li class="catalog__item"><span>Силовые тренажеры</span></li>
-                            <li class="catalog__item"><span>Батуты</span></li>
-                            <li class="catalog__item"><span>Детские городки</span></li>
-                            <li class="catalog__item"><span>Дачная мебель</span></li>
-                            <li class="catalog__item"><span>Уличные спортивные комплексы</span></li>
-                            <li class="catalog__item"><span>Аксессуары</span></li>
-                        </ul>
-        
+                        
                         <div class="main__popup">
                             <div class="main__popup-close">&#10006;</div>
                             <ul class="popup__list">
@@ -218,152 +186,82 @@
                             </div>
                         </div>
                     </div>
-                    <aside class="main__news-comments">
-                        <!-- News -->
-                        <div class="news__title aside__title">Новости</div>
-                        <ul class="news__list">
-                            <li class="news__item aside__item">
-                                <div class="news__header">Снижение цен на игровые площадки 
-                                    Jungle Gym</div>
-                                <div class="news__contain aside__contain">
-                                    <div class="news__date aside__date">
-                                        <span>12</span>
-                                        <span>авг</span>
-                                    </div>
-                                    <div class="news__filling aside__filling">
-                                        Уважаемые покупатели! <br>
-                                        Мы рады сообщить вам о снижении 
-                                        цены с 27 июля на детский игровой 
-                                        комплекс</div>
+                    <div class="main__filter">
+                        <div class="main__filter-price">
+                            <div class="main__filter-title">Фильтр товаров</div>
+                            <div class="main__filter-scroll">
+                                <span class="main__filter-subtitle">Цена(руб.):</span>
+                                <div class="main__subwrapper">
+                                    <input type="range" step="100" id="range-1" name="range-1" min="0" max="200000" value="0" class="main__filter-bar">
+                                    <input type="range" step="100" id="range-2" name="range-2" min="0" max="200000" value="100000" class="main__filter-bar">
                                 </div>
-                            </li>
-                            <li class="news__item aside__item">
-                                <div class="news__header">Поступление батутов Eclipse!</div>
-                                <div class="news__contain aside__contain">
-                                    <div class="news__date aside__date">
-                                        <span>19</span>
-                                        <span>авг</span>
+                                <div class="main__filter-range">
+                                    <div class="main__filter-choose">
+                                        <span>от</span> 
+                                        <input value='' type="number" class="main__filter-input">
                                     </div>
-                                    <div class="news__filling aside__filling">
-                                        Уважаемые покупатели! <br>
-                                        Мы рады сообщить вам о снижении 
-                                        цены с 27 июля на детский игровой 
-                                        комплекс</div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- Comments -->
-                        <div class="comments__title aside__title">Отзывы</div>
-                        <ul class="comments__list">
-                            <li class="comments__item aside__item">
-                                <div class="comments__header">
-                                    <span>Павел Никифоров</span>
-                                    <span>12.09.2015</span>
-                                </div>
-                                <div class="comments__contain aside__contain">
-                                    <div class="comments__date aside__date">
-                                        <span>”</span>
-                                    </div>
-                                    <div class="comments__filling aside__filling">
-                                        Ради экономии места в тренажерном 
-                                        зале приобрел многофункциональный 
-                                        силовой тренажер Life Gear. За такую 
-                                        небольшую стоимость и с такими 
-                                        возможностями, он просто не 
-                                        заменим.
+                                    <div class="main__filter-choose">
+                                        <span>до</span>
+                                        <input value='' type="number" class="main__filter-input">
                                     </div>
                                 </div>
-                            </li>
-                            <li class="comments__item aside__item">
-                                <div class="comments__header">
-                                    <span>Степан Николаевич</span>
-                                    <span>12.09.2015</span>
+                            </div>
+                        </div>
+                        <div class="main__compare">
+                            <h2 class="main__compare-title">Товары для сравнения</h2>
+                            <ul class="main__compare-list">
+                                <li class="main__compare-item">
+                                    <span>NordicTrack C100</span>
+                                    <strong>&#10006;</strong>
+                                </li>
+                                <li class="main__compare-item">
+                                    <span>Clear Fit Luxury LT.20</span> 
+                                    <strong>&#10006;</strong>
+                                </li>
+                                <li class="main__compare-item">
+                                    <span>Ammity ATM 720 TFT+</span> 
+                                    <strong>&#10006;</strong>
+                                </li>
+                            </ul>
+                            <div class="main__compare-btns">
+                                <button class="main__compare-btn">Сравнить</button>
+                                <div class="main__compare-dumpster">
+                                    <img src="./assets/icons/catalog/trash.png" alt="dumpster">
                                 </div>
-                                <div class="comments__contain aside__contain">
-                                    <div class="comments__date aside__date">
-                                        <span>”</span>
-                                    </div>
-                                    <div class="comments__filling aside__filling">
-                                        Спасибо за прекрасный совет, 
-                                        велосипед всей семье понравился 
-                                        и цену за него достойную запросили.
-                                    </div>
-                                </div>
-                            </li>
-                            
-                        </ul>
-                    </aside>
+                            </div>
+                        </div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 </div>
-                <div class="main__right">
+                <div class="main__right main__right_page-catalog">
                     <form action="#" class="slide__search">
                         <button class="slide__everywhere">
                             <span>Везде</span> 
                         </button>
-                        <input type="text" class="slide__input" name="search" id="search">
+                        <input type="search" class="slide__input" name="search" id="search">
                         <input type="submit" class="slide__submit" value="НАЙТИ">
                     </form>
-                    <div class="main__slider">
-                        <div class="main__slide main__slide_active">
-                            <div class="slide__sale">
-                                <div class="sale__title">
-                                    <span class="slide__sale-title title__orange fsz48 title">Мега</span>
-                                    <span class="slide__sale-title title__gray fsz48 title title_block title_lh">Распродажа</span>
-                                </div>
-                                <div class="sale__descr">
-                                    <span class="title__orange fsz18 title title_block mb5">
-                                        Успей купить
-                                        <span class="title__gray fsz14 title">Тренажеры</span>
-                                    </span>
-                                    <span class="title__white fsz14 title title_bg">по старой цене</span>
-                                    <span class="title__gray fsz14 title title_block mt5">
-                                        до их
-                                        <span class="title__light-gray fsz14 title">повышения</span>
-                                    </span>
-                                </div>
-                                <div class="sale__cost">от 45 000 &#8381</div>
-                                <a href="./catalog.html" class="sale__detail">
-                                    <span>Подробнее</span> 
-                                    <img src="./assets/icons/main/catalog_arrow.png" alt="arrow_left">
-                                </a>
+                    
+                    <div class="main__popular main__popular_page-catalog">
+                        <div class="popular__header popular__header_page-catalog">
+                            <div class="popular__title popular__title_page-catalog">Популярные товары</div>
+                            <div class="popular__arrows popular__arrows_page-catalog">
+                                <img src="./assets/icons/main/arrow_left.png" alt="arrow_prev" class="popular__prev popular__prev_page-catalog">
+                                <img src="./assets/icons/main/arrow_right.png" alt="arrow_next" class="popular__next popular__next_page-catalog">
+                            </div>
+                            <div class="popular__pagination popular__pagination_page-catalog">
+                                
                             </div>
                         </div>
-                        <div class="main__slide">Content2</div>
-                        <div class="main__slide">Content3</div>
-                        <div class="main__slide">Content4</div>
-                        <div class="main__slide">Content5</div>
-                    </div>
-                    <div class="slider__photos">
-                        <div class="no-photo">1
-                        </div>
-                        <div class="slider__photo">
-                            <img src="./assets/img/main/woman_ava.jpg" alt="woman" class="img1">
-                        </div>
-                        <div class="slider__photo">
-                            <img src="./assets/img/main/man_ava.jpg" alt="man" class="img2">
-                        </div>
-                        <div class="slider__photo">
-                            <img src="./assets/img/main/cardio_ava.jpg" alt="cardio" class="img3">
-                        </div>
-                        <div class="slider__photo">
-                            <img src="./assets/img/main/bike_ava.jpg" alt="on_bike" class="img4">
-                        </div>
-                    </div>
-                    <div class="main__popular">
-                        <div class="popular__header">
-                            <div class="popular__title">Популярные товары</div>
-                            <div class="popular__arrows">
-                                <img src="./assets/icons/main/arrow_left.png" alt="arrow_prev" class="popular__prev">
-                                <img src="./assets/icons/main/arrow_right.png" alt="arrow_next" class="popular__next">
-                            </div>
-                            <div class="popular__pagination">
-                                <span class="popular__actual">3</span>/
-                                <span class="popular__all">15</span>
-                            </div>
-                        </div>
-                        <div class="popular__list-slider">
-                            <ul class="popular__list-item popular__list-item_active">
+                        <div class="popular__list-slider popular__list-slider_page-catalog">
+                            <ul class="popular__list-item popular__list-item_page-catalog popular__list-item_active">
                                 <li class="popular__item">
-                                    <div class="item__img">
+                                    <div class="item__img item__img_page-catalog">
                                         <img src="./assets/img/main/run_track_mini_1.jpg" alt="running_track">
                                     </div>
                                     <div class="item__descr">

@@ -6,72 +6,6 @@
     width: 100%;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-.container_about {
-  overflow: unset;
-}
-@media (max-width: 1199px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (max-width: 991px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (max-width: 767px) {
-  .container {
-    max-width: 540px;
-  }
-}
-@media (max-width: 575px) {
-  .container {
-    max-width: 100%;
-  }
-}
-@media (max-width: 575px) {
-  .container_sponsors {
-    max-width: 92%;
-  }
-}
-
-.fsz48 {
-  font-size: 48px;
-}
-
-.fsz18 {
-  font-size: 18px;
-}
-
-.fsz14 {
-  font-size: 14px;
-}
-
-.mb10 {
-  margin-bottom: 10px;
-}
-
-.mt5 {
-  margin-top: 5px;
-}
-
 .header {
   position: relative;
   overflow-x: hidden;
@@ -2154,4 +2088,278 @@ body {
   .footer__rights {
     font-size: 10px;
   }
+}
+
+.main__subwrapper {
+  position: relative;
+  width: 100%;
+}
+.main__filter {
+  width: 100%;
+  margin-top: 20px;
+  padding: 30px 25px 25px 18px;
+  background-color: rgba(249, 249, 249, 0);
+  border: 4px solid #72c9d4;
+}
+.main__filter-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #36949f;
+}
+.main__filter-scroll {
+  margin-top: 45px;
+}
+.main__filter-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 900;
+  color: #36949f;
+}
+.main__filter-bar {
+  margin-top: 25px;
+}
+.main input[type=range] {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+  left: 0;
+  top: 0;
+  height: 4px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+.main #range-1 {
+  background: linear-gradient(90deg, #ffcda5 0% 0%, #eaeaea 0% 100%);
+  z-index: 1;
+}
+.main #range-2 {
+  background: linear-gradient(90deg, #ffcda5 0% 50%, #eaeaea 50% 100%);
+}
+.main input[type=range]::-webkit-slider-thumb {
+  position: relative;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background: #f68038;
+  cursor: pointer;
+  box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #f68038;
+  transition: background 0.3s ease-in-out;
+  pointer-events: all;
+  z-index: 10;
+}
+.main input[type=range]::-moz-range-thumb {
+  position: relative;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background: #f68038;
+  cursor: pointer;
+  box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #f68038;
+  transition: background 0.3s ease-in-out;
+  pointer-events: all;
+  z-index: 10;
+}
+.main input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+.main__actual {
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 55px;
+  left: 5%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #999999;
+}
+.main__actual:last-child {
+  left: 80%;
+}
+.main__filter-range {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+}
+.main__filter-input {
+  font-family: "Roboto", sans-serif;
+  max-width: 60%;
+  height: 23px;
+  margin-left: 7px;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 30px;
+  font-weight: 300;
+  color: #999999;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dadada;
+}
+.main__filter-input::-webkit-outer-spin-button, .main__filter-input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
+.main__filter-input input[type=number] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+.main__filter-choose {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  font-size: 12px;
+  line-height: 30px;
+  font-weight: 300;
+  color: #999999;
+}
+.main__compare-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 900;
+  color: #999999;
+}
+.main__compare-list {
+  list-style-type: none;
+  margin-top: 10px;
+}
+.main__compare-item {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  line-height: 30px;
+  font-weight: 300;
+  color: #1ab9ce;
+}
+.main__compare-item span {
+  text-decoration: underline;
+}
+.main__compare-item strong {
+  text-decoration: none;
+}
+.main__compare-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.main__compare-btn {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #1ab9ce;
+  border: none;
+  padding: 4px 20px 0px 13px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.main__compare-btn::before {
+  content: url("./assets/icons/catalog/compare.png");
+  margin-right: 9px;
+}
+.main__compare-btn:hover {
+  background-color: #1490a1;
+}
+.catalog__title {
+  padding-left: 0;
+  padding-top: 0;
+}
+.catalog__title_page-catalog {
+  padding: 21px;
+}
+.test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  margin-top: 20px;
+  background: linear-gradient(90deg, blue 0% 60%, red 60% 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.container_about {
+  overflow: unset;
+}
+@media (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (max-width: 575px) {
+  .container {
+    max-width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .container_sponsors {
+    max-width: 92%;
+  }
+}
+
+.fsz48 {
+  font-size: 48px;
+}
+
+.fsz18 {
+  font-size: 18px;
+}
+
+.fsz14 {
+  font-size: 14px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mt5 {
+  margin-top: 5px;
 }
