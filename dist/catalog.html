@@ -187,7 +187,7 @@
                         </div>
                     </div>
                     <div class="main__filter">
-                        <div class="main__filter-price">
+                        <div class="main__filter-price main__block">
                             <div class="main__filter-title">Фильтр товаров</div>
                             <div class="main__filter-scroll">
                                 <span class="main__filter-subtitle">Цена(руб.):</span>
@@ -207,19 +207,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="main__compare">
+                        <div class="main__compare main__block">
                             <h2 class="main__compare-title">Товары для сравнения</h2>
                             <ul class="main__compare-list">
                                 <li class="main__compare-item">
-                                    <span>NordicTrack C100</span>
+                                    <a href="#" class="main__compare-link">NordicTrack C100</a> 
                                     <strong>&#10006;</strong>
                                 </li>
                                 <li class="main__compare-item">
-                                    <span>Clear Fit Luxury LT.20</span> 
+                                    <a href="#" class="main__compare-link">Clear Fit Luxury LT.20</a> 
                                     <strong>&#10006;</strong>
                                 </li>
                                 <li class="main__compare-item">
-                                    <span>Ammity ATM 720 TFT+</span> 
+                                    <a href="#" class="main__compare-link">Ammity ATM 720 TFT+ </a> 
                                     <strong>&#10006;</strong>
                                 </li>
                             </ul>
@@ -230,12 +230,255 @@
                                 </div>
                             </div>
                         </div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div class="main__producer main__block main__accordeon main__accordeon_active">
+                            <div class="main__producer-header main__accordeon-header">
+                                <h2 class="main__producer-title main__accordeon-title">Производитель:</h2>
+                                <div class="main__producer-accord-btn main__accordeon-accord-btn main__accordeon-accord-btn_active">
+                                    <!-- <img src="./assets/icons/catalog/arrow_down.png" alt="arrow-down"> -->
+                                    <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M12 4L8 8 4 4m8 4L8 12 4 8" stroke="#72c9d4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                            <ul class="main__producer-list main__accordeon-list main__accordeon-list_active">
+                                <li class="main__producer-item main__accordeon-item main__accordeon-item_active">
+                                    <label for="producer-1">
+                                        <input id="producer-1" type="checkbox">
+                                        <span>Сlear-fit</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="producer-2">
+                                        <input id="producer-2" type="checkbox">
+                                        <span>Diadora</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    
+                                    <label for="producer-3">
+                                        <input id="producer-3" type="checkbox">
+                                        <span>Hasttings</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    
+                                    <label for="producer-4">
+                                        <input id="producer-4" type="checkbox">
+                                        <span>Carbon-fitness</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    
+                                    <label for="producer-5">
+                                        <input id="producer-5" type="checkbox">
+                                        <span>Nordic Track</span>  
+                                    </label>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="main__capacity main__block main__accordeon main__accordeon_active">
+                            <div class="main__capacity-header main__accordeon-header">
+                                <h2 class="main__capacity-title main__accordeon-title">Мощность двигателя:</h2>
+                                <div class="main__capacity-accord-btn main__accordeon-accord-btn main__accordeon-accord-btn_active">
+                                    <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M12 4L8 8 4 4m8 4L8 12 4 8" stroke="#72c9d4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                            <ul class="main__capacity-list main__accordeon-list main__accordeon-list_active">
+                                <li class="main__capacity-item main__accordeon-item main__accordeon-item_active">
+                                    
+                                    <label for="capacity-1">
+                                        <input id="capacity-1" type="checkbox">
+                                        <span>12</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="capacity-2">
+                                        <input id="capacity-2" type="checkbox">
+                                        <span>14</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="capacity-3">
+                                        <input id="capacity-3" type="checkbox">
+                                        <span>16</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="capacity-4">
+                                        <input id="capacity-4" type="checkbox">
+                                        <span>18</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="capacity-5">
+                                        <input id="capacity-5" type="checkbox">
+                                        <span>20</span>  
+                                    </label>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="main__size main__block main__accordeon">
+                            <div class="main__size-header main__accordeon-header">
+                                <h2 class="main__size-title main__accordeon-title">Размер бегового полотна:</h2>
+                                <div class="main__size-accord-btn main__accordeon-accord-btn">
+                                    <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M12 4L8 8 4 4m8 4L8 12 4 8" stroke="#72c9d4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                            <ul class="main__size-list main__accordeon-list">
+                                <li class="main__size-item main__accordeon-item main__accordeon-item_active">
+                                    
+                                    <label for="size-1">
+                                        <input id="size-1" type="checkbox">
+                                        <span>some size</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="size-2">
+                                        <input id="size-2" type="checkbox">
+                                        <span>some size</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="size-3">
+                                        <input id="size-3" type="checkbox">
+                                        <span>some size</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="size-4">
+                                        <input id="size-4" type="checkbox">
+                                        <span>some size</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="size-5">
+                                        <input id="size-5" type="checkbox">
+                                        <span>some size</span>  
+                                    </label>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="main__weight main__block main__accordeon">
+                            <div class="main__weight-header main__accordeon-header">
+                                <h2 class="main__weight-title main__accordeon-title">Вес пользователя (макс.):</h2>
+                                <div class="main__weight-accord-btn main__accordeon-accord-btn">
+                                    <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M12 4L8 8 4 4m8 4L8 12 4 8" stroke="#72c9d4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                            <ul class="main__weight-list main__accordeon-list">
+                                <li class="main__weight-item main__accordeon-item main__accordeon-item_active">
+                                    
+                                    <label for="weight-1">
+                                        <input id="weight-1" type="checkbox">
+                                        <span>some weight</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="weight-2">
+                                        <input id="weight-2" type="checkbox">
+                                        <span>some weight</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="weight-3">
+                                        <input id="weight-3" type="checkbox">
+                                        <span>some weight</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="weight-4">
+                                        <input id="weight-4" type="checkbox">
+                                        <span>some weight</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="weight-5">
+                                        <input id="weight-5" type="checkbox">
+                                        <span>some weight</span>  
+                                    </label>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="main__speed main__block main__accordeon">
+                            <div class="main__speed-header main__accordeon-header">
+                                <h2 class="main__speed-title main__accordeon-title">Скорость (макс.):</h2>
+                                <div class="main__speed-accord-btn main__accordeon-accord-btn">
+                                    <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M12 4L8 8 4 4m8 4L8 12 4 8" stroke="#72c9d4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                            <ul class="main__speed-list main__accordeon-list">
+                                <li class="main__speed-item main__accordeon-item main__accordeon-item_active">
+                                    
+                                    <label for="speed-1">
+                                        <input id="speed-1" type="checkbox">
+                                        <span>some speed</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="speed-2">
+                                        <input id="speed-2" type="checkbox">
+                                        <span>some speed</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="speed-3">
+                                        <input id="speed-3" type="checkbox">
+                                        <span>some speed</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="speed-4">
+                                        <input id="speed-4" type="checkbox">
+                                        <span>some speed</span>  
+                                    </label>
+
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="speed-5">
+                                        <input id="speed-5" type="checkbox">
+                                        <span>some speed</span>  
+                                    </label>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="main__angle main__block">
+                            <h2 class="main__angle-title main__accordeon-title">Угол наклона:</h2>
+                            <ul class="main__angle-list">
+                                <li class="main__angle-item main__accordeon-item main__accordeon-item_active">
+                                    <label for="angle-1">
+                                        <input id="angle-1" type="checkbox">
+                                        <span>нет регулировки</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="angle-2">
+                                        <input id="angle-2" type="checkbox">
+                                        <span>механическая</span>  
+                                    </label>
+                                </li>
+                                <li class="main__accordeon-item">
+                                    <label for="angle-3">
+                                        <input id="angle-3" type="checkbox">
+                                        <span>электронная</span>  
+                                    </label>
+                                </li>
+                            </ul>
+                            <div class="main__angle-btns">
+                                <button class="main__angle-btn">Подобрать</button>
+                                <button class="main__angle-btn">Сбросить</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="main__right main__right_page-catalog">

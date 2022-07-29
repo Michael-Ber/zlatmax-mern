@@ -60,4 +60,15 @@ window.addEventListener('DOMContentLoaded', () => {
     setInputsToZero();
 
     // END PRICE SCROLL BAR
+
+    // CATALOG ACCORDEON
+
+    function accordeon() {
+        // const img = document.querySelector('.main__accordeon-accord-btn img');
+        // img.src = 'http://localhost:4000/assets/icons/catalog/arrow_right.png';
+        // console.log(img.src);
+    }
+    // accordeon();
+
+    // END CATALOG ACCORDEON
 });
