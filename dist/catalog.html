@@ -489,17 +489,95 @@
                         <input type="search" class="slide__input" name="search" id="search">
                         <input type="submit" class="slide__submit" value="НАЙТИ">
                     </form>
+
+                    <div class="main__links">
+                        <a href="index.html" class="main__link main__link_prev">Главная</a>
+                        <a href="index.html" class="main__link main__link_actual">Каталог товара</a>
+                    </div>
                     
                     <div class="main__popular main__popular_page-catalog">
                         <div class="popular__header popular__header_page-catalog">
                             <div class="popular__title popular__title_page-catalog">Популярные товары</div>
-                            <div class="popular__arrows popular__arrows_page-catalog">
-                                <img src="./assets/icons/main/arrow_left.png" alt="arrow_prev" class="popular__prev popular__prev_page-catalog">
-                                <img src="./assets/icons/main/arrow_right.png" alt="arrow_next" class="popular__next popular__next_page-catalog">
+                            <div class="popular__sort">
+                                <form action="#" class="popular__sort-form">
+                                    <label for="popular-select" class="popular__sort-label">
+                                        Сортировать по:
+                                        <select name="popular-select" id="popular-select" class="popular__sort-select">
+                                            <option selected disabled class="popular__sort-option">
+                                                По умолчанию
+                                            </option>
+                                            <option value="option-1" class="popular__sort-option">option-1</option>
+                                            <option value="option-2" class="popular__sort-option">option-2</option>
+                                            <option value="option-3" class="popular__sort-option">option-3</option>
+                                            <option value="option-4" class="popular__sort-option">option-4</option>
+                                        </select>
+                                    </label>
+                                    <div class="popular__sort-views">
+                                        <div class="popular__sort-btn popular__sort-btn_tile popular__sort-btn_active">
+                                            <div class="popular__sort-btn-square"></div>
+                                            <div class="popular__sort-btn-square"></div>
+                                            <div class="popular__sort-btn-square"></div>
+                                            <div class="popular__sort-btn-square"></div>
+                                        </div>
+                                        <div class="popular__sort-btn popular__sort-btn_list">
+                                            <div class="popular__sort-btn-line">
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                            <div class="popular__sort-btn-line">
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                            <div class="popular__sort-btn-line">
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="popular__pagination popular__pagination_page-catalog">
-                                
+                            <div class="popular__pagination-catalog">
+                                <form action="#" class="popular__pagination-catalog-form">
+                                    <label for="popular-pagination-catalog-select" class="popular__pagination-catalog-label">
+                                        На странице:
+                                        <select name="popular-pagination-catalog-select" id="popular-pagination-catalog-select" class="popular__pagination-catalog-select">
+                                            <option value="option-1" class="popular__pagination-catalog-option">1</option>
+                                            <option value="option-2" class="popular__pagination-catalog-option">2</option>
+                                            <option value="option-3" class="popular__pagination-catalog-option">3</option>
+                                            <option value="option-4" class="popular__pagination-catalog-option">4</option>
+                                            <option value="option-5" class="popular__pagination-catalog-option">5</option>
+                                            <option value="option-6" class="popular__pagination-catalog-option">6</option>
+                                            <option value="option-7" class="popular__pagination-catalog-option">7</option>
+                                            <option value="option-8" class="popular__pagination-catalog-option">8</option>
+                                            <option selected value="option-9" class="popular__pagination-catalog-option">9</option>
+                                        </select>
+                                    </label>
+                                </form>
+                                <div class="popular__arrows popular__arrows_page-catalog">
+                                    <img src="./assets/icons/main/arrow_left.png" alt="arrow_prev" class="popular__prev popular__prev_page-catalog">
+                                    <a href="#" class="popular__pagination-catalog-number popular__pagination-catalog-number_active">
+                                        1
+                                    </a>
+                                    <a href="#" class="popular__pagination-catalog-number">
+                                        2
+                                    </a>
+                                    <a href="#" class="popular__pagination-catalog-number">
+                                        3
+                                    </a>
+                                    <a href="#" class="popular__pagination-catalog-number">
+                                        4
+                                    </a>
+                                    <a href="#" class="popular__pagination-catalog-number">
+                                        5
+                                    </a>
+                                    <span>...</span>
+                                    <a href="#" class="popular__pagination-catalog-number">
+                                        10
+                                    </a>
+                                    <img src="./assets/icons/main/arrow_right.png" alt="arrow_next" class="popular__next popular__next_page-catalog">
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="popular__list-slider popular__list-slider_page-catalog">
                             <ul class="popular__list-item popular__list-item_page-catalog popular__list-item_active">
