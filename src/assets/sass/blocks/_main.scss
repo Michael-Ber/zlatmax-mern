@@ -47,7 +47,7 @@
     align-self: center;
     text-decoration: none;
     @media(max-width: 767px) {
-        margin: 0 0 0 110px;
+        margin: 0 0 0 185px;
         order: 2;
     }
     @media(max-width: 575px) {
@@ -626,7 +626,7 @@
         align-items: center;
         flex-direction: column;
         // overflow: hidden;
-        max-width: 22.9%;
+        width: 22.9%;
         @media(max-width: 575px) {
             max-width: 100%;
         }
@@ -638,7 +638,7 @@
         align-items: center;
         flex-direction: column;
         margin-left: 30px;
-        max-width: calc(77.1% - 30px);
+        width: calc(77.1% - 30px);
         @media(max-width: 575px) {
             max-width: 100%;
             margin-left: 0;
@@ -961,7 +961,7 @@
             visibility: visible;
             left: 100%;
             @media(max-width: 575px) {
-                left: -6%;
+                left: 0%;
             }
         }
         &-close {
@@ -1400,6 +1400,9 @@
             width: 236px;
             padding: 12px 11px 12px 11px;
         }
+        &_list {
+            height: unset;
+        }
         &_active {
             .item__descr {
                 display: none;
@@ -1408,6 +1411,9 @@
         &:hover {
             .item__descr {
                 display: none;
+                &_list {
+                    display: block;
+                }
             }
             .item__hover-content {
                 left: 0;
@@ -1479,6 +1485,15 @@
                 font-weight: 400;
                 color: #ffffff;
             }
+            &__subname, &__speed, &__transf {
+                &_list {
+                    color: $fourteen-color;
+                    span {
+                        color: $twelve-color;
+                        font-weight: 900;
+                    }
+                }
+            }
             &__subtype, &__speed-value, &__transf-value {
                 line-height: 18px;
                 font-weight: 900;
@@ -1488,6 +1503,16 @@
                 text-align: center;
                 margin-top: 24px;
                 cursor: pointer;
+                &_list {
+                    width: 52px;
+                    height: 52px;
+                    margin: 20px  0 0 auto;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
             }
             &__in-stock {
                 @include roboto;
@@ -1690,6 +1715,12 @@
     }
     @media(max-width: 767px) {
         padding: 25px 5px;
+    }
+    &_page-catalog {
+        margin-top: 150px;
+        @media(max-width: 575px) {
+            margin-top: 40px;
+        }
     }
     &__row {
         display: flex;

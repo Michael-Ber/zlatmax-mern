@@ -147,12 +147,54 @@ window.addEventListener('DOMContentLoaded', () => {
   setInputsToZero(); // END PRICE SCROLL BAR
   // CATALOG ACCORDEON
 
-  function accordeon() {// const img = document.querySelector('.main__accordeon-accord-btn img');
-    // img.src = 'http://localhost:4000/assets/icons/catalog/arrow_right.png';
-    // console.log(img.src);
-  } // accordeon();
-  // END CATALOG ACCORDEON
+  function accordeon() {
+    const trig = document.querySelectorAll('.main__accordeon-accord-btn');
+    trig.forEach(item => {
+      item.addEventListener('click', e => {
+        const btnACtive = e.target.classList.contains('main__accordeon-accord-btn_active') || e.target.parentNode.parentNode.classList.contains('main__accordeon-accord-btn_active');
 
+        if (e.target.classList.contains('main__accordeon-accord-btn_active') || e.target.parentNode.parentNode.classList.contains('main__accordeon-accord-btn_active')) {
+          item.parentNode.nextElementSibling.style.display = 'none';
+          item.classList.remove('main__accordeon-accord-btn_active');
+        } else {
+          item.parentNode.nextElementSibling.style.display = 'block';
+          item.classList.add('main__accordeon-accord-btn_active');
+        }
+      });
+    });
+  }
+
+  accordeon(); // END CATALOG ACCORDEON
+  // CATALOG SORT ITEMS
+
+  function sortItems() {
+    const trig = document.querySelectorAll('.popular__sort-btn');
+    const contentTile = document.querySelector('.popular__list-slider-tile');
+    const contentList = document.querySelector('.popular__list-slider-list');
+
+    function clearBtns() {
+      trig.forEach(item => {
+        item.classList.remove('popular__sort-btn_active');
+      });
+    }
+
+    trig.forEach(item => {
+      item.addEventListener('click', () => {
+        clearBtns();
+        item.classList.add('popular__sort-btn_active');
+
+        if (item.classList.contains('popular__sort-btn_tile')) {
+          contentTile.style.display = 'flex';
+          contentList.style.display = 'none';
+        } else if (item.classList.contains('popular__sort-btn_list')) {
+          contentList.style.display = 'block';
+          contentTile.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  sortItems(); // END CATALOG SORT ITEMS
 });
 
 /***/ }),
