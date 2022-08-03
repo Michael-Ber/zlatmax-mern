@@ -86,9 +86,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // END CATALOG ACCORDEON
 
-    // CATALOG SORT ITEMS
+    // CATALOG CHANGE LOCATION ITEMS
 
-    function sortItems() {
+    function changeLocationItems() {
         const trig = document.querySelectorAll('.popular__sort-btn');
         const contentTile = document.querySelector('.popular__list-slider-tile');
         const contentList = document.querySelector('.popular__list-slider-list');
@@ -108,14 +108,92 @@ window.addEventListener('DOMContentLoaded', () => {
                     contentTile.style.display = 'flex';
                     contentList.style.display = 'none';
                 }else if(item.classList.contains('popular__sort-btn_list')) {
-                    contentList.style.display = 'block';
+                    contentList.style.display = 'flex';
                     contentTile.style.display = 'none';
                 }
             });
         });
     }
 
-    sortItems();
+    changeLocationItems();
 
-    // END CATALOG SORT ITEMS
+    // END CATALOG CHANGE LOCATION ITEMS
+
+    // SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
+
+    function selectNumberOfElements() {
+        const selectElements = document.querySelectorAll('.popular__pagination-catalog-select');
+        const maxItemsOnPage = 9;
+        selectElements.forEach((item, i, arr) => {
+            item.addEventListener('input', () => {
+                const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
+                
+                slideItemsParent.forEach(parent => {
+                    for(let i = 0; i < item.value; i++) {
+                        Array.from(parent.children)[i].style.display = 'flex';
+                    }
+                    for(let i = item.value; i < maxItemsOnPage; i++) {
+                        Array.from(parent.children)[i].style.display = 'none';
+                    }
+                })
+                arr.forEach(elem => elem.value = item.value);
+            });
+        });
+        
+    }
+    selectNumberOfElements();
+    // END SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
+
+    // CATALOG POPULAR SLIDER
+
+    function mainCatalogSlider() {
+        // set amount of slides on pagination numbers
+        const navContainer = document.querySelectorAll('.popular__nav-container');
+        const amountOfItems = document.querySelectorAll('.popular__list-item-tile').length;
+        
+        for(let i = 1; i <= amountOfItems; i++) {
+            navContainer.forEach(container => {
+                container.innerHTML += `<li class="popular__pagination-catalog-number">${i}</li>`
+            });
+        }
+
+
+
+        const arrowsContainer = document.querySelectorAll('.popular__arrows_page-catalog');
+
+        const arrowsPrev = document.querySelectorAll('.popular__prev_page-catalog');
+        const arrowsNext = document.querySelectorAll('.popular__next_page-catalog');
+
+        // const sliderTile = tns({
+        //     container: '.popular__list-slider-tile',
+        //     items: 1,
+        //     slideBy: 1,
+        //     mouseDrag: false,
+        //     nav: false,
+        //     // controlsContainer: arrowsContainer[0],
+        //     prevButton: "#arrow-left-tile",
+        //     nextButton: "#arrow-right-tile",
+        //     // nav: true,
+        //     // navContainer: navContainer[0],
+        // });
+
+        // const sliderTList = tns({
+        //     container: '.popular__list-slider-list',
+        //     items: 1,
+        //     slideBy: 1,
+        //     mouseDrag: false,
+        //     nav: false,
+        //     // controlsContainer: arrowsContainer[1],
+        //     prevButton: "#arrow-left-list",
+        //     nextButton: "#arrow-right-list",
+        //     // nav: true,
+        //     // navContainer: navContainer[0],
+        // });
+
+        
+
+    }
+    mainCatalogSlider();
+
+    // END CATALOG POPULAR SLIDER
 });

@@ -30,7 +30,7 @@
     &__right {
         &_page-catalog {
             @media(max-width: 767px) {
-                max-width: 100%;
+                width: 100%;
                 margin-left: 0;
             }
         }
@@ -65,7 +65,7 @@
         @media(max-width: 991px) {
             padding: 0 10px 25px 10px;
         }
-        @media(max-width: 991px) {
+        @media(max-width: 575px) {
             padding: 0 25px 25px 18px;
         }
     }
@@ -264,6 +264,10 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 20px;
+        // @media(max-width: 991px) {
+        //     flex-direction: column;
+        //     gap: 10px;
+        // }
     }
 
     &__compare-btn {
@@ -292,6 +296,9 @@
             }
             &:hover {
                 background-color: #fff !important;
+            }
+            @media(max-width: 575px) {
+                margin: 0 auto;
             }
         }
         @media(max-width: 1199px) {
@@ -585,6 +592,12 @@
         }
     }
 }
+.tns-horizontal.tns-subpixel>.tns-item {
+    display: flex;
+}
+// #tns2 {
+//     display: flex;
+// }
 .popular {
 
     &__list-slider {
@@ -592,18 +605,32 @@
             display: none;
             width: 100%;
         }
+        
     }
-
+    
     &__list-item {
-        &_list {
+        &-list {
+            display: none;
             width: 100%;
             flex-direction: column;
+            &_active {
+                display: flex;
+            }
+        }
+        &-tile {
+            display: none;
+            &_active {
+                display: flex;
+            }
         }
     }
     &__item {
         &_list {
             flex-direction: row;
             width: 100%;
+            @media(max-width: 575px) {
+                flex-direction: column;
+            }
         }
     }
 
@@ -796,6 +823,17 @@
         font-weight: 900;
         border: 2px solid $button_bg;
     }
+    &__nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+        .tns-nav-active {
+            background-color: $third-color;
+            border-radius: 100%;
+            color: #ffffff;
+        }
+    }
     &__pagination-catalog-number {
         @include roboto;
         display: flex;
@@ -808,23 +846,67 @@
         font-weight: 900;
         color: $twelve-color;
         text-decoration: none;
-        &_active {
-            background-color: $third-color;
-            border-radius: 100%;
-            color: #ffffff;
-        }
+        cursor: pointer;
         @media(max-width: 991px) {
             width: 31px;
             height: 31px;
         }
     }
+    &__item {
+        .item__cost {
+            &_list {
+                @media(max-width: 575px) {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 20px;
+                }
+            }
+        }
+        
+        .item__name, .item__type {
+            &_list {
+                font-size: 14px;
+            }
+        }
+        .item__subname, .item__speed, .item__transf {
+            &_list {
+                font-size: 12px;
+            }
+        }
+        .item__old-cost {
+            &_list {
+                font-size: 14px;
+            }
+            @media(max-width: 575px) {
+                margin: 0;
+                order: 2;
+            }
+        }
+        .item__new-cost {
+            &_list {
+                font-size: 16px;
+                @media(max-width: 575px) {
+                    order: 1;
+                }
+            }
+        }
+            
+        .item__dumpster {
+            &_list {
+                width: 35px;
+                height: 35px;
+                margin: 10px 0 0 auto;
+                @media(max-width: 575px) {
+                    margin: 0;
+                    order: 3;
+                }
+            }
+        }
+        
+    }
 }
-.test {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #000;
-    margin-top: 20px;
-    background: linear-gradient(90deg, blue 0% 60%, red 60% 100%);
-}
+
+
 
 // END MAIN
