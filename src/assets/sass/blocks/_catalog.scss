@@ -609,14 +609,14 @@
     &__list-slider {
         &-list {
             display: none;
-            width: 100%;
+            // width: 100%;
             // @media(max-width: 767px) {
             //     justify-content: flex-start;
             // }
         }
-        &_page-catalog {
-            width: 100%;
-        }
+        // &_page-catalog {
+        //     width: 100%;
+        // }
         &-wrapper {
             display: flex;
             justify-content: flex-start;

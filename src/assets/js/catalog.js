@@ -125,6 +125,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const selectElements = document.querySelectorAll('.popular__pagination-catalog-select');
         const slider = document.querySelectorAll('.popular__list-slider_page-catalog');
         const slideList = document.querySelectorAll('.popular__list-item-list');
+        const slideTile = document.querySelectorAll('.popular__list-item-tile');
         const sliderWrapper = document.querySelectorAll('.popular__list-slider-wrapper');
         const maxItemsOnPage = 9;
         selectElements.forEach((item, i, arr) => {
@@ -178,6 +179,57 @@ window.addEventListener('DOMContentLoaded', () => {
                 sliderInit(slider, sliderWrapper, slideList);
             });
         });
+        // selectElements.forEach((item, i, arr) => {
+        //     item.addEventListener('input', () => {
+        //         const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
+        //         slideItemsParent.forEach(parent => {
+        //             let deletedItems = [];
+        //             for(let i = 0; i < item.value; i++) {
+        //                 Array.from(parent.children)[i].style.display = 'flex';
+        //             }
+        //             for(let j = maxItemsOnPage-1; j >= item.value; j--) {
+        //                 deletedItems.push(Array.from(parent.children)[j]);
+        //                 parent.removeChild(Array.from(parent.children)[j]);
+        //             }
+
+        //             function createNewUl(deleted, selected) {
+        //                 const ulElement = document.createElement('ul'); 
+        //                 ulElement.classList.add('popular__list-item', 'popular__list-item-tile', 'popular__list-item_page-catalog');
+        //                 ulElement.style.minWidth = window.getComputedStyle(parent).minWidth;
+                        
+        //                 if(deleted.length > 1 && !(deleted.length % 2 == 0) && selected % 2 == 0 && selected < deleted.length) {
+        //                     ulElement.appendChild(deleted[0]);
+        //                     deleted.splice(0, 1);
+        //                 }else if(deleted.length > 2 && selected < deleted.length){
+        //                     for(let i = 0; i < selected; i++) {
+        //                         ulElement.appendChild(deleted[0]);
+        //                         deleted.splice(0, 1);
+        //                     };
+        //                 }else if(selected > deleted.length) {
+        //                     const max = deleted.length;
+        //                     for(let i = 0; i < max; i++) {
+        //                         ulElement.appendChild(deleted[0]);
+        //                         deleted.splice(0, 1);
+        //                     };
+        //                 }else {
+        //                     for(let i = 0; i < selected; i++) {
+        //                         ulElement.appendChild(deleted[0]);
+        //                         deleted.splice(0, 1);
+        //                     };
+        //                 }
+                        
+        //                 return ulElement;
+        //             }
+        //             for(let k = 1; k < Math.ceil(maxItemsOnPage/item.value); k++) {
+        //                 parent.insertAdjacentElement('afterend', createNewUl(deletedItems, item.value));
+        //             }
+        //         })
+        //         arr.forEach(elem => elem.value = item.value);
+        //         paginationMenu();
+        //         // mainCatalogSlider();
+        //         sliderInit(slider, sliderWrapper, slideListTile);
+        //     });
+        // });
         
     }
     selectNumberOfElements();
@@ -220,7 +272,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             container.innerHTML += `<li class="popular__pagination-catalog-number hidden" data-num=${numHidden}>${s++}</li>`;
                             numHidden +=100 / numberOfElems;
                         }
-                        container.innerHTML += `<span>...</span>`;
+                        container.innerHTML += `<span class="popular__dots">...</span>`;
                     }else if(i === numberOfElems) {
                         container.innerHTML += `<li class="popular__pagination-catalog-number" data-num=${num}>${numberOfElems}</li>`;
                     }
@@ -277,20 +329,21 @@ window.addEventListener('DOMContentLoaded', () => {
         arrowsPrev.forEach(prev => {
             prev.addEventListener('click', () => {
                 const navContainer = document.querySelectorAll('.popular__nav-container');
-                const paginationDots = navContainer[0].querySelector('span');
-                const paginationNumbers = navContainer[0].querySelectorAll('[data-num]');
-
+                const paginationDots = document.querySelectorAll('.popular__dots');
+                const paginationNumbers = document.querySelectorAll('[data-num]');
+                let paginationNumbersCont1 = Array.from(paginationNumbers).slice(0, paginationNumbers.length/2);
+                let paginationNumbersCont2 = Array.from(paginationNumbers).slice(paginationNumbers.length/2, paginationNumbers.length);
                 let paginationNumbersActive = 0;
-                const paginDiffer = paginationNumbers.length - alwaysVisibleNumbers + 1;
-                paginationNumbers.forEach((item, i) => {
+                const paginDiffer = paginationNumbersCont1.length - alwaysVisibleNumbers + 1;
+                paginationNumbersCont1.forEach((item, i) => {
                     if(item.classList.contains('popular__pagination-catalog-number_active')) {
                         paginationNumbersActive = i;
                     }
                 });
                 offset += 100 / sliderWrapper[0].children.length;
                 if(offset >= 1) { 
-                    if(paginationDots) {
-                        numberWidth = (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2)) * paginDiffer;
+                    if(paginationDots[0]) {
+                        numberWidth = (+window.getComputedStyle(paginationNumbersCont1[0]).width.slice(0, -2)) * paginDiffer;
                         paginationNumbers.forEach(number => {
                             number.classList.remove('hidden');
                         });
@@ -306,43 +359,125 @@ window.addEventListener('DOMContentLoaded', () => {
                 sliderWrapper.forEach(wrapper => {
                     wrapper.style.transform = `translateX(${offset}%)`;
                 });
-                paginationNumbers.forEach((elem, i) => {
+                paginationNumbersCont1.forEach((elem, i) => {
                     elem.classList.remove('popular__pagination-catalog-number_active');
                     if(Math.round(-elem.getAttribute('data-num')) === Math.round(offset)) {
                         elem.classList.add('popular__pagination-catalog-number_active');
-                        if(i >= 0 && i < paginationNumbers.length - alwaysVisibleNumbers && paginationDots) {
-                            paginationNumbers[i+5].classList.add('hidden');
+                        if(i >= 0 && i < paginationNumbersCont1.length - alwaysVisibleNumbers && paginationDots[0]) {
+                            paginationNumbersCont1[i+5].classList.add('hidden');
                         }
-                        if(i >= 4 && paginationDots) {
-                            paginationDots.classList.add('hidden');
-                        }else if(paginationDots){
-                            paginationDots.classList.remove('hidden');
+                        if(i >= 4 && paginationDots[0]) {
+                            paginationDots[0].classList.add('hidden');
+                            paginationDots[1].classList.add('hidden');
+                        }else if(paginationDots[0]){
+                            paginationDots[0].classList.remove('hidden');
+                            paginationDots[1].classList.remove('hidden');
                         }
                     }
-                })
-                if(paginationNumbers.length - paginationNumbersActive > 5) {
-                    numberWidth = numberWidth - (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2));
+                });
+                paginationNumbersCont2.forEach((elem, i) => {
+                    elem.classList.remove('popular__pagination-catalog-number_active');
+                    if(Math.round(-elem.getAttribute('data-num')) === Math.round(offset)) {
+                        elem.classList.add('popular__pagination-catalog-number_active');
+                        if(i >= 0 && i < paginationNumbersCont2.length - alwaysVisibleNumbers && paginationDots[0]) {
+                            paginationNumbersCont2[i+5].classList.add('hidden');
+                        }
+                        if(i >= 4 && paginationDots[0]) {
+                            paginationDots[0].classList.add('hidden');
+                            paginationDots[1].classList.add('hidden');
+                        }else if(paginationDots[0]){
+                            paginationDots[0].classList.remove('hidden');
+                            paginationDots[1].classList.remove('hidden');
+                        }
+                    }
+                });
+                if(paginationNumbersCont1.length - paginationNumbersActive > 5) {
+                    console.log('here');
+                    numberWidth = numberWidth - (+window.getComputedStyle(paginationNumbersCont1[0]).width.slice(0, -2));
                     navContainer.forEach(item => {
                         item.style.transform = `translateX(-${numberWidth}px)`;
                     });
                 }
                 
             })  
+            // prev.addEventListener('click', () => {
+            //     const navContainer = document.querySelectorAll('.popular__nav-container');
+            //     const paginationDots = navContainer[0].querySelector('span');
+            //     const paginationNumbers = navContainer[0].querySelectorAll('[data-num]');
+
+            //     let paginationNumbersActive = 0;
+            //     const paginDiffer = paginationNumbers.length - alwaysVisibleNumbers + 1;
+            //     paginationNumbers.forEach((item, i) => {
+            //         if(item.classList.contains('popular__pagination-catalog-number_active')) {
+            //             paginationNumbersActive = i;
+            //         }
+            //     });
+            //     offset += 100 / sliderWrapper[0].children.length;
+            //     if(offset >= 1) { 
+            //         if(paginationDots) {
+            //             numberWidth = (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2)) * paginDiffer;
+            //             paginationNumbers.forEach(number => {
+            //                 number.classList.remove('hidden');
+            //             });
+                        
+            //             navContainer.forEach(item => {
+            //                 item.style.transform = `translateX(-${numberWidth}px)`;
+            //             });
+            //         }
+            //         offset = -100 + 100 / sliderWrapper[0].children.length;
+            //     }else if(offset > Math.ceil(-100 / sliderWrapper[0].children.length)) {
+            //         offset = 0;
+            //     }
+            //     sliderWrapper.forEach(wrapper => {
+            //         wrapper.style.transform = `translateX(${offset}%)`;
+            //     });
+            //     paginationNumbers.forEach((elem, i) => {
+            //         elem.classList.remove('popular__pagination-catalog-number_active');
+            //         if(Math.round(-elem.getAttribute('data-num')) === Math.round(offset)) {
+            //             elem.classList.add('popular__pagination-catalog-number_active');
+            //             if(i >= 0 && i < paginationNumbers.length - alwaysVisibleNumbers && paginationDots) {
+            //                 paginationNumbers[i+5].classList.add('hidden');
+            //             }
+            //             if(i >= 4 && paginationDots) {
+            //                 paginationDots.classList.add('hidden');
+            //             }else if(paginationDots){
+            //                 paginationDots.classList.remove('hidden');
+            //             }
+            //         }
+            //     })
+            //     if(paginationNumbers.length - paginationNumbersActive > 5) {
+            //         numberWidth = numberWidth - (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2));
+            //         navContainer.forEach(item => {
+            //             item.style.transform = `translateX(-${numberWidth}px)`;
+            //         });
+            //     }
+                
+            // })  
         });
         
         arrowsNext.forEach(next => {
+            
             next.addEventListener('click', () => {
                 const navContainer = document.querySelectorAll('.popular__nav-container');
-                const paginationDots = navContainer[0].querySelector('span');
-                const paginationNumbers = navContainer[0].querySelectorAll('[data-num]');
+                const paginationDots = document.querySelectorAll('.popular__dots');
+                const paginationNumbers = document.querySelectorAll('[data-num]');
                 const hiddenNumbers = document.querySelectorAll('.hidden');
+                let paginationNumbersCont1 = Array.from(paginationNumbers).slice(0, paginationNumbers.length/2);
+                let paginationNumbersCont2 = Array.from(paginationNumbers).slice(paginationNumbers.length/2, paginationNumbers.length);
+                let hiddenNumbersCont1 = Array.from(hiddenNumbers).slice(0, hiddenNumbers.length/2);
+                let hiddenNumbersCont2 = Array.from(hiddenNumbers).slice(hiddenNumbers.length/2, hiddenNumbers.length);
+
                 let paginationNumbersActive = 0;
-                paginationNumbers.forEach((item, i) => {
+                paginationNumbersCont1.forEach((item, i) => {
                     if(item.classList.contains('popular__pagination-catalog-number_active')) {
                         paginationNumbersActive = i;
                     }
                 });
-                console.log(numberWidth);
+                paginationNumbersCont2.forEach((item, i) => {
+                    if(item.classList.contains('popular__pagination-catalog-number_active')) {
+                        paginationNumbersActive = i;
+                    }
+                });
                 offset -= 100 / sliderWrapper[0].children.length;
 
                 if(offset <= -100) {
@@ -350,30 +485,48 @@ window.addEventListener('DOMContentLoaded', () => {
                     navContainer.forEach(item => {
                         item.style.transform = `translateX(0px)`;
                     });
-                    console.log(numberWidth);
                     numberWidth = 0;
                     paginationMenu();
                 }
                 sliderWrapper.forEach(wrapper => {
                     wrapper.style.transform = `translateX(${offset}%)`;
                 });
-                if(hiddenNumbers.length > 0) {
-                    hiddenNumbers[0].classList.remove('hidden');
+
+                if(hiddenNumbersCont1.length > 0) {
+                    hiddenNumbersCont1[0].classList.remove('hidden');
+                    hiddenNumbersCont2[0].classList.remove('hidden');
                 }
-                paginationNumbers.forEach((elem, i) => {
+
+                paginationNumbersCont1.forEach((elem, i) => {
                     elem.classList.remove('popular__pagination-catalog-number_active');
                     if(Math.floor(-elem.getAttribute('data-num')) == Math.floor(offset)) {
                         elem.classList.add('popular__pagination-catalog-number_active');
                         
-                        if(i >= 3 && paginationDots) {
-                            paginationDots.classList.add('hidden');
-                        }else if(paginationDots){
-                            paginationDots.classList.remove('hidden');
+                        if(i >= 3 && paginationDots[0]) {
+                            paginationDots[0].classList.add('hidden');
+                            paginationDots[1].classList.add('hidden');
+                        }else if(paginationDots[0]){
+                            paginationDots[0].classList.remove('hidden');
+                            paginationDots[1].classList.remove('hidden');
+                        }
+                    }
+                });
+                paginationNumbersCont2.forEach((elem, i) => {
+                    elem.classList.remove('popular__pagination-catalog-number_active');
+                    if(Math.floor(-elem.getAttribute('data-num')) == Math.floor(offset)) {
+                        elem.classList.add('popular__pagination-catalog-number_active');
+                        
+                        if(i >= 3 && paginationDots[0]) {
+                            paginationDots[0].classList.add('hidden');
+                            paginationDots[1].classList.add('hidden');
+                        }else if(paginationDots[0]){
+                            paginationDots[0].classList.remove('hidden');
+                            paginationDots[1].classList.remove('hidden');
                         }
                     }
                     
                 });
-                if(paginationNumbers.length - paginationNumbersActive > 6) {
+                if(paginationNumbersCont1.length - paginationNumbersActive > 6) {
 
                     numberWidth += +window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2);
                     navContainer.forEach(item => {
@@ -400,11 +553,14 @@ window.addEventListener('DOMContentLoaded', () => {
             elem.style.overflow = 'hidden';
         });
 
+        Array.from(sliderWrapper[0].children).forEach(item => {
+            item.style.minWidth = slideWidth;
+        })
+        Array.from(sliderWrapper[1].children).forEach(item => {
+            item.style.minWidth = '848px';
+        })
         sliderWrapper.forEach(wrapper => {
             wrapper.style.minWidth = `${sliderWrapper[0].children.length * 100}%`;
-            Array.from(sliderWrapper[0].children).forEach(item => {
-                item.style.minWidth = slideWidth;
-            })
             slideList.forEach(item => {
                 item.style.minWidth = slideWidth;
                 Array.from(item.children).forEach(elem => {

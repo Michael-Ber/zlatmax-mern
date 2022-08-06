@@ -2729,10 +2729,6 @@
 
 .popular__list-slider-list {
   display: none;
-  width: 100%;
-}
-.popular__list-slider_page-catalog {
-  width: 100%;
 }
 .popular__list-slider-wrapper {
   display: flex;
