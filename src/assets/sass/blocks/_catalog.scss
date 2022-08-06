@@ -854,6 +854,10 @@
         font-weight: 900;
         border: 2px solid $button_bg;
     }
+    &__nav-wrapper {
+        width: 213px;
+        overflow: hidden;
+    }
     &__nav-container {
         display: flex;
         justify-content: space-between;
@@ -861,8 +865,8 @@
         list-style-type: none;
         .popular__pagination-catalog-number {
             &_active {
-                width: 33px;
-                height: 33px;
+                min-width: 33px;
+                min-height: 33px;
                 border-radius: 100%;
                 background-color: $ten-color;
                 color: #fff;
@@ -874,8 +878,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 33px;
-        height: 33px;
+        min-width: 33px;
+        min-height: 33px;
         font-size: 18px;
         line-height: 24px;
         font-weight: 900;
@@ -942,6 +946,12 @@
     }
 }
 
+//ADDITIONAL CLASSES
 
+.hidden {
+    display: none;
+}
+
+//END ADDITIONAL CLASSES
 
 // END MAIN

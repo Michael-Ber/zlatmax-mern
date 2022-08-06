@@ -2948,6 +2948,10 @@
   font-weight: 900;
   border: 2px solid #f3f3f3;
 }
+.popular__nav-wrapper {
+  width: 213px;
+  overflow: hidden;
+}
 .popular__nav-container {
   display: flex;
   justify-content: space-between;
@@ -2955,8 +2959,8 @@
   list-style-type: none;
 }
 .popular__nav-container .popular__pagination-catalog-number_active {
-  width: 33px;
-  height: 33px;
+  min-width: 33px;
+  min-height: 33px;
   border-radius: 100%;
   background-color: #fd8424;
   color: #fff;
@@ -2966,8 +2970,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 33px;
-  height: 33px;
+  min-width: 33px;
+  min-height: 33px;
   font-size: 18px;
   line-height: 24px;
   font-weight: 900;
@@ -3022,6 +3026,10 @@
     margin: 0;
     order: 3;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 * {
