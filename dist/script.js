@@ -207,6 +207,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const slideList = document.querySelectorAll('.popular__list-item-list');
     const slideTile = document.querySelectorAll('.popular__list-item-tile');
     const sliderWrapper = document.querySelectorAll('.popular__list-slider-wrapper');
+    const navContainerGlobal = document.querySelectorAll('.popular__nav-container');
     const maxItemsOnPage = 9;
     let a = [];
     sliderWrapper.forEach(wrapper => {
@@ -271,7 +272,9 @@ window.addEventListener('DOMContentLoaded', () => {
         arr.forEach(elem => elem.value = item.value);
         paginationMenu(); // mainCatalogSlider();
 
-        sliderInit(slider, sliderWrapper, slideList);
+        let obj = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
+        obj.trig = true;
+        console.log(obj);
       });
     });
 
@@ -347,13 +350,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const sliderWrapper = document.querySelectorAll('.popular__list-slider-wrapper');
     const arrowsPrev = document.querySelectorAll('.popular__prev_page-catalog');
     const arrowsNext = document.querySelectorAll('.popular__next_page-catalog');
+    const navContainerGlobal = document.querySelectorAll('.popular__nav-container');
+    let objFromSelectFunc;
     const alwaysVisibleNumbers = 6;
-    let offset = 0; // let num = 0;
+    let offset = 0;
+    let numberWidth = 0; // let num = 0;
 
     paginationMenu();
-    sliderInit(slider, sliderWrapper, slideList);
+    objFromSelectFunc = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
     window.addEventListener('resize', () => {
-      sliderInit(slider, sliderWrapper, slideList);
+      sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
     });
     const paginationItems = document.querySelectorAll('[data-num]');
     paginationItems.forEach(item => {
@@ -371,7 +377,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
-    let numberWidth = 0;
     arrowsPrev.forEach(prev => {
       prev.addEventListener('click', () => {
         const navContainer = document.querySelectorAll('.popular__nav-container');
@@ -456,6 +461,14 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     arrowsNext.forEach(next => {
       next.addEventListener('click', () => {
+        console.log(objFromSelectFunc);
+
+        if (objFromSelectFunc.trig) {
+          offset = 0;
+          numberWidth = 0;
+          objFromSelectFunc.trig = false;
+        }
+
         const navContainer = document.querySelectorAll('.popular__nav-container');
         const paginationDots = document.querySelectorAll('.popular__dots');
         const paginationNumbers = document.querySelectorAll('[data-num]');
@@ -539,8 +552,11 @@ window.addEventListener('DOMContentLoaded', () => {
   mainCatalogSlider(); // END CATALOG POPULAR SLIDER
   //HELPFUL FUNCTIONS
 
-  function sliderInit(slider, sliderWrapper, slideList) {
+  function sliderInit(slider, sliderWrapper, slideList, paginNavCont) {
     const slideWidth = window.getComputedStyle(slider[0]).width;
+    const allOffsetToZeroTrigger = {
+      trig: false
+    };
     slider.forEach(elem => {
       elem.style.overflow = 'hidden';
     });
@@ -550,8 +566,12 @@ window.addEventListener('DOMContentLoaded', () => {
     Array.from(sliderWrapper[1].children).forEach(item => {
       item.style.minWidth = '848px';
     });
+    paginNavCont.forEach(nav => {
+      nav.style.transform = 'translateX(0)';
+    });
     sliderWrapper.forEach(wrapper => {
       wrapper.style.minWidth = `${sliderWrapper[0].children.length * 100}%`;
+      wrapper.style.transform = 'translateX(0%)';
       slideList.forEach(item => {
         item.style.minWidth = slideWidth;
         Array.from(item.children).forEach(elem => {
@@ -559,6 +579,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
+    return allOffsetToZeroTrigger;
   } //END HELPFULL FUNCTIONS
 
 });
