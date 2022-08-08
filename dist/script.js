@@ -195,7 +195,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   changeLocationItems(); // END CATALOG CHANGE LOCATION ITEMS
-  // SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
+
+  function test(wrapper) {
+    return wrapper.innerHTML;
+  } // SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
+
 
   function selectNumberOfElements() {
     const selectElements = document.querySelectorAll('.popular__pagination-catalog-select');
@@ -204,8 +208,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const slideTile = document.querySelectorAll('.popular__list-item-tile');
     const sliderWrapper = document.querySelectorAll('.popular__list-slider-wrapper');
     const maxItemsOnPage = 9;
+    let a = [];
+    sliderWrapper.forEach(wrapper => {
+      a.push(test(wrapper));
+    });
     selectElements.forEach((item, i, arr) => {
       item.addEventListener('input', () => {
+        changeToInitialisedWrapper(sliderWrapper, a);
         const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
         slideItemsParent.forEach(parent => {
           let deletedItems = [];
@@ -264,54 +273,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
         sliderInit(slider, sliderWrapper, slideList);
       });
-    }); // selectElements.forEach((item, i, arr) => {
-    //     item.addEventListener('input', () => {
-    //         const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
-    //         slideItemsParent.forEach(parent => {
-    //             let deletedItems = [];
-    //             for(let i = 0; i < item.value; i++) {
-    //                 Array.from(parent.children)[i].style.display = 'flex';
-    //             }
-    //             for(let j = maxItemsOnPage-1; j >= item.value; j--) {
-    //                 deletedItems.push(Array.from(parent.children)[j]);
-    //                 parent.removeChild(Array.from(parent.children)[j]);
-    //             }
-    //             function createNewUl(deleted, selected) {
-    //                 const ulElement = document.createElement('ul'); 
-    //                 ulElement.classList.add('popular__list-item', 'popular__list-item-tile', 'popular__list-item_page-catalog');
-    //                 ulElement.style.minWidth = window.getComputedStyle(parent).minWidth;
-    //                 if(deleted.length > 1 && !(deleted.length % 2 == 0) && selected % 2 == 0 && selected < deleted.length) {
-    //                     ulElement.appendChild(deleted[0]);
-    //                     deleted.splice(0, 1);
-    //                 }else if(deleted.length > 2 && selected < deleted.length){
-    //                     for(let i = 0; i < selected; i++) {
-    //                         ulElement.appendChild(deleted[0]);
-    //                         deleted.splice(0, 1);
-    //                     };
-    //                 }else if(selected > deleted.length) {
-    //                     const max = deleted.length;
-    //                     for(let i = 0; i < max; i++) {
-    //                         ulElement.appendChild(deleted[0]);
-    //                         deleted.splice(0, 1);
-    //                     };
-    //                 }else {
-    //                     for(let i = 0; i < selected; i++) {
-    //                         ulElement.appendChild(deleted[0]);
-    //                         deleted.splice(0, 1);
-    //                     };
-    //                 }
-    //                 return ulElement;
-    //             }
-    //             for(let k = 1; k < Math.ceil(maxItemsOnPage/item.value); k++) {
-    //                 parent.insertAdjacentElement('afterend', createNewUl(deletedItems, item.value));
-    //             }
-    //         })
-    //         arr.forEach(elem => elem.value = item.value);
-    //         paginationMenu();
-    //         // mainCatalogSlider();
-    //         sliderInit(slider, sliderWrapper, slideListTile);
-    //     });
-    // });
+    });
+
+    function changeToInitialisedWrapper(sliderWrapper, arrHtml) {
+      sliderWrapper.forEach((wrapper, i) => {
+        Array.from(wrapper.children).forEach(child => {
+          wrapper.removeChild(child);
+        });
+        wrapper.innerHTML = arrHtml[i];
+      });
+    }
   }
 
   selectNumberOfElements(); // END SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
@@ -446,7 +417,7 @@ window.addEventListener('DOMContentLoaded', () => {
               paginationNumbersCont1[i + 5].classList.add('hidden');
             }
 
-            if (i >= 4 && paginationDots[0]) {
+            if (i >= paginationNumbersCont1.length - alwaysVisibleNumbers && paginationDots[0]) {
               paginationDots[0].classList.add('hidden');
               paginationDots[1].classList.add('hidden');
             } else if (paginationDots[0]) {
@@ -465,7 +436,7 @@ window.addEventListener('DOMContentLoaded', () => {
               paginationNumbersCont2[i + 5].classList.add('hidden');
             }
 
-            if (i >= 4 && paginationDots[0]) {
+            if (i >= paginationNumbersCont1.length - alwaysVisibleNumbers && paginationDots[0]) {
               paginationDots[0].classList.add('hidden');
               paginationDots[1].classList.add('hidden');
             } else if (paginationDots[0]) {
@@ -476,62 +447,12 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         if (paginationNumbersCont1.length - paginationNumbersActive > 5) {
-          console.log('here');
           numberWidth = numberWidth - +window.getComputedStyle(paginationNumbersCont1[0]).width.slice(0, -2);
           navContainer.forEach(item => {
             item.style.transform = `translateX(-${numberWidth}px)`;
           });
         }
-      }); // prev.addEventListener('click', () => {
-      //     const navContainer = document.querySelectorAll('.popular__nav-container');
-      //     const paginationDots = navContainer[0].querySelector('span');
-      //     const paginationNumbers = navContainer[0].querySelectorAll('[data-num]');
-      //     let paginationNumbersActive = 0;
-      //     const paginDiffer = paginationNumbers.length - alwaysVisibleNumbers + 1;
-      //     paginationNumbers.forEach((item, i) => {
-      //         if(item.classList.contains('popular__pagination-catalog-number_active')) {
-      //             paginationNumbersActive = i;
-      //         }
-      //     });
-      //     offset += 100 / sliderWrapper[0].children.length;
-      //     if(offset >= 1) { 
-      //         if(paginationDots) {
-      //             numberWidth = (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2)) * paginDiffer;
-      //             paginationNumbers.forEach(number => {
-      //                 number.classList.remove('hidden');
-      //             });
-      //             navContainer.forEach(item => {
-      //                 item.style.transform = `translateX(-${numberWidth}px)`;
-      //             });
-      //         }
-      //         offset = -100 + 100 / sliderWrapper[0].children.length;
-      //     }else if(offset > Math.ceil(-100 / sliderWrapper[0].children.length)) {
-      //         offset = 0;
-      //     }
-      //     sliderWrapper.forEach(wrapper => {
-      //         wrapper.style.transform = `translateX(${offset}%)`;
-      //     });
-      //     paginationNumbers.forEach((elem, i) => {
-      //         elem.classList.remove('popular__pagination-catalog-number_active');
-      //         if(Math.round(-elem.getAttribute('data-num')) === Math.round(offset)) {
-      //             elem.classList.add('popular__pagination-catalog-number_active');
-      //             if(i >= 0 && i < paginationNumbers.length - alwaysVisibleNumbers && paginationDots) {
-      //                 paginationNumbers[i+5].classList.add('hidden');
-      //             }
-      //             if(i >= 4 && paginationDots) {
-      //                 paginationDots.classList.add('hidden');
-      //             }else if(paginationDots){
-      //                 paginationDots.classList.remove('hidden');
-      //             }
-      //         }
-      //     })
-      //     if(paginationNumbers.length - paginationNumbersActive > 5) {
-      //         numberWidth = numberWidth - (+window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2));
-      //         navContainer.forEach(item => {
-      //             item.style.transform = `translateX(-${numberWidth}px)`;
-      //         });
-      //     }
-      // })  
+      });
     });
     arrowsNext.forEach(next => {
       next.addEventListener('click', () => {
@@ -580,7 +501,7 @@ window.addEventListener('DOMContentLoaded', () => {
           if (Math.floor(-elem.getAttribute('data-num')) == Math.floor(offset)) {
             elem.classList.add('popular__pagination-catalog-number_active');
 
-            if (i >= 3 && paginationDots[0]) {
+            if (i >= paginationNumbersCont1.length - alwaysVisibleNumbers && paginationDots[0]) {
               paginationDots[0].classList.add('hidden');
               paginationDots[1].classList.add('hidden');
             } else if (paginationDots[0]) {
@@ -595,7 +516,7 @@ window.addEventListener('DOMContentLoaded', () => {
           if (Math.floor(-elem.getAttribute('data-num')) == Math.floor(offset)) {
             elem.classList.add('popular__pagination-catalog-number_active');
 
-            if (i >= 3 && paginationDots[0]) {
+            if (i >= paginationNumbersCont1.length - alwaysVisibleNumbers && paginationDots[0]) {
               paginationDots[0].classList.add('hidden');
               paginationDots[1].classList.add('hidden');
             } else if (paginationDots[0]) {
@@ -605,7 +526,7 @@ window.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        if (paginationNumbersCont1.length - paginationNumbersActive > 6) {
+        if (paginationNumbersCont1.length - paginationNumbersActive > alwaysVisibleNumbers) {
           numberWidth += +window.getComputedStyle(paginationNumbers[0]).width.slice(0, -2);
           navContainer.forEach(item => {
             item.style.transform = `translateX(-${numberWidth}px)`;

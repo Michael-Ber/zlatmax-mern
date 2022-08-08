@@ -644,6 +644,7 @@
     &__item {
         &_list {
             flex-direction: row;
+            width: 100%;
             @media(max-width: 575px) {
                 flex-direction: column;
             }
