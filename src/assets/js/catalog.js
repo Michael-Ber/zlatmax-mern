@@ -1,9 +1,10 @@
 'use strict';
 
+import slidersToZero from "./globalObjects";
+
 window.addEventListener('DOMContentLoaded', () => {
 
     // PRICE SCROLL BAR
-    
     function scrollBar() {
         const scrollWrapper = document.querySelector('.main__subwrapper');
         const scrollTracks = Array.from(scrollWrapper.children);
@@ -42,8 +43,9 @@ window.addEventListener('DOMContentLoaded', () => {
         })
 
     }
+    try{scrollBar();}catch(e){console.log(e)}
 
-    scrollBar();
+    
 
     function setInputsToZero() {
         const inputs = document.querySelectorAll('.main__filter-input');
@@ -139,6 +141,7 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         selectElements.forEach((item, i, arr) => {
             item.addEventListener('input', () => {
+                slidersToZero.enable = true;
                 changeToInitialisedWrapper(sliderWrapper, a);
                 const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
                 slideItemsParent.forEach(parent => {
@@ -186,9 +189,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 arr.forEach(elem => elem.value = item.value);
                 paginationMenu();
                 // mainCatalogSlider();
-                let obj = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
-                obj.trig = true;
-                console.log(obj);
+                sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
             });
         });
         function changeToInitialisedWrapper(sliderWrapper, arrHtml) {
@@ -200,7 +201,8 @@ window.addEventListener('DOMContentLoaded', () => {
             })
         }
     }
-    selectNumberOfElements();
+    try{selectNumberOfElements();}catch(e){console.log(e)}
+    
     // END SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
 
     // CATALOG SLIDER PAGINATION
@@ -273,7 +275,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         
         paginationMenu();
-        objFromSelectFunc = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
+        sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
 
         window.addEventListener('resize', () => {
             sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
@@ -372,11 +374,10 @@ window.addEventListener('DOMContentLoaded', () => {
         
         arrowsNext.forEach(next => {
             next.addEventListener('click', () => {
-                console.log(objFromSelectFunc);
-                if(objFromSelectFunc.trig) {
+                if(slidersToZero.enable) {
                     offset = 0;
                     numberWidth = 0;
-                    objFromSelectFunc.trig = false;
+                    slidersToZero.enable = false;
                 }
                 const navContainer = document.querySelectorAll('.popular__nav-container');
                 const paginationDots = document.querySelectorAll('.popular__dots');
@@ -460,17 +461,33 @@ window.addEventListener('DOMContentLoaded', () => {
                 
         });
     }
-    mainCatalogSlider();
+    try{mainCatalogSlider();}catch(e){console.log(e)}
+    
 
     // END CATALOG POPULAR SLIDER
+
+    // SEARCH POPUP MENU
+
+    function searchPopup() {
+        const searchPopup = document.querySelector('.search__popup');
+        const searchInput = document.querySelector('#search');
+        searchInput.addEventListener('click', () => {
+            searchPopup.style.display = 'block';
+            window.addEventListener('click', (e) => {
+                const target = e.target;
+                if(target.classList.contains('search__overlay') || (!target.classList.contains('search__popup-list') && !target.classList.contains('slide__input'))) {
+                    searchPopup.style.display = 'none';
+                }
+            })
+        });
+    }
+    searchPopup();
+    //END SEARCH POPUP MENU
 
     //HELPFUL FUNCTIONS
 
     function sliderInit(slider, sliderWrapper, slideList, paginNavCont) {
         const slideWidth = window.getComputedStyle(slider[0]).width;
-        const allOffsetToZeroTrigger = {
-            trig: false
-        };
         slider.forEach(elem => {
             elem.style.overflow = 'hidden';
         });
@@ -494,7 +511,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
-        return allOffsetToZeroTrigger;
     }
 
     //END HELPFULL FUNCTIONS

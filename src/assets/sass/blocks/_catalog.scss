@@ -677,6 +677,9 @@
     &__prev {
         &_page-catalog {
             margin-right: 20px;
+            @media(max-width: 767px) {
+                margin-right: 10px;
+            }
         }
     }
 

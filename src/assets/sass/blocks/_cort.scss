@@ -1,0 +1,181 @@
+.main {
+
+    &__cort-title {
+        @include opensans;
+        font-size: 36px;
+        line-height: 22px;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: $sixteen-color;
+        margin-top: 28px;
+    }
+
+    &__order {
+        background-color: $twentynine-color;
+        margin-top: 22px;
+        width: 100%;
+        padding: 20px 32px 38px 45px;
+    }
+}
+.order-main {
+
+    &__tabs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    &__left, &__right {
+        width: 50%;
+    }
+    &__left {
+        flex-direction: column;
+    }
+    &__right {
+        @include roboto;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 300;
+        color: $fourteen-color;
+        p {
+            span {
+                color: $third-color;
+            }
+        }
+    }
+
+    &__content {
+        
+        margin-top: 32px;
+    }
+
+    &__form {
+        display: none;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 44px;
+        
+        &_active {
+            display: flex;
+        }
+    }
+
+    &__label {
+        @include roboto;
+        position: relative;
+        font-size: 14px;
+        line-height: 40px;
+        font-weight: 900;
+        color: $twelve-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        &_select {
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-20%);
+                border: 6px solid transparent;
+                border-top: 10px solid $sixteen-color;
+                pointer-events: none;
+            }
+        }
+        &_checkbox {
+        font-size: 12px;
+        line-height: 40px;
+        font-weight: 300;
+        color: $fourteen-color;
+        justify-content: flex-end;
+        cursor: pointer;
+        user-select: none;
+        }
+    }
+
+    &__input {
+        width: 216px;
+        height: 30px;
+        padding: 0 10px;
+        &_textarea {
+            height: 120px;
+            resize: none;
+        }
+        &_select {
+            position: relative;
+            font-weight: 300;
+            color: $fourteen-color;
+            appearance: none;
+        }
+    }
+    &__checkbox {
+        appearance: none;
+        &:checked{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 45.4%;
+            transform: translateY(-50%);
+            display: inline-block;
+            min-width: 9px;
+            min-height: 9px;
+            background-color: $twentysix-color;
+        }
+        &:checked ~ span::before {
+            border-color: $twentyfive-color;
+        }
+    }
+
+    &__star {
+        color: $third-color;
+    }
+}
+.tabs-order {
+
+    &__btn {
+        @include roboto;
+        position: relative;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: $twentyone-color;
+        background-color: $twentynine-color;
+        border: none;
+        border-bottom: 1px dashed $twentyone-color;
+        cursor: pointer;
+        & + & {
+            margin-left: 65px;
+        }
+        &:hover {
+            color: darken($twentyone-color, 10%);
+        }
+        &_active {
+            padding: 20px 23px 17px 27px;
+            background-color: $twentyone-color;
+            color: #ffffff;
+            border: none;
+            &:hover {
+                color: #ffffff;
+            }
+        }
+    }
+}
+.label-order {
+    &__span {
+        margin-left: 35px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 44%;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 2px solid $sixteen-color;
+        }
+    }
+}
+

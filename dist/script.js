@@ -90,10 +90,13 @@
 /*!**********************************!*\
   !*** ./src/assets/js/catalog.js ***!
   \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _globalObjects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./globalObjects */ "./src/assets/js/globalObjects.js");
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -131,7 +134,11 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  scrollBar();
+  try {
+    scrollBar();
+  } catch (e) {
+    console.log(e);
+  }
 
   function setInputsToZero() {
     const inputs = document.querySelectorAll('.main__filter-input');
@@ -215,6 +222,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     selectElements.forEach((item, i, arr) => {
       item.addEventListener('input', () => {
+        _globalObjects__WEBPACK_IMPORTED_MODULE_0__["default"].enable = true;
         changeToInitialisedWrapper(sliderWrapper, a);
         const slideItemsParent = document.querySelectorAll('.popular__list-item_page-catalog_active');
         slideItemsParent.forEach(parent => {
@@ -272,9 +280,7 @@ window.addEventListener('DOMContentLoaded', () => {
         arr.forEach(elem => elem.value = item.value);
         paginationMenu(); // mainCatalogSlider();
 
-        let obj = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
-        obj.trig = true;
-        console.log(obj);
+        sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
       });
     });
 
@@ -288,8 +294,13 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  selectNumberOfElements(); // END SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
+  try {
+    selectNumberOfElements();
+  } catch (e) {
+    console.log(e);
+  } // END SELECT NUMBER OF ELEMENTS ON CATALOG SLIDER
   // CATALOG SLIDER PAGINATION
+
 
   function paginationMenu() {
     const navContainer = document.querySelectorAll('.popular__nav-container');
@@ -357,7 +368,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let numberWidth = 0; // let num = 0;
 
     paginationMenu();
-    objFromSelectFunc = sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
+    sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
     window.addEventListener('resize', () => {
       sliderInit(slider, sliderWrapper, slideList, navContainerGlobal);
     });
@@ -461,12 +472,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     arrowsNext.forEach(next => {
       next.addEventListener('click', () => {
-        console.log(objFromSelectFunc);
-
-        if (objFromSelectFunc.trig) {
+        if (_globalObjects__WEBPACK_IMPORTED_MODULE_0__["default"].enable) {
           offset = 0;
           numberWidth = 0;
-          objFromSelectFunc.trig = false;
+          _globalObjects__WEBPACK_IMPORTED_MODULE_0__["default"].enable = false;
         }
 
         const navContainer = document.querySelectorAll('.popular__nav-container');
@@ -549,14 +558,34 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  mainCatalogSlider(); // END CATALOG POPULAR SLIDER
+  try {
+    mainCatalogSlider();
+  } catch (e) {
+    console.log(e);
+  } // END CATALOG POPULAR SLIDER
+  // SEARCH POPUP MENU
+
+
+  function searchPopup() {
+    const searchPopup = document.querySelector('.search__popup');
+    const searchInput = document.querySelector('#search');
+    searchInput.addEventListener('click', () => {
+      searchPopup.style.display = 'block';
+      window.addEventListener('click', e => {
+        const target = e.target;
+
+        if (target.classList.contains('search__overlay') || !target.classList.contains('search__popup-list') && !target.classList.contains('slide__input')) {
+          searchPopup.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  searchPopup(); //END SEARCH POPUP MENU
   //HELPFUL FUNCTIONS
 
   function sliderInit(slider, sliderWrapper, slideList, paginNavCont) {
     const slideWidth = window.getComputedStyle(slider[0]).width;
-    const allOffsetToZeroTrigger = {
-      trig: false
-    };
     slider.forEach(elem => {
       elem.style.overflow = 'hidden';
     });
@@ -579,10 +608,27 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
-    return allOffsetToZeroTrigger;
   } //END HELPFULL FUNCTIONS
 
 });
+
+/***/ }),
+
+/***/ "./src/assets/js/globalObjects.js":
+/*!****************************************!*\
+  !*** ./src/assets/js/globalObjects.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+const slidersToZero = {
+  enable: true
+};
+/* harmony default export */ __webpack_exports__["default"] = (slidersToZero);
 
 /***/ }),
 
@@ -596,7 +642,6 @@ window.addEventListener('DOMContentLoaded', () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _catalog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./catalog */ "./src/assets/js/catalog.js");
-/* harmony import */ var _catalog__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_catalog__WEBPACK_IMPORTED_MODULE_0__);
 
 
 
