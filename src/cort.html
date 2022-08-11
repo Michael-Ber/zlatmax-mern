@@ -139,7 +139,7 @@
 
     <section class="main">
         <div class="container">
-            <div class="main__wrapper">
+            <div class="main__wrapper wrapper-cort">
                 <div class="main__left">
                     <div class="main__catalog main__catalog_cort-catalog">
                         <div class="catalog__header catalog__header_cort-catalog">
@@ -305,206 +305,318 @@
                         <a href="index.html" class="main__link main__link_actual">Корзина</a>
                     </div>
                     
-                    <div class="main__cort-title">Оформление заказа</div>
+                    <h1 class="main__cort-title title-cort">Оформление заказа</h1>
                     <div class="main__order order-main">
                         <div class="order-main__tabs tabs-order">
-                            <button class="tabs-order__btn">Быстрый заказ</button>
-                            <button class="tabs-order__btn">Курьером по москве и мо</button>
-                            <button class="tabs-order__btn tabs-order__btn_active">Доставка в регионы</button>
+                            <button class="tabs-order__btn" data-order="fast">Быстрый заказ</button>
+                            <button class="tabs-order__btn" data-order="moscow">Курьером по москве и мо</button>
+                            <button class="tabs-order__btn tabs-order__btn_active" data-order="regions">Доставка в регионы</button>
                         </div>
                         <div class="order-main__content">
-                            <form action="#" class="order-main__form order-main__form_active">
-                                <div class="order-main__left">
-                                    <label for="surname" class="order-main__label">
-                                        <span>Фамилия:<span class="order-main__star"> *</span></span>
-                                        <input name="surname" id="surname" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="name" class="order-main__label">
-                                        <span>Имя:<span class="order-main__star"> *</span></span>
-                                        <input name="name" id="name" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="lastname" class="order-main__label">
-                                        <span>Отчество:<span class="order-main__star"> *</span></span>
-                                        <input name="lastname" id="lastname" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="phone" class="order-main__label">
-                                        <span>Моб. телефон:<span class="order-main__star"> *</span></span>
-                                        <input name="phone" id="phone" type="number" class="order-main__input">
-                                    </label>
-                                    <label for="mail" class="order-main__label">
-                                        <span>Ваш E-mail:<span class="order-main__star"> *</span></span>
-                                        <input name="mail" id="mail" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="payment" class="order-main__label order-main__label_select">
-                                        Способ оплаты:
-                                        <select name="payment" id="payment" class="order-main__input order-main__input_select">
-                                            <option value="1" class="order-main__option">Через Сбербанк</option>
-                                            <option value="2" class="order-main__option">option-2</option>
-                                            <option value="3" class="order-main__option">option-3</option>
-                                            <option value="4" class="order-main__option">option-4</option>
-                                            <option value="5" class="order-main__option">option-5</option>
-                                        </select>
-                                    </label>
-                                    <label for="index" class="order-main__label">
-                                        <span>Индекс<span class="order-main__star"> *</span></span>
-                                        <input name="index" id="index" type="number" class="order-main__input">
-                                    </label>
-                                    <label for="city" class="order-main__label">
-                                        <span>Город<span class="order-main__star"> *</span></span>
-                                        <input name="city" id="city" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="address" class="order-main__label">
-                                        <span>Адрес доставки:<span class="order-main__star"> *</span></span>
-                                        <input name="address" id="address" type="text" class="order-main__input">
-                                    </label>
-                                    <label for="comments" class="order-main__label">
-                                        Комментарии:
-                                        <textarea name="comments" id="comments" type="text" class="order-main__input order-main__input_textarea"></textarea>
-                                    </label>
-                                    <label for="subscribe" class="order-main__label order-main__label_checkbox label-order">
-                                        <input name="subscribe" id="subscribe" type="checkbox" class="order-main__checkbox">
-                                        <span class="label-order__span">Подписаться на новости и скидки</span> 
-                                    </label>
+                            <form action="#" class="order-main__form order-main__form_active" data-order="regions">
+                                <div class="main__data">
+                                    <div class="order-main__left">
+                                        <label for="surname" class="order-main__label">
+                                            <span>Фамилия:<span class="order-main__star"> *</span></span>
+                                            <input name="surname" id="surname" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="name" class="order-main__label">
+                                            <span>Имя:<span class="order-main__star"> *</span></span>
+                                            <input name="name" id="name" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="lastname" class="order-main__label">
+                                            <span>Отчество:<span class="order-main__star"> *</span></span>
+                                            <input name="lastname" id="lastname" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="phone" class="order-main__label">
+                                            <span>Моб. телефон:<span class="order-main__star"> *</span></span>
+                                            <input name="phone" id="phone" type="number" class="order-main__input">
+                                        </label>
+                                        <label for="mail" class="order-main__label">
+                                            <span>Ваш E-mail:<span class="order-main__star"> *</span></span>
+                                            <input name="mail" id="mail" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="payment" class="order-main__label order-main__label_select">
+                                            Способ оплаты:
+                                            <select name="payment" id="payment" class="order-main__input order-main__input_select">
+                                                <option value="1" class="order-main__option">Через Сбербанк</option>
+                                                <option value="2" class="order-main__option">option-2</option>
+                                                <option value="3" class="order-main__option">option-3</option>
+                                                <option value="4" class="order-main__option">option-4</option>
+                                                <option value="5" class="order-main__option">option-5</option>
+                                            </select>
+                                        </label>
+                                        <label for="index" class="order-main__label">
+                                            <span>Индекс<span class="order-main__star"> *</span></span>
+                                            <input name="index" id="index" type="number" class="order-main__input">
+                                        </label>
+                                        <label for="city" class="order-main__label">
+                                            <span>Город<span class="order-main__star"> *</span></span>
+                                            <input name="city" id="city" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="address" class="order-main__label">
+                                            <span>Адрес доставки:<span class="order-main__star"> *</span></span>
+                                            <input name="address" id="address" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="comments" class="order-main__label">
+                                            Комментарии:
+                                            <textarea name="comments" id="comments" type="text" class="order-main__input order-main__input_textarea"></textarea>
+                                        </label>
+                                        <label for="subscribe" class="order-main__label order-main__label_checkbox label-order">
+                                            <input name="subscribe" id="subscribe" type="checkbox" class="order-main__checkbox">
+                                            <span class="label-order__span">Подписаться на новости и скидки </span> 
+                                        </label>
+                                    </div>
+                                    <div class="order-main__right">
+                                        <p><span>*</span> Поля, обязательные для заполнения</p>
+                                        <br><br>
+                                        <p>Отправка товара производится только после 100% оплаты
+                                            товара. Стоимость доставки возможно оплатить при 
+                                           получении заказа.
+                                           <br><br>
+                                           Доставка в регионы осуществляется EMS Почтой России 
+                                           (в течение 5-14 дней) и курьерской службой DPD (в течение 
+                                           3-5 дней) с момента передачи заказа в службу доставки. 
+                                           Стоимость зависит от веса заказа и расстояния. В некоторые 
+                                           регионы доставка возможна только посредством EMS Почты 
+                                           России, способ доставки уточняйте у оператора при 
+                                           оформлении заказа*.
+                                           <br><br>
+                                           * Интернет-магазин не несет ответственности за задержку 
+                                           доставки заказа, связанную с работой курьерских служб DPD 
+                                           и EMS Почты России.</p>
+                                    </div>
                                 </div>
-                                <div class="order-main__right">
-                                    <p><span>*</span> Поля, обязательные для заполнения</p>
-                                    <br><br>
-                                    <p>Отправка товара производится только после 100% оплаты
-                                        товара. Стоимость доставки возможно оплатить при 
-                                       получении заказа.
-                                       <br><br>
-                                       Доставка в регионы осуществляется EMS Почтой России 
-                                       (в течение 5-14 дней) и курьерской службой DPD (в течение 
-                                       3-5 дней) с момента передачи заказа в службу доставки. 
-                                       Стоимость зависит от веса заказа и расстояния. В некоторые 
-                                       регионы доставка возможна только посредством EMS Почты 
-                                       России, способ доставки уточняйте у оператора при 
-                                       оформлении заказа*.
-                                       <br><br>
-                                       * Интернет-магазин не несет ответственности за задержку 
-                                       доставки заказа, связанную с работой курьерских служб DPD 
-                                       и EMS Почты России.</p>
+                                <div class="main__yourOrder yourOrder-main">
+                                    <h2 class="yourOrder-main__title title-cort">Ваш заказ</h2>
+                                    <ul class="yourOrder-main__list">
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                    </ul>
+                                    <div class="yourOrder-main__sum">
+                                        <span>Итого:</span> 120 000 &#8381
+                                    </div>
+                                    <input type="submit" class="yourOrder-main__submit" value="Оформить заказ">
+                                </div>
+                            </form>
+                            <form action="#" class="order-main__form" data-order="fast">
+                                <div class="main__data">
+                                    <div class="order-main__left">
+                                        <label for="name-short" class="order-main__label">
+                                            <span>Имя:<span class="order-main__star"> *</span></span>
+                                            <input name="name-short" id="name-short" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="phone-short" class="order-main__label">
+                                            <span>Моб. телефон:<span class="order-main__star"> *</span></span>
+                                            <input name="phone-short" id="phone-short" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="mail-short" class="order-main__label">
+                                            <span>Ваш E-mail:<span class="order-main__star"> *</span></span>
+                                            <input name="mail-short" id="mail-short" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="subscribe-short" class="order-main__label order-main__label_checkbox label-order">
+                                            <input name="subscribe-short" id="subscribe-short" type="checkbox" class="order-main__checkbox">
+                                            <span class="label-order__span">Подписаться на новости и скидки</span> 
+                                        </label>
+                                    </div>
+                                    <div class="order-main__right">
+                                        <p><span>*</span> Поля, обязательные для заполнения</p>
+                                        <br><br>
+                                        <p>Отправка товара производится только после 100% оплаты
+                                            товара. Стоимость доставки возможно оплатить при 
+                                           получении заказа.
+                                           <br><br>
+                                           * Интернет-магазин не несет ответственности за задержку 
+                                           доставки заказа, связанную с работой курьерских служб DPD 
+                                           и EMS Почты России.</p>
+                                    </div>
+                                </div>
+                                <div class="main__yourOrder yourOrder-main">
+                                    <h2 class="yourOrder-main__title title-cort">Ваш заказ</h2>
+                                    <ul class="yourOrder-main__list">
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                    </ul>
+                                    <div class="yourOrder-main__sum">
+                                        <span>Итого:</span> 120 000 &#8381
+                                    </div>
+                                    <input type="submit" class="yourOrder-main__submit" value="Оформить заказ">
+                                </div>
+                            </form>
+                            <form action="#" class="order-main__form" data-order="moscow">
+                                <div class="main__data">
+                                    <div class="order-main__left">
+                                        <label for="name-moscow" class="order-main__label">
+                                            <span>Имя:<span class="order-main__star"> *</span></span>
+                                            <input name="name-moscow" id="name-moscow" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="phone-moscow" class="order-main__label">
+                                            <span>Моб. телефон:<span class="order-main__star"> *</span></span>
+                                            <input name="phone-moscow" id="phone-moscow" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="mail-moscow" class="order-main__label">
+                                            <span>Ваш E-mail:<span class="order-main__star"> *</span></span>
+                                            <input name="mail-moscow" id="mail-moscow" type="text" class="order-main__input">
+                                        </label>
+                                        <label for="subscribe-moscow" class="order-main__label order-main__label_checkbox label-order">
+                                            <input name="subscribe-moscow" id="subscribe-moscow" type="checkbox" class="order-main__checkbox">
+                                            <span class="label-order__span">Подписаться на новости и скидки</span> 
+                                        </label>
+                                    </div>
+                                    <div class="order-main__right">
+                                        <p><span>*</span> Поля, обязательные для заполнения</p>
+                                        <br><br>
+                                        <p>Отправка товара производится только после 100% оплаты
+                                            товара. Стоимость доставки возможно оплатить при 
+                                           получении заказа.
+                                           <br><br>
+                                           * Интернет-магазин не несет ответственности за задержку 
+                                           доставки заказа, связанную с работой курьерских служб DPD 
+                                           и EMS Почты России.</p>
+                                    </div>
+                                </div>
+                                <div class="main__yourOrder yourOrder-main">
+                                    <h2 class="yourOrder-main__title title-cort">Ваш заказ</h2>
+                                    <ul class="yourOrder-main__list">
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                        <li class="yourOrder-main__item item-yourOrder">
+                                            <div class="item-yourOrder__img">
+                                                <img src="./assets/img/order/run_track.jpg" alt="order-image">
+                                            </div>
+                                            <div class="item-yourOrder__descr descr-item">
+                                                <p class="descr-item__name">
+                                                    <span>BH Fitness F1 G6414V</span> Беговая дорожка
+                                                </p>
+                                                <p class="descr-item__price">64 990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__amount amount-item">
+                                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                                <input value="1" type="number" class="amount-item__input">
+                                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                                            </div>
+                                            <div class="item-yourOrder__cost cost-item">
+                                                <p class="cost-item__header">Всего:</p>
+                                                <p class="cost-item__total">64990 <span>&#8381</span></p>
+                                            </div>
+                                            <div class="item-yourOrder__delete">&#10006</div>
+                                        </li>
+                                    </ul>
+                                    <div class="yourOrder-main__sum">
+                                        <span>Итого:</span> 120 000 &#8381
+                                    </div>
+                                    <input type="submit" class="yourOrder-main__submit" value="Оформить заказ">
                                 </div>
                             </form>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </section>
 
     <!-- /ORDER -->
-
-    <!-- SPONSORS -->
-
-    <div class="sponsors">
-        <div class="container container_sponsors">
-            <div class="sponsors__wrapper">
-                <div class="sponsors__slider">
-                    <div class="sponsors__item"><img src="./assets/icons/main/brands/oxygen.png" alt="oxygen_logo"></div>
-                    <div class="sponsors__item"><img src="./assets/icons/main/brands/hasttings.png" alt="hasttings_logo"></div>
-                    <div class="sponsors__item"><img src="./assets/icons/main/brands/carbon.png" alt="carbon_logo"></div>
-                    <div class="sponsors__item"><img src="./assets/icons/main/brands/nordictrack.png" alt="nordictrack_logo"></div>
-                    <div class="sponsors__item"><img src="./assets/icons/main/brands/clearfit.png" alt="clearfit_logo"></div>
-                </div>
-                <div class="sponsors__arrows">
-                    <div class="arrow arrow__prev">
-                        <img src="./assets/icons/main/arrow_left.png" alt="prev">
-                    </div>
-                    <div class="arrow arrow__next">
-                        <img src="./assets/icons/main/arrow_right.png" alt="next">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- /SPONSORS -->
-
-    <!-- ABOUT -->
-
-    <section class="about">
-        <div class="container container_about">
-            <div class="about__wrapper">
-                <div class="about__title">О компании</div>
-                <div class="about__text">
-                    <div class="about__left">
-                        <p class="left__first-paragraph"> 
-                            Компания «CLEAR FIT» была организована для создания и реализации 
-                            качественного и надежного спортивного оборудования для домашнего и легкого 
-                            коммерческого использования. Дефицит качественных тренажеров в среднем 
-                            ценовом сегменте повлек за собой не мотивированный рост цен на надежное 
-                            оборудование, создав дополнительный сегмент "полукоммерческих" тренажеров, 
-                            что приблизило их стоимость к профессиональному оборудованию. А заполнение 
-                            среднего ценового сегмента сложилось из роста количества брендов и 
-                            производителей недорогих тренажеров с невысокими техническими 
-                            характеристиками, за счет увеличения количества дополнительных опций. 
-                            Главными критериями для выпуска продукции с маркой «CLEAR FIT» являются: 
-                            высокое качество, разумная цена и комфорт тренировок. Осуществить эту 
-                            непростую задачу позволил тандем европейских разработок и размещение 
-                            основного производства на Тайване. Узкая специализация на кардио-тренажеры 
-                            для дома позволяет поддерживать высокий контроль качества на всех ступенях 
-                            производства.
-                        </p>
-                        <p class="left__second-paragraph">
-                            Разумный показатель «цена/качество» среди предлагаемых разными компаниями 
-                            спортивных тренажеров в последние годы – довольно редкое явление. Мы 
-                            достаточно кропотливо потрудились над тренажерами CLEAR FIT, чтобы 
-                            продемонстрировать новый подход к выпуску доступной, красивой и надежной 
-                            продукции. Современные технологии обеспечивают комфорт и легкость управления 
-                            тренажерами CLEAR FIT.Многочисленные отзывы от наших покупателей поступили 
-                            и продолжают поступать feedbacks от конечных потребителей. И теперь мы с 
-                            гордостью можем заявить, что учли многие Ваши пожелания предложения в 
-                            обновленных версиях тренажеров CLEAR FIT. Мы рады представить Вам новое 
-                            поколение наших тренажеров. Теперь оборудование стало не только «умнее», 
-                            удобнее, комфортнее, но и сохранило прежние показатели цены, оставаясь 
-                            доступным спортивным оборудованием для тех, кто ценит качество.
-                        </p>
-                    </div>
-                    <div class="about__right">
-                        <span>Концепция CLEAR FIT строится на следующих тезисах:</span>
-                        <p class="right__paragraph">Спортивное оборудование для дома не отличается по эффективности и 
-                        безопасности от профессионального оборудования - от пользователя не 
-                        требуется специальная подготовка и первичные навыки, наличие 
-                        индивидуального профессионального тренера, соответственно требует более тщательного контроля. 
-                        </p>
-                        <p class="right__paragraph">Тренажеры CLEAR FIT просты в управлении, легко адаптируются под 
-                        индивидуальные особенности пользователя, эффективны и безопасны, 
-                        рассчитаны на самостоятельные тренировки.
-                        Основное требование к тренажерам под маркой «CLEAR FIT» высокое 
-                        качество по разумной стоимости - сохранить это равновесие основная задача 
-                        профессионалов из всех областей производства CLEAR FIT.
-                        </p>
-                        <p class="right__paragraph">Мир не стоит на месте - каждое поколение оборудования соответствует 
-                        современным технологиям. Продукция CLEAR FIT производится с учетом 
-                        новейших разработок по современной технологии, совершенствуя и улучшая 
-                        популярные серии оборудования и создавая принципиально новые актуальные 
-                        модели.
-                        </p>
-                        
-                        <p class="right__paragraph">Прежде всего оборудование CLEAR FIT ориентировано на конечного 
-                        пользователя - компания открыта для диалога, мы рады всем вашим отзывам 
-                        и замечаниям, это основной фактор создания комфортной и удобной
-                        продукции.
-                        </p>
-                        <span class="about__polygon about__polygon_xl"></span> 
-                        
-                        <p class="right__paragraph">Качественный продукт не мыслим без качественного сервисного обслуживания - официальный сервисный 
-                            центр CLEAR FIT обеспечивает техническую поддержку 
-                            в течение всего времени эксплуатации тренажера, 
-                            качественные<span class="about__polygon about__polygon_lg"></span> услуги сервисного обслуживания 
-                            как в течение<span class="about__polygon about__polygon_md "></span> гарантийного срока, так и в
-                            постгарантийный  период.
-                        </p>
-                        <img src="./assets/img/main/girlOnBike1.png" alt="" class="about__img">
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <!-- /ABOUT -->
+    
 
     <!-- HELP LINKS -->
 

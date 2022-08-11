@@ -1,6 +1,7 @@
 'use strict';
 
 import './catalog'; 
+import './cort';
 
 window.addEventListener('DOMContentLoaded', () => {
     
