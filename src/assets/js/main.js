@@ -2,6 +2,7 @@
 
 import './catalog'; 
 import './cort';
+import './good';
 
 window.addEventListener('DOMContentLoaded', () => {
     

@@ -1515,8 +1515,15 @@
                 line-height: 22px;
                 font-weight: 900;
                 color: $eleven-color;
+                
                 &_active {
                     color: #ffffff;
+                }
+            }
+            &__name {
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
                 }
             }
             &__type {

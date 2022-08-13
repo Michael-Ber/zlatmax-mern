@@ -4,7 +4,8 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    //CORT TABS=======================================================>
+    try {
+        //CORT TABS=======================================================>
 
     function tabs(tabsSelector, tabsContentSelector, tabsActive, contentActive) {
         const tabs = document.querySelectorAll(tabsSelector);
@@ -76,4 +77,5 @@ window.addEventListener('DOMContentLoaded', () => {
     changeWidth();
 
     //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+    }catch(e) {console.log(e)};
 });
