@@ -883,6 +883,7 @@
                 color: #ffffff;
                 padding-left: 20px;
                 padding-top: 20px;
+                padding-bottom: 20px;
                 @media(max-width: 1199px) {
                     font-size: 28px;
                 }
@@ -1495,20 +1496,6 @@
                     object-fit: cover;
                 }
             }
-            &__hover-content {
-                position: absolute;
-                top: 0;
-                left: 100%;
-                width: 261px;
-                height: 381px;
-                padding: 26px 19px 27px 26px;
-                background-color: rgba(0,0,0,0.84);
-                border: 5px solid $third-color;
-                transition: .3s all;
-                @media(max-width: 1199px) {
-                    width: 236px;
-                }
-            }
             &__name, &__type {
                 @include roboto;
                 font-size: 16px;
@@ -1560,53 +1547,97 @@
                     color: #ffffff;
                 }
             }
-            &__subname, &__subtype, &__speed, &__speed-value, &__transf, &__transf-value {
-                @include roboto;
-                font-size: 14px;
-                line-height: 24px;
-                font-weight: 400;
-                color: #ffffff;
-            }
-            &__subname, &__speed, &__transf {
-                &_list {
-                    color: $fourteen-color;
-                    span {
-                        color: $twelve-color;
-                        font-weight: 900;
-                    }
-                }
-            }
-            &__subtype, &__speed-value, &__transf-value {
-                line-height: 18px;
-                font-weight: 900;
-                color: $third-color;
-            }
-            &__dumpster {
-                text-align: center;
-                margin-top: 24px;
-                cursor: pointer;
-                &_list {
-                    width: 52px;
-                    height: 52px;
-                    margin: 20px  0 0 auto;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-            }
-            &__in-stock {
-                @include roboto;
-                font-size: 14px;
-                line-height: 21px;
-                font-weight: 300;
-                padding: 0 10px 0 11px;
-                border-radius: 20px;
-                color: $third-color;
-                background-color: #ffffff;
+        }
+    }
+}
+
+.item {
+
+    &__hover-content {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 261px;
+        height: 381px;
+        padding: 26px 19px 27px 26px;
+        background-color: rgba(0,0,0,0.84);
+        border: 5px solid $third-color;
+        transition: .3s all;
+        @media(max-width: 1199px) {
+            width: 236px;
+        }
+    }
+}
+.hover-content-item {
+
+    &__name {
+        @extend .item__name;
+        color: #ffffff !important;
+    }
+
+    &__type {
+        @extend .item__type;
+        color: #ffffff !important;
+
+    }
+
+    &__subname, &__subtype, &__speed, &__speed-value, &__transf, &__transf-value {
+        @include roboto;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #ffffff;
+    }
+
+    &__subtype, &__speed-value, &__transf-value {
+        line-height: 18px;
+        font-weight: 900;
+        color: $third-color;
+    }
+    &__dumpster {
+        text-align: center;
+        margin-top: 24px;
+        cursor: pointer;
+        &_list {
+            width: 52px;
+            height: 52px;
+            margin: 20px  0 0 auto;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
+    }
+
+    &__old-cost {
+        @extend .item__old-cost;
+        color: #ffffff !important;
+    }
+
+    &__order {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            cursor: pointer;
+        }
+    }
+
+    &__in-stock {
+        @include roboto;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 300;
+        padding: 0 10px 0 11px;
+        border-radius: 20px;
+        color: $third-color;
+        background-color: #ffffff;
+    }
+
+    &__new-cost {
+        @extend .item__new-cost;
+        color: #ffffff !important;
     }
 }
 

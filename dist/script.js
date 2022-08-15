@@ -618,85 +618,100 @@ window.addEventListener('DOMContentLoaded', () => {
 /*!*******************************!*\
   !*** ./src/assets/js/cort.js ***!
   \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: tabs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tabs", function() { return tabs; });
+/* harmony import */ var _good__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./good */ "./src/assets/js/good.js");
+
+
+ //YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+
+function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth, minWidth) {
+  const parent = document.querySelector(parentSelector);
+  const oldWrapper = document.querySelector(oldWrapperSelector);
+  const yourOrderWrapper = document.querySelectorAll(elemSelector);
+
+  function init() {
+    if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
+      Array.from(oldWrapper.children).forEach((item, i) => {
+        if (item.contains(yourOrderWrapper[i])) {
+          item.removeChild(yourOrderWrapper[i]);
+        }
+      });
+      parent.insertAdjacentElement('beforeend', yourOrderWrapper[0]);
+    } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
+      Array.from(oldWrapper.children).forEach((item, i) => {
+        item.insertAdjacentElement('beforeend', yourOrderWrapper[i]);
+      });
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    try {
+      if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
+        Array.from(oldWrapper.children).forEach((item, i) => {
+          if (item.contains(yourOrderWrapper[i])) {
+            item.removeChild(yourOrderWrapper[i]);
+          }
+        });
+        parent.insertAdjacentElement('beforeend', yourOrderWrapper[0]);
+      } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
+        Array.from(oldWrapper.children).forEach((item, i) => {
+          item.insertAdjacentElement('beforeend', yourOrderWrapper[i]);
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  });
+  init();
+} //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+//CORT TABS=======================================================>
+
+
+function tabs(tabsSelector, tabsContentSelector, tabsActive, contentActive, dataAttr) {
+  const tabs = document.querySelectorAll(tabsSelector);
+  const content = document.querySelectorAll(tabsContentSelector);
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      const target = e.target.hasAttribute(dataAttr) ? e.target : e.target.parentNode;
+      const targetAttr = target.getAttribute(dataAttr);
+      tabs.forEach(elem => {
+        elem.classList.remove(tabsActive);
+      });
+      tab.classList.add(tabsActive);
+      content.forEach(item => {
+        item.classList.remove(contentActive);
+
+        if (item.getAttribute(dataAttr) === targetAttr) {
+          item.classList.add(contentActive);
+        }
+      });
+    });
+  });
+} //END CORT TABS=======================================================>
 
 
 window.addEventListener('DOMContentLoaded', () => {
   try {
     //CORT TABS=======================================================>
-    function tabs(tabsSelector, tabsContentSelector, tabsActive, contentActive) {
-      const tabs = document.querySelectorAll(tabsSelector);
-      const content = document.querySelectorAll(tabsContentSelector);
-      tabs.forEach(tab => {
-        tab.addEventListener('click', e => {
-          const target = e.target;
-          const targetAttr = target.getAttribute('data-order');
-          tabs.forEach(elem => {
-            elem.classList.remove(tabsActive);
-          });
-          tab.classList.add(tabsActive);
-          content.forEach(item => {
-            item.classList.remove(contentActive);
-
-            if (item.getAttribute('data-order') === targetAttr) {
-              item.classList.add(contentActive);
-            }
-          });
-        });
-      });
-    }
-
-    tabs('.tabs-order__btn', '.order-main__form', 'tabs-order__btn_active', 'order-main__form_active'); //END CORT TABS=======================================================>
+    tabs('.tabs-order__btn', '.order-main__form', 'tabs-order__btn_active', 'order-main__form_active', 'data-order'); //END CORT TABS=======================================================>
     //YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
 
-    function changeWidth() {
-      const parent = document.querySelector('.wrapper-cort');
-      const oldWrapper = document.querySelector('.order-main__content');
-      const yourOrderWrapper = document.querySelectorAll('.yourOrder-main');
-      const toParentOrder = yourOrderWrapper[0];
+    changeWidth('.wrapper-cort', '.order-main__content', '.yourOrder-main', '(max-width: 991px)', '(min-width: 992px)'); //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+    //CHANGE INPUT ON CORT
 
-      function init() {
-        if (window.matchMedia('(max-width: 991px)').matches && window.screen.availWidth) {
-          Array.from(oldWrapper.children).forEach((item, i) => {
-            if (item.contains(yourOrderWrapper[i])) {
-              item.removeChild(yourOrderWrapper[i]);
-            }
-          });
-          parent.insertAdjacentElement('beforeend', yourOrderWrapper[0]);
-        } else if (parent.children.length > 2 && window.matchMedia('(min-width: 992px)').matches) {
-          Array.from(oldWrapper.children).forEach((item, i) => {
-            item.insertAdjacentElement('beforeend', yourOrderWrapper[i]);
-          });
-        }
-      }
-
-      window.addEventListener('resize', () => {
-        if (window.matchMedia('(max-width: 991px)').matches && window.screen.availWidth) {
-          Array.from(oldWrapper.children).forEach((item, i) => {
-            if (item.contains(yourOrderWrapper[i])) {
-              item.removeChild(yourOrderWrapper[i]);
-            }
-          });
-          parent.insertAdjacentElement('beforeend', yourOrderWrapper[0]);
-        } else if (parent.children.length > 2 && window.matchMedia('(min-width: 992px)').matches) {
-          Array.from(oldWrapper.children).forEach((item, i) => {
-            item.insertAdjacentElement('beforeend', yourOrderWrapper[i]);
-          });
-        }
-      });
-      init();
-    }
-
-    changeWidth(); //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+    Object(_good__WEBPACK_IMPORTED_MODULE_0__["changeInput"])('.amount-item__input', '.amount-item__sub', '.amount-item__add'); //END CHANGE INPUT ON CORT
   } catch (e) {
     console.log(e);
   }
 
   ;
 });
+
 
 /***/ }),
 
@@ -722,9 +737,90 @@ const slidersToZero = {
 /*!*******************************!*\
   !*** ./src/assets/js/good.js ***!
   \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: changeInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeInput", function() { return changeInput; });
+/* harmony import */ var _cort__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cort */ "./src/assets/js/cort.js");
+
+
+ // CHANGE NUMBER OF ITEMS ON INPUT
+
+function changeInput(inputSelector, arrowSub, arrowAdd) {
+  const input = document.querySelectorAll(inputSelector);
+  const sub = document.querySelectorAll(arrowSub);
+  const add = document.querySelectorAll(arrowAdd);
+  input.forEach(item => {
+    item.value = 1;
+  });
+  sub.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      if (input[i].value < 2) {
+        input[i].value = 1;
+      } else {
+        input[i].value--;
+      }
+    });
+  });
+  add.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      input[i].value++;
+    });
+  });
+} // END CHANGE NUMBER OF ITEMS ON INPUT
+//YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+
+
+function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth, minWidth) {
+  const parent = document.querySelector(parentSelector);
+  const oldWrapper = document.querySelector(oldWrapperSelector);
+  const element = document.querySelector(elemSelector);
+
+  function init() {
+    if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
+      if (oldWrapper.contains(element)) {
+        oldWrapper.removeChild(element);
+      }
+
+      parent.insertAdjacentElement('beforeend', element);
+    } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
+      oldWrapper.insertAdjacentElement('beforeend', element);
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    // try{
+    if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
+      if (oldWrapper.contains(element)) {
+        oldWrapper.removeChild(element);
+      }
+
+      parent.insertAdjacentElement('beforeend', element);
+    } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
+      oldWrapper.insertAdjacentElement('beforeend', element);
+    } // }catch(e) {console.log(e)}
+
+  });
+  init();
+} //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  // GOOD PAGE TABS ===============================================>
+  try {
+    Object(_cort__WEBPACK_IMPORTED_MODULE_0__["tabs"])('.btns-good-tabs--main__btn', '.contents-good-tabs--main__content', 'btns-good-tabs--main__btn_active', 'contents-good-tabs--main__content_active', 'data-tab'); // END GOOD PAGE TABS ===============================================>
+    // CHANGE NUMBER OF ITEMS ON INPUT
+
+    changeInput('.amount-order-info-good-main__input', '.amount-order-info-good-main__sub', '.amount-order-info-good-main__add'); // END CHANGE NUMBER OF ITEMS ON INPUT
+    //CHANGE WIDTH BECAUSE OF MEDIA
+
+    changeWidth('.wrapper-good', '.main__right', '.similar-main', '(max-width: 767px)', '(min-width: 768px)'); //END CHANGE WIDTH BECAUSE OF MEDIA
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 
 /***/ }),
@@ -740,9 +836,7 @@ const slidersToZero = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _catalog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./catalog */ "./src/assets/js/catalog.js");
 /* harmony import */ var _cort__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cort */ "./src/assets/js/cort.js");
-/* harmony import */ var _cort__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_cort__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _good__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./good */ "./src/assets/js/good.js");
-/* harmony import */ var _good__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_good__WEBPACK_IMPORTED_MODULE_2__);
 
 
 

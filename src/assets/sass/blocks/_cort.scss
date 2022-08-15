@@ -424,8 +424,14 @@
             width: 56px;
             padding-left: 20px;
         }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        }
     }
-
+    &__sub, &__add {
+        cursor: pointer;
+    }
 }
 .cost-item {
     @include roboto;
