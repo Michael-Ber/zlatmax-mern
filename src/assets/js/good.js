@@ -47,7 +47,7 @@ function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth,
         }
     }
     window.addEventListener('resize', () => {
-        // try{
+        try{
             if(window.matchMedia(maxWidth).matches && window.screen.availWidth) {
                 if(oldWrapper.contains(element)) {
                     oldWrapper.removeChild(element);
@@ -57,7 +57,7 @@ function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth,
             }else if(parent.children.length > 2 && window.matchMedia(minWidth).matches){
                 oldWrapper.insertAdjacentElement('beforeend', element);
             }
-        // }catch(e) {console.log(e)}
+        }catch(e) {console.log(e)}
     });
     init();
 }

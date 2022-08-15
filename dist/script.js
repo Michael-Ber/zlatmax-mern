@@ -791,17 +791,19 @@ function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth,
   }
 
   window.addEventListener('resize', () => {
-    // try{
-    if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
-      if (oldWrapper.contains(element)) {
-        oldWrapper.removeChild(element);
+    try {
+      if (window.matchMedia(maxWidth).matches && window.screen.availWidth) {
+        if (oldWrapper.contains(element)) {
+          oldWrapper.removeChild(element);
+        }
+
+        parent.insertAdjacentElement('beforeend', element);
+      } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
+        oldWrapper.insertAdjacentElement('beforeend', element);
       }
-
-      parent.insertAdjacentElement('beforeend', element);
-    } else if (parent.children.length > 2 && window.matchMedia(minWidth).matches) {
-      oldWrapper.insertAdjacentElement('beforeend', element);
-    } // }catch(e) {console.log(e)}
-
+    } catch (e) {
+      console.log(e);
+    }
   });
   init();
 } //END YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
