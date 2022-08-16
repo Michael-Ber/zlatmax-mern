@@ -4,6 +4,9 @@ import './catalog';
 import './cort';
 import './good';
 
+import Swiper, {Navigation, Pagination} from 'swiper';
+
+
 window.addEventListener('DOMContentLoaded', () => {
     
     // CATALOG BURGER
@@ -62,15 +65,19 @@ window.addEventListener('DOMContentLoaded', () => {
         //END SLIDER MAIN
     
         //SLIDER POPULAR
-    
+        
         function popularSlider() {
-            const slider = tns({
-                container: '.popular__list-slider',
-                items: 1,
-                slideBy: 1,
-                mouseDrag: true,
-                nav: false,
-                controlsContainer: '.popular__arrows'
+            const swiperPopular = new Swiper('.popular__list-wrapper', {
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                modules: [Navigation, Pagination],
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'fraction',
+                },
             });
         }
         popularSlider();
