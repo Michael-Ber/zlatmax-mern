@@ -659,6 +659,9 @@
 
     &__arrows {
         &_page-catalog {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 350px;
             span {
                 font-size: 20px;
@@ -906,21 +909,45 @@
                 }
             }
         }
-        
+        .item__order {
+            margin-top: 10px;
+        }
         .item__name, .item__type {
             &_list {
                 font-size: 14px;
             }
         }
+        .item__subtype, .item__speed-value, .item__transf-value {
+            @include roboto;
+            color: $third-color;
+            font-weight: 900;
+            
+        }
         .item__subname, .item__speed, .item__transf {
+            @include roboto;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 400;
+            color: #ffffff;
             &_list {
-                font-size: 12px;
+                color: $fourteen-color;
+                @media(max-width: 991px) {
+                    font-size: 12px;
+                }
+            }
+            span {
+                color: $twelve-color;
+                font-weight: 900;
             }
         }
         .item__old-cost {
+            margin-top: unset;
             &_list {
-                font-size: 14px;
+                @media(max-width: 991px) {
+                    font-size: 14px;
+                }
             }
+            
             @media(max-width: 575px) {
                 margin: 0;
                 order: 2;
@@ -928,13 +955,34 @@
         }
         .item__new-cost {
             &_list {
-                font-size: 16px;
+                // font-size: 16px;
+                @media(max-width: 991px) {
+                    font-size: 16px;
+                }
                 @media(max-width: 575px) {
                     order: 1;
                 }
             }
         }
-            
+        .item__compare {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 10px;
+            &::before {
+                content: url('./assets/icons/catalog/compare.png');
+                margin-right: 5px;
+            }
+        }    
+        .item__compare-link {
+            @include roboto;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 300;
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffffff;
+        }    
         .item__dumpster {
             &_list {
                 width: 35px;
@@ -946,7 +994,6 @@
                 }
             }
         }
-        
     }
 }
 

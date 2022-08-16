@@ -2920,6 +2920,9 @@
   display: block;
 }
 .popular__arrows_page-catalog {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 350px;
 }
 .popular__arrows_page-catalog span {
@@ -3156,14 +3159,43 @@
     gap: 20px;
   }
 }
+.popular__item .item__order, .popular__item .item-similar-main__order, .similar-main__item .item__order, .similar-main__item .item-similar-main__order {
+  margin-top: 10px;
+}
 .popular__item .item__name_list, .similar-main__item .item__name_list, .popular__item .item__type_list, .similar-main__item .item__type_list {
   font-size: 14px;
 }
-.popular__item .item__subname_list, .similar-main__item .item__subname_list, .popular__item .item__speed_list, .similar-main__item .item__speed_list, .popular__item .item__transf_list, .similar-main__item .item__transf_list {
-  font-size: 12px;
+.popular__item .item__subtype, .similar-main__item .item__subtype, .popular__item .item__speed-value, .similar-main__item .item__speed-value, .popular__item .item__transf-value, .similar-main__item .item__transf-value {
+  font-family: "Roboto", sans-serif;
+  color: #f68038;
+  font-weight: 900;
 }
-.popular__item .item__old-cost_list, .similar-main__item .item__old-cost_list {
+.popular__item .item__subname, .similar-main__item .item__subname, .popular__item .item__speed, .similar-main__item .item__speed, .popular__item .item__transf, .similar-main__item .item__transf {
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #ffffff;
+}
+.popular__item .item__subname_list, .similar-main__item .item__subname_list, .popular__item .item__speed_list, .similar-main__item .item__speed_list, .popular__item .item__transf_list, .similar-main__item .item__transf_list {
+  color: #666666;
+}
+@media (max-width: 991px) {
+  .popular__item .item__subname_list, .similar-main__item .item__subname_list, .popular__item .item__speed_list, .similar-main__item .item__speed_list, .popular__item .item__transf_list, .similar-main__item .item__transf_list {
+    font-size: 12px;
+  }
+}
+.popular__item .item__subname span, .similar-main__item .item__subname span, .popular__item .item__speed span, .similar-main__item .item__speed span, .popular__item .item__transf span, .similar-main__item .item__transf span {
+  color: #333333;
+  font-weight: 900;
+}
+.popular__item .item__old-cost, .popular__item .item-similar-main__old-cost, .similar-main__item .item__old-cost, .similar-main__item .item-similar-main__old-cost, .popular__item .hover-content-item__old-cost, .similar-main__item .hover-content-item__old-cost {
+  margin-top: unset;
+}
+@media (max-width: 991px) {
+  .popular__item .item__old-cost_list, .similar-main__item .item__old-cost_list {
+    font-size: 14px;
+  }
 }
 @media (max-width: 575px) {
   .popular__item .item__old-cost, .popular__item .item-similar-main__old-cost, .similar-main__item .item__old-cost, .similar-main__item .item-similar-main__old-cost, .popular__item .hover-content-item__old-cost, .similar-main__item .hover-content-item__old-cost {
@@ -3171,13 +3203,34 @@
     order: 2;
   }
 }
-.popular__item .item__new-cost_list, .similar-main__item .item__new-cost_list {
-  font-size: 16px;
+@media (max-width: 991px) {
+  .popular__item .item__new-cost_list, .similar-main__item .item__new-cost_list {
+    font-size: 16px;
+  }
 }
 @media (max-width: 575px) {
   .popular__item .item__new-cost_list, .similar-main__item .item__new-cost_list {
     order: 1;
   }
+}
+.popular__item .item__compare, .similar-main__item .item__compare {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+.popular__item .item__compare::before, .similar-main__item .item__compare::before {
+  content: url("./assets/icons/catalog/compare.png");
+  margin-right: 5px;
+}
+.popular__item .item__compare-link, .similar-main__item .item__compare-link {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 300;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px dashed #ffffff;
 }
 .popular__item .item__dumpster_list, .similar-main__item .item__dumpster_list {
   width: 35px;
