@@ -467,21 +467,24 @@
         height: 25px;
         background-color: $third-color;
         border-radius: 45%;
-        span {
-            @include roboto;
-            font-size: 18px;
-            line-height: 18px;
-            font-weight: 700;
-            color: #ffffff;
-            @media(max-width: 575px) {
-                font-size: 12px;
-            }
-        }
         @media(max-width: 575px) {
             width: 30px;
             height: 21px;
             top: -8px;
             right: -20px;
+        }
+    }
+}
+
+.counts-subheader {
+    &__count {
+        @include roboto;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        @media(max-width: 575px) {
+            font-size: 12px;
         }
     }
 }
@@ -1641,8 +1644,10 @@
         color: $third-color;
     }
     &__dumpster {
+        width: 57px;
+        height: 57px;
+        margin: 24px auto 0 auto;
         text-align: center;
-        margin-top: 24px;
         cursor: pointer;
         &_list {
             width: 52px;

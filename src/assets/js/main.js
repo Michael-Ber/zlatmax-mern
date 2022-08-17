@@ -4,6 +4,7 @@ import './catalog';
 import './cort';
 import './good';
 
+
 import Swiper, {Navigation, Pagination} from 'swiper';
 
 
@@ -113,9 +114,9 @@ window.addEventListener('DOMContentLoaded', () => {
         sponsorsSlider();
     
         //END SLIDER SPONSORS
-    
         
     } catch {
         console.log('error');
     }
+    
 });

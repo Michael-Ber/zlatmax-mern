@@ -537,7 +537,16 @@
   background-color: #f68038;
   border-radius: 45%;
 }
-.subheader__counts span {
+@media (max-width: 575px) {
+  .subheader__counts {
+    width: 30px;
+    height: 21px;
+    top: -8px;
+    right: -20px;
+  }
+}
+
+.counts-subheader__count {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   line-height: 18px;
@@ -545,16 +554,8 @@
   color: #ffffff;
 }
 @media (max-width: 575px) {
-  .subheader__counts span {
+  .counts-subheader__count {
     font-size: 12px;
-  }
-}
-@media (max-width: 575px) {
-  .subheader__counts {
-    width: 30px;
-    height: 21px;
-    top: -8px;
-    right: -20px;
   }
 }
 
@@ -1760,8 +1761,10 @@
   color: #f68038;
 }
 .hover-content-item__dumpster {
+  width: 57px;
+  height: 57px;
+  margin: 24px auto 0 auto;
   text-align: center;
-  margin-top: 24px;
   cursor: pointer;
 }
 .hover-content-item__dumpster_list {
@@ -3555,7 +3558,6 @@
 .yourOrder-main__sum span {
   font-size: 24px;
   line-height: 16px;
-  font-weight: 900;
   text-transform: uppercase;
   color: #333333;
 }

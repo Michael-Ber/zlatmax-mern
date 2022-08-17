@@ -1,6 +1,7 @@
 'use strict';
 
 import {changeInput} from './good';
+import {getResource, deleteData} from './services/requests';
 
 //YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
 function changeWidth(parentSelector, oldWrapperSelector, elemSelector, maxWidth, minWidth) {
@@ -69,6 +70,102 @@ function tabs(tabsSelector, tabsContentSelector, tabsActive, contentActive, data
 }
 //END CORT TABS=======================================================>
 
+//ADD ITEM TO CORT====================================================>
+
+function addToCort() {
+    const wrappers = document.querySelectorAll('.yourOrder-main');
+    const uls = document.querySelectorAll('.yourOrder-main__list');
+    getResource().then(data => {
+        if(data.length < 1) {
+            wrappers.forEach(wrapper => {
+                wrapper.getElementsByClassName.display = 'none';
+            })
+        }else {
+            wrappers.forEach(wrapper => {
+                wrapper.getElementsByClassName.display = 'block';
+            })
+            data.forEach(li => {
+                uls.forEach(ul => {
+                    ul.innerHTML += `
+                        <li class="yourOrder-main__item item-yourOrder">
+                            <div class="item-yourOrder__img">
+                                <img src=${li.img} alt="order-image">
+                            </div>
+                            <div class="item-yourOrder__descr descr-item">
+                                <p class="descr-item__name">
+                                    <span>${li.name}</span> ${li.type}
+                                </p>
+                                <p class="descr-item__price">${li.price} <span>&#8381</span></p>
+                            </div>
+                            <div class="item-yourOrder__amount amount-item">
+                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                <input value="1" type="number" class="amount-item__input">
+                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                            </div>
+                            <div class="item-yourOrder__cost cost-item">
+                                <p class="cost-item__header">Всего:</p>
+                                <p class="cost-item__total">${li.price} <span>&#8381</span></p>
+                            </div>
+                            <div class="item-yourOrder__delete" data-id="${li.id}">&#10006</div>
+                        </li>
+                        `
+                });
+            });
+        }
+    });
+    //TOTAL SUM
+
+    calculateSum();
+    //END TOTAL SUM
+}
+
+
+//END ADD ITEM TO CORT==============================================>
+
+//DELETE ITEM TO CORT==============================================>
+
+function deleteFromCort() {
+    const wrappers = document.querySelectorAll('.yourOrder-main__list');
+    wrappers.forEach(wrapper => {
+        wrapper.addEventListener('click', (e) => {
+            const attr = e.target.hasAttribute('data-id') ? e.target.getAttribute('data-id'): null;
+            deleteData(`http://localhost:3000/items/${attr}`)
+                .then(() => 
+                    Array.from(wrapper.children).forEach(child => {
+                        child.remove();
+                    }))
+                .then(addToCort)
+            
+        });
+    });
+    //TOTAL SUM
+
+    calculateSum();
+    //END TOTAL SUM
+}
+
+//END DELETE ITEM TO CORT==============================================>
+
+
+//TOTAL SUM
+
+function calculateSum() {
+    const totals = document.querySelectorAll('.yourOrder-main__sum strong');
+    let totalSum = 0;
+    getResource()
+        .then(data => {
+            data.forEach(item=> {
+                totalSum += Number(item.price);
+            })
+        })
+        .then(() => {
+            totals.forEach(item => {
+                item.textContent = totalSum;
+            });
+        })
+}
+
+//END TOTAL SUM
 window.addEventListener('DOMContentLoaded', () => {
 
     try {
@@ -85,6 +182,19 @@ window.addEventListener('DOMContentLoaded', () => {
     //CHANGE INPUT ON CORT
     changeInput('.amount-item__input', '.amount-item__sub', '.amount-item__add');
     //END CHANGE INPUT ON CORT
+
+    //ADD ITEM TO CORT=======================================================>
+    addToCort();
+    //END ADD ITEM TO CORT=======================================================>
+    
+    //DELETE ITEM TO CORT==============================================>
+    deleteFromCort();
+    //END DELETE ITEM TO CORT==============================================>
+
+    //TOTAL SUM
+
+    calculateSum();
+    //END TOTAL SUM
 }catch(e) {console.log(e)};
 });
 export {tabs};

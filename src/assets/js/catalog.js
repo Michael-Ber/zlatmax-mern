@@ -3,7 +3,6 @@
 import slidersToZero from "./globalObjects";
 
 window.addEventListener('DOMContentLoaded', () => {
-
     // PRICE SCROLL BAR
     function scrollBar() {
         const scrollWrapper = document.querySelector('.main__subwrapper');

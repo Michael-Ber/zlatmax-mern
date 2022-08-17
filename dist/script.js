@@ -13658,6 +13658,8 @@ window.addEventListener('DOMContentLoaded', () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tabs", function() { return tabs; });
 /* harmony import */ var _good__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./good */ "./src/assets/js/good.js");
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/requests */ "./src/assets/js/services/requests.js");
+
 
 
  //YOUR ORDER CHANGING WIDTH BECAUSE OF MEDIA=========================>
@@ -13726,6 +13728,85 @@ function tabs(tabsSelector, tabsContentSelector, tabsActive, contentActive, data
     });
   });
 } //END CORT TABS=======================================================>
+//ADD ITEM TO CORT====================================================>
+
+
+function addToCort() {
+  const wrappers = document.querySelectorAll('.yourOrder-main');
+  const uls = document.querySelectorAll('.yourOrder-main__list');
+  Object(_services_requests__WEBPACK_IMPORTED_MODULE_1__["getResource"])().then(data => {
+    if (data.length < 1) {
+      wrappers.forEach(wrapper => {
+        wrapper.getElementsByClassName.display = 'none';
+      });
+    } else {
+      wrappers.forEach(wrapper => {
+        wrapper.getElementsByClassName.display = 'block';
+      });
+      data.forEach(li => {
+        uls.forEach(ul => {
+          ul.innerHTML += `
+                        <li class="yourOrder-main__item item-yourOrder">
+                            <div class="item-yourOrder__img">
+                                <img src=${li.img} alt="order-image">
+                            </div>
+                            <div class="item-yourOrder__descr descr-item">
+                                <p class="descr-item__name">
+                                    <span>${li.name}</span> ${li.type}
+                                </p>
+                                <p class="descr-item__price">${li.price} <span>&#8381</span></p>
+                            </div>
+                            <div class="item-yourOrder__amount amount-item">
+                                <img src="./assets/icons/order/sub.png" alt="arrow-sub" class="amount-item__sub">
+                                <input value="1" type="number" class="amount-item__input">
+                                <img src="./assets/icons/order/add.png" alt="arrow-add" class="amount-item__add">
+                            </div>
+                            <div class="item-yourOrder__cost cost-item">
+                                <p class="cost-item__header">Всего:</p>
+                                <p class="cost-item__total">${li.price} <span>&#8381</span></p>
+                            </div>
+                            <div class="item-yourOrder__delete" data-id="${li.id}">&#10006</div>
+                        </li>
+                        `;
+        });
+      });
+    }
+  }); //TOTAL SUM
+
+  calculateSum(); //END TOTAL SUM
+} //END ADD ITEM TO CORT==============================================>
+//DELETE ITEM TO CORT==============================================>
+
+
+function deleteFromCort() {
+  const wrappers = document.querySelectorAll('.yourOrder-main__list');
+  wrappers.forEach(wrapper => {
+    wrapper.addEventListener('click', e => {
+      const attr = e.target.hasAttribute('data-id') ? e.target.getAttribute('data-id') : null;
+      Object(_services_requests__WEBPACK_IMPORTED_MODULE_1__["deleteData"])(`http://localhost:3000/items/${attr}`).then(() => Array.from(wrapper.children).forEach(child => {
+        child.remove();
+      })).then(addToCort);
+    });
+  }); //TOTAL SUM
+
+  calculateSum(); //END TOTAL SUM
+} //END DELETE ITEM TO CORT==============================================>
+//TOTAL SUM
+
+
+function calculateSum() {
+  const totals = document.querySelectorAll('.yourOrder-main__sum strong');
+  let totalSum = 0;
+  Object(_services_requests__WEBPACK_IMPORTED_MODULE_1__["getResource"])().then(data => {
+    data.forEach(item => {
+      totalSum += Number(item.price);
+    });
+  }).then(() => {
+    totals.forEach(item => {
+      item.textContent = totalSum;
+    });
+  });
+} //END TOTAL SUM
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -13738,6 +13819,15 @@ window.addEventListener('DOMContentLoaded', () => {
     //CHANGE INPUT ON CORT
 
     Object(_good__WEBPACK_IMPORTED_MODULE_0__["changeInput"])('.amount-item__input', '.amount-item__sub', '.amount-item__add'); //END CHANGE INPUT ON CORT
+    //ADD ITEM TO CORT=======================================================>
+
+    addToCort(); //END ADD ITEM TO CORT=======================================================>
+    //DELETE ITEM TO CORT==============================================>
+
+    deleteFromCort(); //END DELETE ITEM TO CORT==============================================>
+    //TOTAL SUM
+
+    calculateSum(); //END TOTAL SUM
   } catch (e) {
     console.log(e);
   }
@@ -13757,11 +13847,54 @@ window.addEventListener('DOMContentLoaded', () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/requests */ "./src/assets/js/services/requests.js");
+
 
 
 const slidersToZero = {
   enable: true
 };
+
+if (window.performance) {
+  changeCortCount('.counts-subheader__count', '.subheader__counts', '.cort-trigger');
+}
+
+function changeCortCount(countSelector, countWrapper, cortTrigger) {
+  const wrapper = document.querySelector(countWrapper);
+  const count = document.querySelector(countSelector);
+  const addToCortBtn = document.querySelectorAll(cortTrigger); // let countValue = localStorage.getItem('count');
+
+  init();
+  addToCortBtn.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const parent = this.closest('.popular__item');
+      const obj = {};
+      obj.img = parent.querySelector('.item__img img').src;
+      obj.name = parent.querySelector('.item__descr .item__name').textContent;
+      obj.type = parent.querySelector('.item__descr .item__type').textContent;
+      obj.price = parent.querySelector('.item__descr .item__order .item__new-cost').textContent.slice(0, -2);
+      obj.id = Date.now();
+      Object(_services_requests__WEBPACK_IMPORTED_MODULE_0__["postData"])('http://localhost:3000/items', JSON.stringify(obj));
+      count.textContent = Number(count.textContent) + 1;
+
+      if (Number(count.textContent) > 0) {
+        wrapper.style.display = 'flex';
+      }
+    });
+  });
+
+  function init() {
+    Object(_services_requests__WEBPACK_IMPORTED_MODULE_0__["getResource"])().then(data => {
+      if (data.length < 1) {
+        wrapper.style.display = 'none';
+      } else {
+        count.textContent = data.length;
+      }
+    });
+  }
+}
+
 /* harmony default export */ __webpack_exports__["default"] = (slidersToZero);
 
 /***/ }),
@@ -13978,6 +14111,61 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log('error');
   }
 });
+
+/***/ }),
+
+/***/ "./src/assets/js/services/requests.js":
+/*!********************************************!*\
+  !*** ./src/assets/js/services/requests.js ***!
+  \********************************************/
+/*! exports provided: postData, getResource, deleteData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postData", function() { return postData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getResource", function() { return getResource; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteData", function() { return deleteData; });
+const postData = async function () {
+  let url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "http://localhost:3000/items";
+  let data = arguments.length > 1 ? arguments[1] : undefined;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: data
+  });
+
+  if (!res.ok) {
+    throw new Error(`Could not fetch`);
+  }
+
+  return await res.json();
+};
+
+const getResource = async function () {
+  let url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "http://localhost:3000/items";
+  const res = await fetch(url);
+  return await res.json();
+};
+
+const deleteData = async url => {
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (!res.ok) {
+    throw new Error(`Could not fetch`);
+  }
+
+  return await res.json();
+};
+
+
 
 /***/ })
 

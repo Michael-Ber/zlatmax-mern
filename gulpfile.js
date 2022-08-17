@@ -10,7 +10,7 @@ const postcss = require("gulp-postcss");
 const imagemin = require('gulp-imagemin');
 
 
-// const dist = "../../../js/OpenServer/domains/shopno";
+// const dist = "../../../../js/OpenServer/domains/logo";
 const dist = "./dist";
 
 gulp.task("copy-html", () => {
