@@ -10,14 +10,14 @@ import Swiper, {Navigation, Pagination} from 'swiper';
 
 window.addEventListener('DOMContentLoaded', () => {
     
-    // CATALOG BURGER
+    
     
     try {
+        // CATALOG BURGER
         function burger(trig, menu, trigActive, menuActive, closeTrig) {
             const trigger = document.querySelector(trig);
             const popup = document.querySelector(menu);
             const close = document.querySelector(closeTrig);
-            const body = document.querySelector('body');
             
             trigger.addEventListener('click', function() {
                 if(!this.classList.contains(trigActive)) {
@@ -45,9 +45,33 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     
-        burger('.catalog__burger', '.main__popup', 'catalog__burger_active', 'main__popup_active', '.main__popup-close');
+        burger('.catalog__burger', '.catalog__list', 'catalog__burger_active', 'catalog__list_active');
         burger('.burger-btn', '.burger-menu', 'burger-btn_active', 'burger-menu_active');
-    
+        //END CATALOG BURGER
+
+        //CATALOG ITEMS POPUP
+
+        function togglePopup(trigSelector, popupSelector, popupActive, closeTrig) {
+            const trig = document.querySelectorAll(trigSelector);
+            const popup = document.querySelectorAll(popupSelector);
+
+            trig.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const btnAttr = btn.getAttribute('data-popup');
+                    popup.forEach(menu => {
+                        if(menu.getAttribute('data-popup') === btnAttr) {
+                            menu.classList.add(popupActive);
+                        }
+                        menu.querySelector(closeTrig).addEventListener('click', () => {
+                            menu.classList.remove(popupActive);
+                        });
+                    });
+                });
+            });
+        }
+        togglePopup('.catalog__item_parent', '.main__popup', 'main__popup_active', '.main__popup-close');
+        //ENDCATALOG ITEMS POPUP
+
         //SLIDER MAIN
     
         function mainSlider() {
