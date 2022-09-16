@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="catalog page">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Play:wght@700&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Catalog</title>
@@ -18,30 +19,30 @@
                 <div class="header__main">
                     <nav class="header__nav">
                         <ul class="header__nav-list">
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Бренды</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Гарантия</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Распродажа</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Оплата</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Доставка и сборка</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Контакты</a>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -226,7 +227,7 @@
                                 </li>
                             </ul>
                             <div class="main__compare-btns">
-                                <button class="main__compare-btn">Сравнить</button>
+                                <button class="main__compare-btn" aria-label="compare button">Сравнить</button>
                                 <div class="main__compare-dumpster">
                                     <img src="./assets/icons/catalog/trash.png" alt="dumpster">
                                 </div>
@@ -476,15 +477,15 @@
                                 </li>
                             </ul>
                             <div class="main__angle-btns">
-                                <button class="main__angle-btn">Подобрать</button>
-                                <button class="main__angle-btn">Сбросить</button>
+                                <button class="main__angle-btn" aria-label="show marked goods">Подобрать</button>
+                                <button class="main__angle-btn" aria-label="reset button">Сбросить</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="main__right main__right_page-catalog">
                     <form action="#" class="slide__search">
-                        <button class="slide__everywhere">
+                        <button class="slide__everywhere" aria-label="everywhere button">
                             <span>Везде</span> 
                         </button>
                         <input type="search" class="slide__input" name="search" id="search">
@@ -570,9 +571,9 @@
                             </div>
                             <div class="popular__pagination-catalog">
                                 <form action="#" class="popular__pagination-catalog-form">
-                                    <label for="popular-pagination-catalog-select" class="popular__pagination-catalog-label">
+                                    <label for="popular-pagination-catalog-select-1" class="popular__pagination-catalog-label">
                                         На странице:
-                                        <select name="popular-pagination-catalog-select" id="popular-pagination-catalog-select" class="popular__pagination-catalog-select">
+                                        <select name="popular-pagination-catalog-select-1" id="popular-pagination-catalog-select-1" class="popular__pagination-catalog-select">
                                             <option value="1" class="popular__pagination-catalog-option">1</option>
                                             <option value="2" class="popular__pagination-catalog-option">2</option>
                                             <option value="3" class="popular__pagination-catalog-option">3</option>
@@ -988,7 +989,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1010,7 +1011,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1032,7 +1033,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1054,7 +1055,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1076,7 +1077,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1098,7 +1099,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1120,7 +1121,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1142,7 +1143,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1164,7 +1165,7 @@
                                             <div class="item__subname item__subname_list">Тип беговой дорожки: <span>Электрическая</span></div>
                                             <div class="item__speed item__speed_list">Скорость движения (км/ч): <span>22</span></div>
                                             <div class="item__transf item__transf_list">Складывание: <span>Есть</span></div>
-                                            <button class="main__compare-btn main__compare-btn_list"> <span>Сравнить</span> </button>
+                                            <button class="main__compare-btn main__compare-btn_list" aria-label="compare button"> <span>Сравнить</span> </button>
                                         </div>
                                         <div class="item__cost item__cost_list">
                                             <div class="item__old-cost item__old-cost_list">64990 &#8381</div>
@@ -1195,9 +1196,9 @@
                         </div>
                         <div class="popular__pagination-catalog">
                             <form action="#" class="popular__pagination-catalog-form">
-                                <label for="popular-pagination-catalog-select" class="popular__pagination-catalog-label">
+                                <label for="popular-pagination-catalog-select-2" class="popular__pagination-catalog-label">
                                     На странице:
-                                    <select name="popular-pagination-catalog-select" id="popular-pagination-catalog-select" class="popular__pagination-catalog-select">
+                                    <select name="popular-pagination-catalog-select-2" id="popular-pagination-catalog-select-2" class="popular__pagination-catalog-select">
                                         <option value="1" class="popular__pagination-catalog-option">1</option>
                                         <option value="2" class="popular__pagination-catalog-option">2</option>
                                         <option value="3" class="popular__pagination-catalog-option">3</option>

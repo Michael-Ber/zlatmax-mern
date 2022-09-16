@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="page of the good">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Play:wght@700&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Good</title>
@@ -17,30 +18,30 @@
                 <div class="header__main">
                     <nav class="header__nav">
                         <ul class="header__nav-list">
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Бренды</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Гарантия</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Распродажа</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Оплата</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Доставка и сборка</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Контакты</a>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -264,7 +265,7 @@
                 <div class="main__right">
                     <!-- SEARCH -->
                     <form action="#" class="slide__search">
-                        <button class="slide__everywhere">
+                        <button class="slide__everywhere" aria-label="everywhere button">
                             <span>Везде</span> 
                         </button>
                         <input type="search" class="slide__input" name="search" id="search">
@@ -341,7 +342,7 @@
                             <div class="good-main__info info-good-main">
                                 <div class="info-good-main__item">
                                     <div class="info-good-main__compare compare-info-good-main">
-                                        <button class="compare-info-good-main__btn">Сравнить</button>
+                                        <button class="compare-info-good-main__btn" aria-label="compare button">Сравнить</button>
                                         <div class="compare-info-good-main__in-stock">в наличии</div>
                                     </div>
                                 </div>
@@ -405,8 +406,8 @@
 
                     <div class="main__good-tabs good-tabs--main">
                         <div class="good-tabs--main__btns btns-good-tabs--main">
-                            <button class="btns-good-tabs--main__btn btns-good-tabs--main__btn_active" data-tab="descr"><span>Описание</span> </button>
-                            <button class="btns-good-tabs--main__btn" data-tab="feature"><span>Характеристики</span></button>
+                            <button class="btns-good-tabs--main__btn btns-good-tabs--main__btn_active" data-tab="descr" aria-label="description button"><span>Описание</span> </button>
+                            <button class="btns-good-tabs--main__btn" data-tab="feature" aria-label="characteristics button"><span>Характеристики</span></button>
                         </div>
                         <div class="good-tabs--main__contents contents-good-tabs--main">
                             <div class="contents-good-tabs--main__content contents-good-tabs--main__content_active" data-tab="descr">

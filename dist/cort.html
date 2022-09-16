@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="cort page">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Play:wght@700&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Cort</title>
@@ -17,30 +18,30 @@
                 <div class="header__main">
                     <nav class="header__nav">
                         <ul class="header__nav-list">
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Бренды</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Гарантия</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Распродажа</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Оплата</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Доставка и сборка</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Контакты</a>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -262,7 +263,7 @@
                 </div>
                 <div class="main__right">
                     <form action="#" class="slide__search">
-                        <button class="slide__everywhere">
+                        <button class="slide__everywhere"  aria-label="everywhere button">
                             <span>Везде</span> 
                         </button>
                         <input type="search" class="slide__input" name="search" id="search">
@@ -308,9 +309,9 @@
                     <h1 class="main__cort-title title-cort">Оформление заказа</h1>
                     <div class="main__order order-main">
                         <div class="order-main__tabs tabs-order">
-                            <button class="tabs-order__btn" data-order="fast">Быстрый заказ</button>
-                            <button class="tabs-order__btn" data-order="moscow">Курьером по москве и мо</button>
-                            <button class="tabs-order__btn tabs-order__btn_active" data-order="regions">Доставка в регионы</button>
+                            <button class="tabs-order__btn" data-order="fast" aria-label="fast order button">Быстрый заказ</button>
+                            <button class="tabs-order__btn" data-order="moscow" aria-label="in moscow button">Курьером по москве и мо</button>
+                            <button class="tabs-order__btn tabs-order__btn_active" data-order="regions" aria-label="regions button">Доставка в регионы</button>
                         </div>
                         <div class="order-main__content">
                             <form action="#" class="order-main__form order-main__form_active" data-order="regions">

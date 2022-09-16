@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="main page">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
@@ -22,30 +23,30 @@
                 <div class="header__main">
                     <nav class="header__nav">
                         <ul class="header__nav-list">
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Бренды</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Гарантия</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Распродажа</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Оплата</a>
-                                </li>
-                            </div>
-                            <div class="header__nav-wrapper">
-                                <li class="header__nav-item">
+                                </div>
+                            </li>
+                            <li class="header__nav-wrapper">
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Доставка и сборка</a>
-                                </li>
-                                <li class="header__nav-item">
+                                </div>
+                                <div class="header__nav-item">
                                     <a href="#" class="header__nav-link">Контакты</a>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -295,10 +296,12 @@
                 </div>
                 <div class="main__right">
                     <form action="#" class="slide__search">
-                        <button class="slide__everywhere">
-                            <span>Везде</span> 
-                        </button>
-                        <input type="text" class="slide__input" name="search" id="search">
+                        <label for="search" class="slide__label">
+                            <button class="slide__everywhere" aria-label="everywhere button">
+                                <span>Везде</span> 
+                            </button>
+                            <input type="text" class="slide__input" name="search" id="search">
+                        </label>
                         <input type="submit" class="slide__submit" value="НАЙТИ">
                         <div class="search__popup">
                             <ul class="search__popup-list">
