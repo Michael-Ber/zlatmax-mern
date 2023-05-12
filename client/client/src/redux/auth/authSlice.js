@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + window.localStorage.getItem('token')
+                
             },
             body: JSON.stringify(data)
         });
@@ -44,6 +44,20 @@ export const login = createAsyncThunk(
             window.localStorage.setItem('token', respJSON.token);
         }
         return respJSON
+    }
+);
+
+export const me = createAsyncThunk(
+    'auth/me',
+    async() => {
+        const resp = await fetch(`${url}/me`, {
+            method: 'GET',
+            headers: {
+                "Authorization": "Bearer " + window.localStorage.getItem('token')
+            }
+        })
+        const respJSON = await resp.json();
+        return respJSON;
     }
 );
 
@@ -80,6 +94,14 @@ const authSlice = createSlice({
         },
         [login.rejected]: state => { state.isLoading = false; state.isError = true },
 
+        //GETME
+        [me.pending]: state => { state.isLoading = true },
+        [me.fulfilled]: ( state, action ) => { 
+            state.isLoading = false; 
+            state.user = action.payload.user; 
+            state.token = action.payload.token; 
+        },
+        [me.rejected]: state => { state.isLoading = false; state.isError = true },
     }
 });
 

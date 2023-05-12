@@ -69,8 +69,8 @@
 
     &__logout-link {
         position: absolute;
-        top: 100%;
-        left: 100%;
+        top: 25%;
+        left: calc( 100% + 20px);
         color: #fff;
         cursor: pointer;
     }

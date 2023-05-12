@@ -9,7 +9,7 @@ const router = new Router();
 router.post("/register", register)
 
 // Login
-router.post("/login", checkAuth, login)
+router.post("/login", login)
 
 //GetMe
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../button/Button';
 import { Modal } from '../../modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ export const RegisterPage = () => {
   const { message } = useSelector(state => state.authSlice);
 
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
 
 
@@ -27,6 +28,7 @@ export const RegisterPage = () => {
     setName('');
     setPassword('');
     setShowModal(true);
+    nav("/");
   }
 
   return (

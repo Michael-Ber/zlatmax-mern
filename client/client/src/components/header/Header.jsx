@@ -24,9 +24,18 @@ const logoutHandler = () => {
 }
 
 const user = !token ? 
-        <Link to={"/register"} className="header__login"><span>Личный кабинет</span></Link>:  <span onClick={() => {setShowLogout(state => !state)}} className='header__logout'>{ username }</span>
+        <Link to={"/register"} className="header__login">
+            <span>Личный кабинет</span>
+        </Link> :  
+        <div onClick={() => {setShowLogout(state => !state)}} className='header__logout'>
+            { username }
+        </div>
 
-const logoutBtn = showLogout ? <div onClick={logoutHandler} className='header__logout-link'>Выйти</div> : null;
+const logoutBtn = showLogout ? 
+                        <div onClick={logoutHandler} className='header__logout-link'>
+                            Выйти
+                        </div> : 
+                        null;
 
 return (
     <header className="header">
