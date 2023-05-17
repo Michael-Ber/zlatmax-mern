@@ -1,0 +1,183 @@
+
+[
+    {
+        "name": "Carving-1",
+        "category": "carving",
+        "imgUrl": "/assets/images/carving/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    }, 
+    {
+        "name": "Carving-2",
+        "category": "carving",
+        "imgUrl": "/assets/images/carving/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    }, 
+    {
+        "name": "Damask-1",
+        "category": "damask",
+        "imgUrl": "/assets/images/damask/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Damask-2",
+        "category": "damask",
+        "imgUrl": "/assets/images/damask/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Hunting-1",
+        "category": "hunting",
+        "imgUrl": "/assets/images/hunting/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Hunting-2",
+        "category": "hunting",
+        "imgUrl": "/assets/images/hunting/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Kitchen-1",
+        "category": "kitchen",
+        "imgUrl": "/assets/images/kitchen/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Kitchen-2",
+        "category": "kitchen",
+        "imgUrl": "/assets/images/kitchen/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Machete-1",
+        "category": "machete",
+        "imgUrl": "/assets/images/machete/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Machete-2",
+        "category": "machete",
+        "imgUrl": "/assets/images/machete/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Steel-1",
+        "category": "steel",
+        "imgUrl": "/assets/images/steel/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Steel-2",
+        "category": "steel",
+        "imgUrl": "/assets/images/steel/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Tactic-1",
+        "category": "tactic",
+        "imgUrl": "/assets/images/tactic/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Tactic-2",
+        "category": "tactic",
+        "imgUrl": "/assets/images/tactic/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Throwing-1",
+        "category": "throwing",
+        "imgUrl": "/assets/images/throwing/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Throwing-2",
+        "category": "throwing",
+        "imgUrl": "/assets/images/throwing/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Tourist-1",
+        "category": "tourist",
+        "imgUrl": "/assets/images/tourist/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "Tourist-2",
+        "category": "tourist",
+        "imgUrl": "/assets/images/tourist/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "AIR-1",
+        "category": "air",
+        "imgUrl": "/assets/images/air/1.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    },
+    {
+        "name": "AIR-2",
+        "category": "air",
+        "imgUrl": "/assets/images/air/2.jpg",
+        "size": "95x18",
+        "color": "Орех, Алюминий",
+        "rating": "5",
+        "price": "2179 р."
+    }
+]

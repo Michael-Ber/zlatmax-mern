@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const CortSchema = new mongoose.Schema(
-    { 
+const GoodSchema = new mongoose.Schema(
+    {
         name: {
             type: String,
             required: true
@@ -29,9 +29,9 @@ const CortSchema = new mongoose.Schema(
         price: {
             type: String,
             required: true
-        }
+        },
     },
     { timestamps: true }
 );
 
-export default mongoose.model("Cort", CortSchema);
+export default mongoose.model("Goods", GoodSchema);

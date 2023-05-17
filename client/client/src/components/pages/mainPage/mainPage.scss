@@ -26,7 +26,7 @@
 
     &__container-inner {
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
         display: inline-block;
         width: #{percent(950, 1600)};
         @media(max-width: 991px) {
@@ -218,6 +218,7 @@
         align-items: center;
         column-gap: 140px;
         list-style-type: none;
+        padding: 0 20px; //new
         @media(max-width: 1199px) {
             column-gap: 40px;
         }
@@ -245,17 +246,22 @@
         }
         &:hover {
             color: $main-color;
-            & ~ .content-tab-main {
-                display: block;
-            }
+            // & + .content-tab-main {
+            //     z-index: 1000;
+            // }
         }
     }
 }
 .contents-tab-main {
     &__content {
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: absolute;//new
+        top: 100%;//new
+        left: 0;//new
+        padding: 0 20px;//new
+        z-index: -1;//new
+        background-color: #000;//new
+        width: 100%;//new
+        color: #fff;//new
         // display: none;
         // &_active {
         //     display: block;
@@ -304,6 +310,7 @@
         align-items: center;
         flex-wrap: wrap;
         padding: 30px 0;
+        list-style-type: none;
     }
 }
 .all-content {
@@ -330,6 +337,7 @@
 }
 .item-catalog {
     &__list {
+        list-style-type: none;
         margin-top: 30px;
         li {
             margin-top: 20px;
@@ -355,7 +363,7 @@
 
     &__fraction {
         position: absolute;
-        top: calc( 100% - 15px );
+        top: calc( 100% - 30px );//was -15px
         left: 50%;
         display: inline-flex;
         justify-content: space-between;
@@ -467,12 +475,9 @@
     }
 }
 
-.swiper, .swiper-container {
-    overflow: unset !important;
-}
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
 
-    top: 115%;
+    top: 95%;
 }
 .swiper-pagination {
     text-align: left;
@@ -500,10 +505,10 @@
     }
 }
 
-.swiper-slide {
+.carousel-main__slide {
     visibility: hidden; //when tab on keyboard it's prevent jump on other slides
     padding: 0 0 0 2px;
-    &-active {
+    &_active {
         visibility: visible;
     }
 }

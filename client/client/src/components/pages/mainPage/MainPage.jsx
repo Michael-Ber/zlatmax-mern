@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Catalog } from './catalog/Catalog';
+import { Bestsellers } from './bestsellers/Bestsellers';
+import { Novelty } from './novelty/Novelty';
+import { Articles } from './articles/Articles';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
@@ -12,16 +16,34 @@ import knives from '../../../assets/img/main/knives.png';
 
 export const MainPage = () => {
 
+    const onEnterHandler = (e) => {
+        const allTabs = document.querySelectorAll('.content-tab-main');
+        const content = e.target.nextElementSibling;
+        allTabs.forEach(cont => {
+            cont.style.zIndex = '-1';
+        })
+        content.style.zIndex = '1000';
+    }
+
+    const onLeaveHandler = (e) => {
+        e.target.style.zIndex = '-1';
+    }
 
 return (
-    <section className="main">
+    <>
+        <section className="main">
             {/* <!-- TABS=============================================================== --> */}
             <div className="main__tab tab-main">
                 <div className="tab-main__btns btns-tab-main">
                     <div className="container">
                         <ul className="btns-tab-main__list">
-                            <li data-tab="knives" className="btns-tab-main__item ">Каталог ножей</li>
-                            <div data-tab="knives" className="contents-tab-main__content content-tab-main">
+                            <li 
+                                onMouseEnter={(e) => onEnterHandler(e)} 
+                                data-tab="knives" 
+                                className="btns-tab-main__item ">
+                                    Каталог ножей
+                            </li>
+                            <div onMouseLeave={(e) => onLeaveHandler(e)} data-tab="knives" className="contents-tab-main__content content-tab-main">
                                 <div className="content-tab-main__wrapper">
                                     <ul className="content-tab-main__list">
                                         <li className="content-tab-main__item item-content-main">
@@ -109,14 +131,14 @@ return (
                                     <li><a href="#" className="all-content__link">Смотреть все</a></li>
                                 </ul>
                             </div>
-                            <li data-tab="blade" className="btns-tab-main__item">Клинковое оружие</li>
-                            <div data-tab="blade" className="contents-tab-main__content content-tab-main">Content-2</div>
-                            <li data-tab="souvenir" className="btns-tab-main__item">Сувенирные изделия</li>
-                            <div data-tab="souvenir" className="contents-tab-main__content content-tab-main">Content-3</div>
-                            <li data-tab="armytek" className="btns-tab-main__item">Фонари ARMYTEK</li>
-                            <div data-tab="armytek" className="contents-tab-main__content content-tab-main">Content-4</div>
-                            <li data-tab="related" className="btns-tab-main__item">Сопуствующие товары</li>
-                            <div data-tab="related" className="contents-tab-main__content content-tab-main">Content-5</div>
+                            <li onMouseEnter={(e) => onEnterHandler(e)} data-tab="blade" className="btns-tab-main__item">Клинковое оружие</li>
+                            <div onMouseLeave={(e) => onLeaveHandler(e)} data-tab="blade" className="contents-tab-main__content content-tab-main">Content-2</div>
+                            <li onMouseEnter={(e) => onEnterHandler(e)} data-tab="souvenir" className="btns-tab-main__item">Сувенирные изделия</li>
+                            <div onMouseLeave={(e) => onLeaveHandler(e)} data-tab="souvenir" className="contents-tab-main__content content-tab-main">Content-3</div>
+                            <li onMouseEnter={(e) => onEnterHandler(e)} data-tab="armytek" className="btns-tab-main__item">Фонари ARMYTEK</li>
+                            <div onMouseLeave={(e) => onLeaveHandler(e)} data-tab="armytek" className="contents-tab-main__content content-tab-main">Content-4</div>
+                            <li onMouseEnter={(e) => onEnterHandler(e)} data-tab="related" className="btns-tab-main__item">Сопуствующие товары</li>
+                            <div onMouseLeave={(e) => onLeaveHandler(e)} data-tab="related" className="contents-tab-main__content content-tab-main">Content-5</div>
                         </ul>
                     </div>
                 </div>
@@ -226,9 +248,11 @@ return (
                     <div className="container">
                         <div className="main__wrapper">
                             <div className="main__container-inner">
-                                <div className="main__carousel carousel-common swiper">
+                                <div className="main__carousel carousel-common">
                                     <Swiper 
                                         navigation
+                                        slideClass='carousel-main__slide'
+                                        slideActiveClass='carousel-main__slide_active'
                                         modules={[Pagination, Navigation]}
                                         pagination={{ clickable: true }}
                                         slidesPerView={1}
@@ -247,8 +271,9 @@ return (
                                             const activeFraction = document.querySelector('.carousel-main__current');
                                             sliderLength < 10 ? activeFraction.innerHTML = `0`+ (swiper.activeIndex + 1) : activeFraction.innerHTML = swiper.activeIndex;
                                         }}  
-                                        className="carousel-main__wrapper swiper-wrapper wrapper-common">
-                                        <SwiperSlide className="carousel-main__slide carousel-main__slide_active slide-main swiper-slide">
+                                        className="carousel-main__wrapper wrapper-common">
+
+                                        <SwiperSlide className="carousel-main__slide carousel-main__slide_active slide-main">
                                             <h2 className="carousel-main__title">Интернет магазин сертифицированных</h2>
                                             <h3 className="carousel-main__subtitle">златоустовских ножей</h3>
                                             <p className="carousel-main__text text-tab">
@@ -260,7 +285,7 @@ return (
                                                 <a href="/hgf" className="btn btn_sm carousel-main__btn">Подробнее</a>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="carousel-main__slide slide-main swiper-slide">
+                                        <SwiperSlide  className="carousel-main__slide slide-main">
                                             <h2 className="carousel-main__title">Title-2</h2>
                                             <h3 className="carousel-main__subtitle">Subtitle-2</h3>
                                             <p className="carousel-main__text">
@@ -270,7 +295,7 @@ return (
                                                 <a href="#" className="btn btn_sm carousel-main__btn">Подробнее</a>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="carousel-main__slide slide-main swiper-slide">
+                                        <SwiperSlide className="carousel-main__slide slide-main">
                                             <h2 className="carousel-main__title">Title-3</h2>
                                             <h3 className="carousel-main__subtitle">Subtitle-3</h3>
                                             <p className="carousel-main__text">
@@ -280,7 +305,7 @@ return (
                                                 <a href="#" className="btn btn_sm carousel-main__btn">Подробнее</a>
                                             </div>
                                         </SwiperSlide>
-                                        <SwiperSlide className="carousel-main__slide slide-main swiper-slide">
+                                        <SwiperSlide className="carousel-main__slide slide-main">
                                             <h2 className="carousel-main__title">Title-4</h2>
                                             <h3 className="carousel-main__subtitle">Subtitle-4</h3>
                                             <p className="carousel-main__text">
@@ -291,15 +316,15 @@ return (
                                             </div>
                                         </SwiperSlide>
                                         
-                                    </Swiper>
-                                    <div className="carousel-main__pagination  pagination-slider-common">
+                                        <div className="carousel-main__pagination  pagination-slider-common">
 
-                                    </div>
-                                    <div className="carousel-main__fraction">
-                                        <span className="carousel-main__current"></span>
-                                          / 
-                                        <span className="carousel-main__total"></span>
-                                    </div>
+                                        </div>
+                                        <div className="carousel-main__fraction">
+                                            <span className="carousel-main__current"></span>
+                                            / 
+                                            <span className="carousel-main__total"></span>
+                                        </div>
+                                    </Swiper>
                                 </div>
                             </div>
                             <div className="container-main__img">
@@ -327,6 +352,13 @@ return (
                 
             </div>
             {/* <!-- /SLIDER============================================================= --> */}
-    </section>
+        </section>
+        <Catalog />
+        <Bestsellers />
+        <Novelty />
+        <Articles />
+    </>
+    
+
 )
 }

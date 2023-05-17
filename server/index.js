@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import authRouter from './routes/auth.js';
+import goodsRouter from './routes/goods.js';
 
 const app = express();
 dotenv.config();
@@ -17,7 +18,8 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRouter);
+app.use("/", goodsRouter);
 
 const start = async() => {
     try {
