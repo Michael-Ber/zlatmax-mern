@@ -11,7 +11,7 @@ const UsersSchema = new mongoose.Schema(
             required: true
         },
         cort: [
-            { type: mongoose.Types.ObjectId, ref: "Cort" }
+            { type: mongoose.Types.ObjectId, ref: "Good" }
         ]
     },
     { timestamps: true }

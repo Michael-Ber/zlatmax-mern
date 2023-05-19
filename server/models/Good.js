@@ -29,9 +29,9 @@ const GoodSchema = new mongoose.Schema(
         price: {
             type: String,
             required: true
-        },
+        }
     },
     { timestamps: true }
 );
 
-export default mongoose.model("Goods", GoodSchema);
+export default mongoose.model("Good", GoodSchema);

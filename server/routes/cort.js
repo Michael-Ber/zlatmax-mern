@@ -4,6 +4,8 @@ import {addItem } from "../controllers/cort.js";
 
 const router = new Router();
 
-//http://localhost:3005/cort
+//http://localhost:3005
 
-router.post("/cort", checkAuth, addItem)
+router.post("/cort", checkAuth, addItem);
+
+export default router;

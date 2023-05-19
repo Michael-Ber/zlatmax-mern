@@ -160,6 +160,11 @@
     }
 }
 
+.no-goods {
+    font-size: 22px;
+    text-align: center;
+}
+
 @keyframes moveSlider {
     0% {right: 100%;}
     100% {right: calc(0% - 10px)} 

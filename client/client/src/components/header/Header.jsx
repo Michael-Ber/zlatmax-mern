@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
+import { me } from '../../redux/auth/authSlice';
 import './header.scss';
 
 import logo from "../../assets/icons/main/logo.svg";
 import arrowBottom from "../../assets/icons/main/arrow-bottom.svg";
 import favorites from "../../assets/icons/main/favorites.svg";
-import cort from "../../assets/icons/main/cort.svg";
+import cortImg from "../../assets/icons/main/cort.svg";
 
 export const Header = () => {
 
-
+const cort  = useSelector(state => state.authSlice.user.cort);
+// const [cortLength, setCortLength] = useState(0);
 const [showLogout, setShowLogout] = useState(false);
 const dispatch = useDispatch();
-
 const token  = useSelector(state => state.authSlice.token);
 const username  = useSelector(state => state.authSlice.user?.username);
+
+// useEffect(() => {
+//     dispatch(me());
+// }, [dispatch])
 
 const logoutHandler = () => {
     dispatch(logout());
@@ -228,12 +233,12 @@ return (
                         </div>
                         <div className="header__cort cort-header">
                             <div className="cort-header__img cort">
-                                <img src={cort} alt="cort" />
-                                <span className="cort-header__total total">0</span>
+                                <img src={cortImg} alt="cort" />
+                                <span className="cort-header__total total">{ cort && cort.length }</span>
                             </div>
                             <div className="cort-header__order">
                                 <p className="cort-header__sum">0 р.</p>
-                                <a href="#" className="cort-header__link">Оформить заказ</a>
+                                <Link to={"/cort"} className="cort-header__link">Оформить заказ</Link>
                             </div>
                         </div>
                     </div>
