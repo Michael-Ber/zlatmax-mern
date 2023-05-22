@@ -30,7 +30,26 @@ export const addToCort = createAsyncThunk(
                 body: JSON.stringify({goodId})
             })
             const respJSON = await resp.json();
-            console.log(respJSON);
+            return respJSON;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+);
+
+export const removeItemFromCart = createAsyncThunk(
+    'cort/removeItemFromCart',
+    async({goodId}) => {
+        try {
+            const resp = await fetch(`${URL}/cort`, {
+                methos: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + window.localStorage.getItem('token')
+                },
+                body: JSON.stringify({goodId})
+            });
+            const respJSON = await resp.json();
             return respJSON;
         } catch (error) {
             console.log(error)
@@ -47,10 +66,17 @@ const goodsSlice = createSlice({
         [getGoods.pending]: state => { state.isLoading = true },
         [getGoods.fulfilled]: ( state, action ) => { state.isLoading = false; state.isError = false; state.goods =  action.payload.goods},
         [getGoods.rejected]: state => { state.isLoading = false; state.isError = true },
-        //add good to users cort
+
+        //add good to users cart
         [addToCort.pending]: state => { state.isLoading = true },
-        [addToCort.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.cort.push(action.payload.item) },
+        [addToCort.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.cort.push(action.payload.item)},
         [addToCort.pending]: state => { state.isLoading = false; state.isError = true },
+
+        //remove good from user cart
+        [removeItemFromCart.pending]: state => { state.isLoading = true },
+        [removeItemFromCart.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
+        [removeItemFromCart.pending]: state => { state.isLoading = false; state.isError = true },
+
     }
 });
 

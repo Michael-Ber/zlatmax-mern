@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../button/Button';
-import { Modal } from '../../modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../../redux/auth/authSlice';
 import './registerPage.scss';
@@ -12,9 +11,7 @@ export const RegisterPage = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
-  const [showModal, setShowModal] = useState(false);
-
-  const { message } = useSelector(state => state.authSlice);
+  const user = useSelector(state => state.authSlice.user)
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -24,12 +21,17 @@ export const RegisterPage = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {username: name, password};
-    dispatch(register(data));
     setName('');
     setPassword('');
-    setShowModal(true);
-    nav("/");
+    dispatch(register(data));
+    
   }
+
+  useEffect(() => {
+    if(user) {
+      nav("/");
+    }
+  }, [user])
 
   return (
     <div className='register'>
@@ -55,7 +57,6 @@ export const RegisterPage = () => {
                 className="register__input" />
             <Button style={{marginTop: "50px"}} btnText={'Зарегистрироваться'} />
         </form>
-        <Modal message={message} showModal={showModal} setShowModal = {setShowModal}/>
     </div>
   )
 }

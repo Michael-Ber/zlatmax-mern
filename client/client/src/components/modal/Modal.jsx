@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowModal } from '../../redux/auth/authSlice';
 import './modal.scss';
 
-export const Modal = ({ message, showModal, setShowModal }) => {
+export const Modal = memo(() => {
+
+  const { showModal } = useSelector(state => state.authSlice);
+  const { message } = useSelector(state => state.authSlice)
+  const dispatch = useDispatch();
   
   const styles = showModal ? 
                   { visibility: 'visible', top: '50%', transform: 'translate(-50%, -50%)' } : 
@@ -15,7 +21,7 @@ export const Modal = ({ message, showModal, setShowModal }) => {
   }, [showModal])
 
   const closeModal = () => {
-    setShowModal(false);
+    dispatch(setShowModal(false));
   }
 
   return (
@@ -24,4 +30,4 @@ export const Modal = ({ message, showModal, setShowModal }) => {
         <div onClick = {closeModal} className="modal__close">x</div>
     </div>
   )
-}
+})

@@ -11,14 +11,21 @@
     }
 
     &__content {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
     }
 
     &__form {
+        position: fixed;
+        top: 50%;
+        right: 10%;
         padding: 30px;
         box-shadow: 0 0 10px 0 $fourth-color;
+        background-color: #fff;
+        z-index: 1000;
+        transition: .3s all ease;
     }
 
     &__sum {

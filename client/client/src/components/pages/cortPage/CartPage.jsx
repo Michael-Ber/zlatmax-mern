@@ -1,18 +1,38 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ControlledCard } from '../../input/ControlledCard';
-
+import { changeTotalSum } from '../../../redux/auth/authSlice';
 
 
 import './cartPage.scss';
 
 export const CartPage = () => {
 
-const [sumPrice, setSumPrice] = useState([]);
+const [sumPrice, setSumPrice] = useState({});
+
+const [ formStyles, setFormStyles ] = useState({opacity: 1});
+const dispatch = useDispatch();
 
 const cart = useSelector(state => state.authSlice.user.cort);
 const goods = useSelector(state => state.goodsSlice.goods);
 
+useEffect(() => {
+  window.addEventListener('scroll', handleResize);
+  return () => window.removeEventListener('scroll', handleResize)
+}, [])
+
+useEffect(() => {
+  dispatch(changeTotalSum(calcSum(Object.values(sumPrice))))
+}, [sumPrice])
+
+const handleResize = () => {
+  const cartHeight = document.querySelector('.cart').clientHeight;
+  if( window.scrollY > ( cartHeight - window.innerHeight ) ) {
+    setFormStyles({opacity: 0})
+  }else {
+    setFormStyles({opacity: 1})
+  }
+}
 
 const cartSingle = cart && new Set(cart);
 
@@ -28,10 +48,8 @@ const filterGoods = (arrId, arrGoods) => {
   return arr;
 }
 
-
-
-const calcSum = (cartSingle, goods) => {
-  return filterGoods(cartSingle, goods).reduce((sum, current) => sum + Number(current.price.replace(/\D/ig, '')), 0);
+const calcSum = (arr) => {
+  return arr.reduce((sum, item) => sum + item, 0)
 }
 
 const renderListItems = (cart, goods) => {
@@ -58,10 +76,9 @@ return (
       <ul className="cart__list">
         { renderListItems(cartSingle, goods) }
       </ul>
-      <form className="cart__form">
+      <form style={formStyles} className="cart__form">
         <p className="cart__sum">
-          Итого1: <span>{ (cartSingle && goods) && calcSum(cartSingle, goods) } р.</span>
-          Итого2: <span>{ sumPrice } р.</span>
+          Итого: <span>{ calcSum(Object.values(sumPrice)) } р.</span>
         </p>
         <button className="cart__submit">Оформить заказ</button>
       </form>

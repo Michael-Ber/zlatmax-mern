@@ -11,7 +11,7 @@ export const getGoods = async(req, res) => {
     }
 }
 
-//add item to cort
+//add item to cart
 export const addItem = async(req, res) => {
     try {
         if(!req.body) return res.json({message: "Bad request"});
@@ -20,9 +20,24 @@ export const addItem = async(req, res) => {
             req.userId, 
             { $push: { cort: item } }
         );
-        const user = await Users.findById(req.userId);
-        return res.json({message: "Adding item to cort successfully done", item})
+        return res.json({message: "Adding item to cart successfully done", item})
     } catch (error) {
-        res.json({message: "Error while adding item to cort", error})
+        res.json({message: "Error while adding item to cart", error})
+    }
+}
+
+//remove item from cart
+
+export const removeItem = async(req, res) => {
+    try {
+        if(!req.body) return res.json({message: "Bad request"});
+        const item = await Good.findById(req.body.goodId);
+        await Users.findByIdAndUpdate(
+            req.userId, 
+            { $pull: { cort: item } }
+        );
+        return res.json({message: "Removing item from cart successfully done", item})
+    } catch (error) {
+        res.json({message: "Error while deleting item from cart"})
     }
 }

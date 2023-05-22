@@ -1,7 +1,6 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../button/Button';
-import { Modal } from '../../modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../redux/auth/authSlice';
 import './loginPage.scss';
@@ -10,12 +9,10 @@ export const LoginPage = () => {
 
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-
-    const [showModal, setShowModal] = useState(false);
-
-    const { message } = useSelector(state => state.authSlice);
+    
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.authSlice.user)
     const nav = useNavigate();
 
     const submitHandler = (e) => {
@@ -24,9 +21,13 @@ export const LoginPage = () => {
         dispatch(login(data));
         setName('');
         setPassword('');
-        setShowModal(true);
-        nav("/");
-      }
+    }
+
+    useEffect(() => {
+        if(user) {
+            nav("/");
+        }
+    }, [user])
 
     return (
         <div className='login'>
@@ -52,7 +53,6 @@ export const LoginPage = () => {
                     className="login__input" />
                 <Button style={{marginTop: "50px"}} btnText={'Войти'} />
             </form>
-            <Modal message={message} showModal={showModal} setShowModal = {setShowModal}/>
         </div>
       )
 }

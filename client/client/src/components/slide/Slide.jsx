@@ -1,16 +1,31 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { me } from '../../redux/auth/authSlice';
 import { addToCort } from '../../redux/goods/goodsSlice';
 
 import '../pages/mainPage/bestsellers/bestsellers.scss';
 
 export const Slide = ({item, stars}) => {
+
+const cort = useSelector(state => {
+    if(state.authSlice.user) {
+        return state.authSlice.user.cort
+    }
+    return null
+});
+
 const dispatch = useDispatch();
 
-const handleClick = async() => {
-    await dispatch(addToCort({goodId: item._id}));
-    await dispatch(me());
+const handleClick = async(e) => {
+
+    const btn = e.target.tagName === 'SPAN' ? e.target.parentNode : e.target;
+    if(!btn.disabled && window.localStorage.getItem('token')) {
+        await dispatch(addToCort({goodId: item._id}));
+        await dispatch(me());
+    }
+    if(!window.localStorage.getItem('token')) {
+
+    }
 }
 
 return (
@@ -47,7 +62,8 @@ return (
         </div>
     </div>
     <button
-        onClick={handleClick} 
+        onClick={e => handleClick(e)}
+        disabled = { (cort && cort.filter(id => id === item._id).length) > 0 ? true : false } 
         className="card__btn btn"><span>В корзину</span></button>
 </>
 )

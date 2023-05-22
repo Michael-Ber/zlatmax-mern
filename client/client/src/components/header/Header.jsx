@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/auth/authSlice';
+import { logout, changeTotalSum } from '../../redux/auth/authSlice';
 import { me } from '../../redux/auth/authSlice';
 import './header.scss';
 
@@ -12,21 +12,54 @@ import cortImg from "../../assets/icons/main/cort.svg";
 
 export const Header = () => {
 
-const cort  = useSelector(state => state.authSlice.user.cort);
-// const [cortLength, setCortLength] = useState(0);
+const cort  = useSelector(state => {
+    if(state.authSlice.user) {
+        return state.authSlice.user.cort
+    }
+    return null
+});
+
+const goods  = useSelector(state => {
+    if(state.goodsSlice.goods) {
+        return state.goodsSlice.goods
+    }
+    return null
+});
+
+
+
+const { totalSum } = useSelector(state => state.authSlice);
+
+
+
 const [showLogout, setShowLogout] = useState(false);
 const dispatch = useDispatch();
 const token  = useSelector(state => state.authSlice.token);
 const username  = useSelector(state => state.authSlice.user?.username);
 
-// useEffect(() => {
-//     dispatch(me());
-// }, [dispatch])
+
 
 const logoutHandler = () => {
     dispatch(logout());
+    window.localStorage.removeItem('token');
     setShowLogout(false);
 }
+
+const getTotalSum = (cort, goods) => {
+    let arr = [];
+    if(cort && goods) {
+        for(let i = 0; i < cort.length; i++) {
+            for(let j = 0; j < goods.length; j++) {
+                if(goods[j]._id === cort[i]) {
+                    arr.push(Number(goods[j].price.replace(/\D/ig, '')));
+                }
+            }
+            
+        }
+    }
+    return arr.reduce((sum, item) => sum + item, 0);
+}   
+
 
 const user = !token ? 
         <Link to={"/register"} className="header__login">
@@ -234,10 +267,10 @@ return (
                         <div className="header__cort cort-header">
                             <div className="cort-header__img cort">
                                 <img src={cortImg} alt="cort" />
-                                <span className="cort-header__total total">{ cort && cort.length }</span>
+                                <span className="cort-header__total total">{ cort ? cort.length : 0 }</span>
                             </div>
                             <div className="cort-header__order">
-                                <p className="cort-header__sum">0 р.</p>
+                                <p className="cort-header__sum">{ totalSum === 0 ? getTotalSum(cort, goods) : totalSum } р.</p>
                                 <Link to={"/cort"} className="cort-header__link">Оформить заказ</Link>
                             </div>
                         </div>

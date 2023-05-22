@@ -24,7 +24,6 @@ const goodsToRender = goods.slice(0, 7).map(item => {
     )
 })
 
-
 return (
     <section className="bestsellers common">
         <div className="container">

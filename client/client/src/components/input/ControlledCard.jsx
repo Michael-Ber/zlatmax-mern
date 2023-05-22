@@ -1,4 +1,6 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect} from 'react';
+import { removeItemFromCart } from '../../redux/goods/goodsSlice';
+import { useDispatch } from 'react-redux';
 
 import remove from '../../assets/icons/catalog/trash.png';
 
@@ -7,20 +9,24 @@ export const ControlledCard = ({ item, stars, setSumPrice }) => {
 const [amount, setAmount] = useState(1);
 
 
+useEffect(() => {
+    setSumPrice(state => ({...state, ...{[item._id]: Number(item.price.replace(/\D/ig, ''))}}));
+}, [])
 
 
 const handleOnChangePlus = () => {
-    // setSumPrice(state => state + (item.price.replace(/\D/ig, '') * amount))
-    return setAmount(state => state + 1)
+    setAmount(state => state + 1);
+    setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amount+1))}))
 }
 const handleOnChangeMinus = () => {
-    // setSumPrice(state => state - (item.price.replace(/\D/ig, '') * amount))
-    return setAmount(state => state > 1 ? state - 1: state)
+    setAmount(state => state > 1 ? state - 1: state);
+    amount > 1 && setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amount-1))}))
 }
 
 const deleteHandler = () => {
 
 }
+
     
 return (
     <li className="cart__item item-cart">
