@@ -12,6 +12,9 @@ const UsersSchema = new mongoose.Schema(
         },
         cort: [
             { type: mongoose.Types.ObjectId, ref: "Good" }
+        ],
+        favorites: [
+            { type: mongoose.Types.ObjectId, ref: "Good" }
         ]
     },
     { timestamps: true }

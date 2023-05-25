@@ -3,181 +3,221 @@
     {
         "name": "Carving-1",
         "category": "carving",
+        "categoryRU": "Разделочные",
         "imgUrl": "/assets/images/carving/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     }, 
     {
         "name": "Carving-2",
         "category": "carving",
+        "categoryRU": "Разделочные",
         "imgUrl": "/assets/images/carving/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     }, 
     {
         "name": "Damask-1",
         "category": "damask",
+        "categoryRU": "Ножи из дамаска",
         "imgUrl": "/assets/images/damask/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     },
     {
         "name": "Damask-2",
         "category": "damask",
+        "categoryRU": "Ножи из дамаска",
         "imgUrl": "/assets/images/damask/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     },
     {
         "name": "Hunting-1",
         "category": "hunting",
+        "categoryRU": "Ножи охотничьи",
         "imgUrl": "/assets/images/hunting/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     },
     {
         "name": "Hunting-2",
         "category": "hunting",
+        "categoryRU": "Ножи охотничьи",
         "imgUrl": "/assets/images/hunting/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     },
     {
         "name": "Kitchen-1",
         "category": "kitchen",
+        "categoryRU": "Ножи кухонные",
         "imgUrl": "/assets/images/kitchen/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "bestseller"
     },
     {
         "name": "Kitchen-2",
         "category": "kitchen",
+        "categoryRU": "Ножи кухонные",
         "imgUrl": "/assets/images/kitchen/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "novelty"
     },
     {
         "name": "Machete-1",
         "category": "machete",
+        "categoryRU": "Мачете и кукри",
         "imgUrl": "/assets/images/machete/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "novelty"
     },
     {
         "name": "Machete-2",
         "category": "machete",
+        "categoryRU": "Мачете и кукри",
         "imgUrl": "/assets/images/machete/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "novelty"
     },
     {
         "name": "Steel-1",
         "category": "steel",
+        "categoryRU": "Булатные ножи",
         "imgUrl": "/assets/images/steel/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "novelty"
     },
     {
         "name": "Steel-2",
         "category": "steel",
+        "categoryRU": "Булатные ножи",
         "imgUrl": "/assets/images/steel/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": "novelty"
     },
     {
         "name": "Tactic-1",
         "category": "tactic",
+        "categoryRU": "Тактического назначения",
         "imgUrl": "/assets/images/tactic/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "Tactic-2",
         "category": "tactic",
+        "categoryRU": "Тактического назначения",
         "imgUrl": "/assets/images/tactic/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "Throwing-1",
         "category": "throwing",
+        "categoryRU": "Метательные ножи",
         "imgUrl": "/assets/images/throwing/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "Throwing-2",
         "category": "throwing",
+        "categoryRU": "Метательные ножи",
         "imgUrl": "/assets/images/throwing/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "Tourist-1",
         "category": "tourist",
+        "categoryRU": "Туристические ножи",
         "imgUrl": "/assets/images/tourist/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "Tourist-2",
         "category": "tourist",
+        "categoryRU": "Туристические ножи",
         "imgUrl": "/assets/images/tourist/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "AIR-1",
         "category": "air",
+        "categoryRU": "Ножи АИР",
         "imgUrl": "/assets/images/air/1.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     },
     {
         "name": "AIR-2",
         "category": "air",
+        "categoryRU": "Ножи АИР",
         "imgUrl": "/assets/images/air/2.jpg",
         "size": "95x18",
         "color": "Орех, Алюминий",
         "rating": "5",
-        "price": "2179 р."
+        "price": "2179 р.",
+        "additional": ""
     }
 ]

@@ -11,16 +11,12 @@
     }
 
     &__content {
-        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
     }
 
     &__form {
-        position: fixed;
-        top: 50%;
-        right: 10%;
         padding: 30px;
         box-shadow: 0 0 10px 0 $fourth-color;
         background-color: #fff;
@@ -39,6 +35,19 @@
 
     &__list {
         list-style: none;
+    }
+
+    &__sublist {
+        list-style: none;
+        margin-bottom: 20px;
+    }
+
+    &__sublist-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        color: $fourth-color;
     }
 
     &__item {

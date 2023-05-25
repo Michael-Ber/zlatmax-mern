@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import { removeItemFromCart } from '../../redux/goods/goodsSlice';
+import { removeItemFromCart, changeItemAmount } from '../../redux/goods/goodsSlice';
+import { me, changeTotalSum } from '../../redux/auth/authSlice';
 import { useDispatch } from 'react-redux';
 
 import remove from '../../assets/icons/catalog/trash.png';
@@ -7,6 +8,7 @@ import remove from '../../assets/icons/catalog/trash.png';
 export const ControlledCard = ({ item, stars, setSumPrice }) => {
 
 const [amount, setAmount] = useState(1);
+const dispatch = useDispatch();
 
 
 useEffect(() => {
@@ -16,15 +18,25 @@ useEffect(() => {
 
 const handleOnChangePlus = () => {
     setAmount(state => state + 1);
+    dispatch(changeItemAmount( { id: item._id, amount: amount + 1 } ));
     setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amount+1))}))
 }
 const handleOnChangeMinus = () => {
     setAmount(state => state > 1 ? state - 1: state);
+    dispatch(changeItemAmount( { id: item._id, amount: amount > 1 ? amount - 1 : amount } ));
     amount > 1 && setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amount-1))}))
 }
 
-const deleteHandler = () => {
-
+const deleteHandler = async() => {
+    try {
+        dispatch(removeItemFromCart({goodId: item._id})).then(() => dispatch(me()));
+        setSumPrice(state => {
+            const { [item._id]: price, ...newState } = state;
+            return newState
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
     

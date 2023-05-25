@@ -158,6 +158,28 @@
             margin-left: 15px;
         }
     }
+
+    &__btn {
+        margin-left: 15px;
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+            svg {
+                path {
+                    transition: .2s all;
+                    fill: $main-color;
+                }
+            }
+        }
+        &_active {
+            svg {
+                path {
+                    transition: .2s all;
+                    fill: $main-color;
+                }
+            }
+        }
+    }
 }
 
 .no-goods {

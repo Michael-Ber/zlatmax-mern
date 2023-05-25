@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
     goods: [],
-    cort: [],
+    order: [],
     isLoading: false, 
     isError: false
 };
@@ -42,7 +42,47 @@ export const removeItemFromCart = createAsyncThunk(
     async({goodId}) => {
         try {
             const resp = await fetch(`${URL}/cort`, {
-                methos: "PUT",
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + window.localStorage.getItem('token')
+                },
+                body: JSON.stringify({goodId})
+            });
+            const respJSON = await resp.json();
+            return respJSON;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+);
+
+export const addToFavorites = createAsyncThunk(
+    'cort/addToFavorites',
+    async({goodId}) => {
+        try {
+            const resp = await fetch(`${URL}/favorites`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + window.localStorage.getItem("token")
+                },
+                body: JSON.stringify({goodId})
+            })
+            const respJSON = await resp.json();
+            return respJSON;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+);
+
+export const removeItemFromFavorites = createAsyncThunk(
+    'cort/removeItemFromFavorites',
+    async({goodId}) => {
+        try {
+            const resp = await fetch(`${URL}/favorites`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + window.localStorage.getItem('token')
@@ -60,7 +100,19 @@ export const removeItemFromCart = createAsyncThunk(
 const goodsSlice = createSlice({
     name: "goods",
     initialState,
-    reducers: {},
+    reducers: {
+        makeOrder: ( state, action ) => {
+            state.order = action.payload;
+        },
+        changeItemAmount : ( state, action ) => {
+            state.order.map(item => {
+                if(item._id === action.payload.id) {
+                    return item.amount = action.payload.amount
+                }
+                return item
+            })
+        }
+    },
     extraReducers: {
         //Getting goods from db
         [getGoods.pending]: state => { state.isLoading = true },
@@ -69,7 +121,7 @@ const goodsSlice = createSlice({
 
         //add good to users cart
         [addToCort.pending]: state => { state.isLoading = true },
-        [addToCort.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.cort.push(action.payload.item)},
+        [addToCort.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
         [addToCort.pending]: state => { state.isLoading = false; state.isError = true },
 
         //remove good from user cart
@@ -77,8 +129,20 @@ const goodsSlice = createSlice({
         [removeItemFromCart.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
         [removeItemFromCart.pending]: state => { state.isLoading = false; state.isError = true },
 
+        //add good to favorites
+        [addToFavorites.pending]: state => { state.isLoading = true },
+        [addToFavorites.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
+        [addToFavorites.pending]: state => { state.isLoading = false; state.isError = true },
+
+        //remove good from favorites
+        [removeItemFromFavorites.pending]: state => { state.isLoading = true },
+        [removeItemFromFavorites.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
+        [removeItemFromFavorites.pending]: state => { state.isLoading = false; state.isError = true },
+
     }
 });
 
 const { reducer } = goodsSlice;
 export default reducer;
+
+export const { makeOrder, changeItemAmount } = goodsSlice.actions;

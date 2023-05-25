@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Header } from "../header/Header";
 import { Footer } from "../footer/Footer";
@@ -9,6 +9,9 @@ import { RegisterPage } from "../pages/registerPage/RegisterPage";
 import { LoginPage } from "../pages/loginPage/LoginPage";
 import { MainPage } from "../pages/mainPage/MainPage";
 import { CartPage } from "../pages/cortPage/CartPage";
+import { CategoryPage } from "../pages/categoryPage/CategoryPage";
+import { CatalogPage } from "../pages/catalogPage/CatalogPage";
+import { FavoritesPage } from "../pages/favoritesPage/FavoritesPage";
 import { Modal } from "../modal/Modal";
 
 import { me } from "../../redux/auth/authSlice";
@@ -32,6 +35,9 @@ return (
       <Route path="/register" element={<RegisterPage/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/cort" element={<CartPage/>}/>
+      <Route path="/category/:categoryName" element={<CategoryPage />}/>
+      <Route path="/catalog/:catalogName" element={<CatalogPage />}/>
+      <Route path="/favorites" element={<FavoritesPage />}/>
       <Route path="/" element={<MainPage/>}/>
 
     </Routes>

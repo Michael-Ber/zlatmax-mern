@@ -79,11 +79,6 @@
         padding: 25px 0 20px 0;
     }
 
-    &__favorites {
-        @media(max-width: 1199px) {
-            display: none;
-        }
-    }
 
     &__submain {
         display: flex;
@@ -539,5 +534,17 @@
         &:hover {
             color: $main-color;
         }
+    }
+}
+
+.favorites-header {
+    position: relative;
+    @media(max-width: 1199px) {
+        display: none;
+    }
+
+    &__total {
+        top: -5px;
+        right: -10px;
     }
 }

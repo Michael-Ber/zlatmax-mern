@@ -7,7 +7,7 @@ import './header.scss';
 
 import logo from "../../assets/icons/main/logo.svg";
 import arrowBottom from "../../assets/icons/main/arrow-bottom.svg";
-import favorites from "../../assets/icons/main/favorites.svg";
+import favoritesImg from "../../assets/icons/main/favorites.svg";
 import cortImg from "../../assets/icons/main/cort.svg";
 
 export const Header = () => {
@@ -18,6 +18,13 @@ const cort  = useSelector(state => {
     }
     return null
 });
+
+const favorites = useSelector(state => {
+    if(state.authSlice.user) {
+        return state.authSlice.user.favorites
+    }
+    return null
+})
 
 const goods  = useSelector(state => {
     if(state.goodsSlice.goods) {
@@ -103,9 +110,9 @@ return (
                             <a href="tel:81234567890" className="header__tel-sm">
                                 <svg width="100%" height="100%" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.614 11.68L12.75 9.71a1.271 1.271 0 00-1.865 0l-.848.895a.963.963 0 01-1.412 0L4.95 6.724a1.096 1.096 0 010-1.491l.847-.895c.512-.54.52-1.42 0-1.969L3.933.407A1.271 1.271 0 002.07.406l-.68.71c-1.853 1.958-1.853 5.143 0 7.1l5.822 6.148c1.858 1.962 4.866 1.962 6.724 0l.678-.716a1.449 1.449 0 000-1.968zM2.69 1.063c.172-.18.45-.18.622 0l1.865 1.963a.482.482 0 010 .656l-.311.328L2.38 1.387l.31-.324zm5.143 12.645l-5.82-6.149C.577 6.045.498 3.668 1.77 2.054l2.477 2.615A2.061 2.061 0 004.33 7.38l3.674 3.882c.705.744 1.83.775 2.568.086l2.478 2.616c-1.524 1.34-3.771 1.269-5.216-.256zm6.16-.716l-.311.328-2.486-2.625.31-.328c.172-.18.45-.18.622 0l1.865 1.969a.483.483 0 010 .656z" fill="#fff"/></svg>
                             </a>
-                            <a href="#" className="header__favorites-sm favorites">
+                            <Link to={"/favorites"} className="header__favorites-sm favorites">
                                 <svg width="28" height="27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.1 0A7.917 7.917 0 0014 2.872 7.917 7.917 0 007.9 0C3.544 0 0 3.525 0 7.857c0 3.392 2.034 7.316 6.045 11.663 3.087 3.345 6.445 5.934 7.4 6.649l.555.414.554-.414c.956-.715 4.314-3.304 7.4-6.649C25.967 15.174 28 11.25 28 7.857 28 3.525 24.456 0 20.1 0zm.495 18.278c-2.54 2.751-5.27 4.975-6.595 6-1.325-1.025-4.056-3.249-6.595-6-3.637-3.94-5.559-7.544-5.559-10.42 0-3.32 2.716-6.022 6.054-6.022a6.063 6.063 0 015.293 3.108L14 6.392l.807-1.448A6.063 6.063 0 0120.1 1.836c3.338 0 6.054 2.701 6.054 6.021 0 2.877-1.922 6.48-5.56 10.421z" fill="#fff"/></svg>
-                            </a>
+                            </Link>
                             <a href="#" className="header__cort-sm cort-sm-header">
                                 <svg width="32" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.13 7.769h22.582a1 1 0 01.969 1.248l-1.9 7.434a3 3 0 01-2.907 2.256H9.025M0 1.5h4.652a2 2 0 011.975 1.685l3.02 18.971a2 2 0 001.975 1.686h16.581m-12.434 6.424c0 1.302-1.01 2.31-2.2 2.31-1.188 0-2.199-1.008-2.199-2.31 0-1.303 1.01-2.31 2.2-2.31 1.188 0 2.199 1.007 2.199 2.31zm12.977 0c0 1.302-1.01 2.31-2.2 2.31-1.188 0-2.199-1.008-2.199-2.31 0-1.303 1.01-2.31 2.2-2.31 1.188 0 2.199 1.007 2.199 2.31z" stroke="#fff" strokeWidth="1.5"/></svg>
                                 <span className="cort-sm-header__total total">0</span>
@@ -243,9 +250,9 @@ return (
             <div className="header__bottom">
                 <div className="container">
                     <div className="header__submain">
-                        <a href="#" className="header__logo">
+                        <Link to={"/"} className="header__logo"> 
                             <img src={logo} alt="logo" />
-                        </a>
+                        </Link>
                         <div className="header__search search-header">
                             <label htmlFor="search" className="search-header__label">
                                 Поиск
@@ -261,9 +268,10 @@ return (
                             <a href="tel:88007774967" className="recall-header__link">Заказать звонок</a>
                             <img src={arrowBottom} alt="open list of telephone numbers" className="recall-header__arrow" />
                         </div>
-                        <div className="header__favorites favorites">
-                            <img src={favorites} alt="favorites" />
-                        </div>
+                        <Link to={"/favorites"} className="header__favorites favorites-header">
+                            <img src={favoritesImg} alt="favorites" />
+                            <span className="favorites-header__total total">{ favorites ? favorites.length : 0 }</span>
+                        </Link>
                         <div className="header__cort cort-header">
                             <div className="cort-header__img cort">
                                 <img src={cortImg} alt="cort" />

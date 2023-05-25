@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import './bestsellers.scss';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 import { Slide } from '../../../slide/Slide';
@@ -11,14 +14,12 @@ import 'swiper/css/pagination';
 
 export const Bestsellers = () => {
 const { goods } = useSelector(state => state.goodsSlice);
+const bestsellersGoods = goods && goods.slice(0, 7);
 
-const goodsToRender = goods.slice(0, 7).map(item => {
-    const stars = [...Array(item.rating)].map((elem, i) => {
-        return <div key={i} className="star-item" data-item-val={i+1}>★</div>
-    })
+const goodsToRender = bestsellersGoods.map(item => {
     return (
         <SwiperSlide key={item._id} className="slide-bestsellers__card card card_height">
-            <Slide item={item} stars={stars}/>
+            <Slide item={item} />
         </SwiperSlide>
 
     )
@@ -29,7 +30,7 @@ return (
         <div className="container">
             <div className="bestsellers__header common__header">
                 <h2 className="bestsellers__title section-title">Хиты продаж</h2>
-                <a href="#" className="bestsellers__link link-more">Перейти в каталог</a>
+                <Link to={"/catalog/bestseller"} className="bestsellers__link link-more">Перейти в каталог</Link>
             </div>
         </div>
         <div className="bestsellers__container common__container">
