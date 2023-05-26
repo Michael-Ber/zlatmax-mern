@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, changeTotalSum } from '../../redux/auth/authSlice';
 import { me } from '../../redux/auth/authSlice';
+
 import './header.scss';
+
+import { KnivesCatalog } from '../catalog/knivesCatalog/KnivesCatalog';
 
 import logo from "../../assets/icons/main/logo.svg";
 import arrowBottom from "../../assets/icons/main/arrow-bottom.svg";
@@ -11,6 +14,8 @@ import favoritesImg from "../../assets/icons/main/favorites.svg";
 import cortImg from "../../assets/icons/main/cort.svg";
 
 export const Header = () => {
+
+//Selectors
 
 const cort  = useSelector(state => {
     if(state.authSlice.user) {
@@ -33,18 +38,40 @@ const goods  = useSelector(state => {
     return null
 });
 
-
-
 const { totalSum } = useSelector(state => state.authSlice);
-
-
-
-const [showLogout, setShowLogout] = useState(false);
-const dispatch = useDispatch();
 const token  = useSelector(state => state.authSlice.token);
 const username  = useSelector(state => state.authSlice.user?.username);
 
+//Dispatch
+const dispatch = useDispatch();
 
+//States
+
+const [showLogout, setShowLogout] = useState(false);
+const [triggerBurger, setTriggerBurger] = useState(false);
+
+//Handlers
+
+const handleOpenCloseBurger = () => {
+    setTriggerBurger(state => !state)
+}
+
+const handleShiftFwdBurgerMenu = (e) => {
+    const menu = refBurgerMenu.current;
+    const menuLeftNumber = Number(menu.style.left.replace(/%/ig, ''));
+    const menuShiftLeftNumber = menuLeftNumber - 100;
+    menu.style.left = menuShiftLeftNumber + '%';
+    console.log(e.target);
+    e.target.classList.contains('next') ? e.target.nextElementSibling.style.zIndex = '1' : e.target.firstChild.style.zIndex = '1';
+}
+const handleShiftBwdBurgerMenu = (e) => {
+    const menu = refBurgerMenu.current;
+    const menuLeftNumber = Number(menu.style.left.replace(/%/ig, ''));
+    const menuShiftLeftNumber = menuLeftNumber + 100;
+    menu.style.left = menuShiftLeftNumber + '%';
+    e.target.parentNode.parentNode.parentNode.style.zIndex = '-1';
+    console.log(e.target.parentNode);
+}
 
 const logoutHandler = () => {
     dispatch(logout());
@@ -61,13 +88,35 @@ const getTotalSum = (cort, goods) => {
                     arr.push(Number(goods[j].price.replace(/\D/ig, '')));
                 }
             }
-            
         }
     }
     return arr.reduce((sum, item) => sum + item, 0);
 }   
 
+const handleRecall = () => {
+    const telList = refTel.current.nextElementSibling;
+    const telItems = Array.from(telList.children);
+    let listHeight = 0;
+    telItems.forEach(item => {
+        listHeight += item.getBoundingClientRect().height
+    })
+    if(telList.classList.contains('recall-header__list_active')) {
+        refTel.current.style.transform = `rotate(0deg)`;
+        telList.style.maxHeight = 0 + 'px';
+        telList.classList.remove('recall-header__list_active')
+    }else {
+        refTel.current.style.transform = `rotate(-180deg)`;
+        telList.style.maxHeight = listHeight + 'px';
+        telList.classList.add('recall-header__list_active');
+    }
+}
 
+//Refs
+
+const refTel = useRef(null);
+const refBurgerMenu = useRef(null);
+
+//To render
 const user = !token ? 
         <Link to={"/register"} className="header__login">
             <span>Личный кабинет</span>
@@ -112,133 +161,158 @@ return (
                             </a>
                             <Link to={"/favorites"} className="header__favorites-sm favorites">
                                 <svg width="28" height="27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.1 0A7.917 7.917 0 0014 2.872 7.917 7.917 0 007.9 0C3.544 0 0 3.525 0 7.857c0 3.392 2.034 7.316 6.045 11.663 3.087 3.345 6.445 5.934 7.4 6.649l.555.414.554-.414c.956-.715 4.314-3.304 7.4-6.649C25.967 15.174 28 11.25 28 7.857 28 3.525 24.456 0 20.1 0zm.495 18.278c-2.54 2.751-5.27 4.975-6.595 6-1.325-1.025-4.056-3.249-6.595-6-3.637-3.94-5.559-7.544-5.559-10.42 0-3.32 2.716-6.022 6.054-6.022a6.063 6.063 0 015.293 3.108L14 6.392l.807-1.448A6.063 6.063 0 0120.1 1.836c3.338 0 6.054 2.701 6.054 6.021 0 2.877-1.922 6.48-5.56 10.421z" fill="#fff"/></svg>
+                                <span className="favorites-header__total-sm total">{ favorites ? favorites.length : 0 }</span>
                             </Link>
-                            <a href="#" className="header__cort-sm cort-sm-header">
+                            <Link to={ "/cort" } className="header__cort-sm cort-sm-header">
                                 <svg width="32" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.13 7.769h22.582a1 1 0 01.969 1.248l-1.9 7.434a3 3 0 01-2.907 2.256H9.025M0 1.5h4.652a2 2 0 011.975 1.685l3.02 18.971a2 2 0 001.975 1.686h16.581m-12.434 6.424c0 1.302-1.01 2.31-2.2 2.31-1.188 0-2.199-1.008-2.199-2.31 0-1.303 1.01-2.31 2.2-2.31 1.188 0 2.199 1.007 2.199 2.31zm12.977 0c0 1.302-1.01 2.31-2.2 2.31-1.188 0-2.199-1.008-2.199-2.31 0-1.303 1.01-2.31 2.2-2.31 1.188 0 2.199 1.007 2.199 2.31z" stroke="#fff" strokeWidth="1.5"/></svg>
-                                <span className="cort-sm-header__total total">0</span>
-                            </a>
+                                <span className="cort-sm-header__total total">{ cort ? cort.length : 0 }</span>
+                            </Link> 
                         </div>
 
                         {/* Burger */}
-                        <div className="header__burger burger-header">
+                        <div 
+                            onClick={ handleOpenCloseBurger }
+                            className="header__burger burger-header">
                             <span className="burger-header__line"></span>
                             <span className="burger-header__line"></span>
                             <span className="burger-header__line"></span>
                         </div>
-                        <div className="header__burger-menu burger-menu-header">
+                        <div 
+                            ref={refBurgerMenu}
+                            style={triggerBurger ? { left: '0%', opacity: '1', visibility: 'visible' } : { left: "100%" }} 
+                            className="header__burger-menu burger-menu-header">
                             <div className="burger-menu-header__wrapper">
                                 <nav className="burger-menu-header__nav nav-burger">
-                                    <span className="nav-burger__close close-nav">&#10006;</span>
-                                    <ul className="nav-burger__list burger-list">
+                                    <span 
+                                        onClick={ handleOpenCloseBurger }
+                                        className="nav-burger__close close-nav">&#10006;
+                                    </span>
+
+                                    {/* PRIORITY 1 */}
+                                    <ul 
+                                        className="nav-burger__list burger-list">
+
                                         <li className="nav-burger__item item-nav">
-                                            <a href="#" className="nav-burger__link link-nav">Личный кабинет</a>
+                                            { user }
                                         </li>
-                                        <li className="nav-burger__item nav-burger__item_next item-nav">
-                                            <a href="#" className="nav-burger__link link-nav link-nav_next  next">Каталог товаров</a>
-                                            <div className="burger-menu-header__nextlists nextlists-menu">
-                                                <div className="nextlists-menu__up">
-                                                    <span className="nextlists-menu__back back-nav">Назад</span>
-                                                    <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                </div>
-                                                <ul className="nextlists-menu__list burger-list">
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav item-nav_next">
-                                                        <a href="#" className="nav-burger__link next">Каталог ножей</a> 
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Разделочные ножи</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Туристические ножи</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Ножи охотничьи</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Булатные ножи</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Ножи из дамаска</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Тактического назначения</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Метательные ножи</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Мачете и кукри</a></li>
-                                                                <li className="nextlists-menu__item item-nav"><a href="#" className="nav-burger__link">Ножи кухонные</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav">
-                                                        <a href="#" className="nav-burger__link next">Клинковое оружие</a>
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Item-2</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav">
-                                                        <a href="#" className="nav-burger__link next">Сувенирные изделия</a>
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Item-3</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav">
-                                                        <a href="#" className="nav-burger__link next">Фонари ARMYTEK</a>
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Item-4</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav">
-                                                        <a href="#" className="nav-burger__link next">Сопуствующие товары
-                                                        </a>
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Item-5</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="nextlists-menu__item nextlists-menu__item_next item-nav">
-                                                        <a href="#" className="nav-burger__link next">Топоры
-                                                        </a>
-                                                        <div className="burger-menu-header__nextlists nextlists-menu">
-                                                            <div className="nextlists-menu__up">
-                                                                <span className="nextlists-menu__back back-nav">Назад</span>
-                                                                <span className="nextlists-menu__close close-nav">&#10006;</span>
-                                                            </div>
-                                                            <ul className="nextlists-menu__list burger-list">
-                                                                <li className="nextlists-menu__item item-nav item-nav_next"><a href="#" className="nav-burger__link">Item-6</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                        <li 
+                                        onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                        data-related-to = "catalog"
+                                        className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Каталог товаров
                                             </div>
                                         </li>
                                         <li className="nav-burger__item item-nav">
-                                            <a href="#" className="nav-burger__link link-nav">Контакты</a>
+                                            <div className="nav-burger__link link-nav">Контакты
+                                            </div>
                                         </li>
                                         <li className="nav-burger__item item-nav">
-                                            <a href="#" className="nav-burger__link link-nav">Новости</a>
+                                            <div className="nav-burger__link link-nav">Новости
+                                            </div>
                                         </li>
                                         <li className="nav-burger__item item-nav">
-                                            <a href="#" className="nav-burger__link link-nav">Оплата и доставка</a>
+                                            <div className="nav-burger__link link-nav">Оплата и доставка
+                                            </div>
                                         </li>
                                         <li className="nav-burger__item item-nav">
-                                            <a href="#" className="nav-burger__link link-nav">О нас</a>
+                                            <div className="nav-burger__link link-nav">О нас
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    {/* /PRIORITY 1 */}
+
+                                    {/* PRIORITY 2 */}
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='catalog'>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "knives"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Каталог ножей
+                                            </div>
+                                        </li>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "blade"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Клинковое оружие
+                                            </div>
+                                        </li>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "souvenir"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Сувенирные изделия
+                                            </div>
+                                        </li>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "flashlights"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Фонари ARMYTEK
+                                            </div>
+                                        </li>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "accompany"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Сопутствующие товары
+                                            </div>
+                                        </li>
+                                        <li 
+                                            onClick={ e => handleShiftFwdBurgerMenu(e) }
+                                            data-related-to = "hatchet"
+                                            className="nav-burger__item nav-burger__item_next item-nav">
+                                            <div 
+                                                className="nav-burger__link link-nav link-nav_next next">Топоры
+                                            </div>
                                         </li>
                                     </ul>
+                                    {/* /PRIORITY 2 */}
+
+                                    {/* PRIORITY 3 */}
+                                    
+                                    <KnivesCatalog classNames={{ul: "nav-burger__list burger-list", li: "nav-burger__item nav-burger__item_next item-nav"}} dataAttr={"knives"}/>
+                                    
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='blade'>
+                                        {[...Array(5)].map((item, i) => {
+                                            return <li key={i} className='nav-burger__item nav-burger__item_next item-nav'>{'Клинок' + i}</li>
+                                        })}
+                                    </ul>
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='souvenir'>
+                                        {[...Array(5)].map((item, i) => {
+                                            return <li key={i} className='nav-burger__item nav-burger__item_next item-nav'>{'Сувенир' + i}</li>
+                                        })}
+                                    </ul>
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='flashlights'>
+                                        {[...Array(5)].map((item, i) => {
+                                            return <li key={i} className='nav-burger__item nav-burger__item_next item-nav'>{'Фонари' + i}</li>
+                                        })}
+                                    </ul>
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='accompany'>
+                                        {[...Array(5)].map((item, i) => {
+                                            return <li key={i} className='nav-burger__item nav-burger__item_next item-nav'>{'Сопутствующие' + i}</li>
+                                        })}
+                                    </ul>
+                                    <ul 
+                                        className="nav-burger__list burger-list" data-related-to='hatchet'>
+                                        {[...Array(5)].map((item, i) => {
+                                            return <li key={i} className='nav-burger__item nav-burger__item_next item-nav'>{'Топоры' + i}</li>
+                                        })}
+                                    </ul>
+
+                                    {/* /PRIORITY 3 */}
                                 </nav>
                             </div>
                         </div>
@@ -254,19 +328,39 @@ return (
                             <img src={logo} alt="logo" />
                         </Link>
                         <div className="header__search search-header">
-                            <label htmlFor="search" className="search-header__label">
-                                Поиск
-                            </label>
-                            <input type="text" className="search-header__input" id="search" />
-                            
+                            <input 
+                                type="text" 
+                                name='search' 
+                                className="search-header__input" 
+                                placeholder='Поиск'
+                                id="search" />
                         </div>
                         <div className="header__location">
                             Москва
                         </div>
                         <div className="header__recall recall-header">
-                            <span className="recall-header__tel">8-800-777-49-67</span>
+                            <span className="recall-header__tel">9-999-999-99-99</span>
                             <a href="tel:88007774967" className="recall-header__link">Заказать звонок</a>
-                            <img src={arrowBottom} alt="open list of telephone numbers" className="recall-header__arrow" />
+                            <img 
+                                ref = { refTel }
+                                src={ arrowBottom } 
+                                onClick={ handleRecall }
+                                className="recall-header__arrow"
+                                alt="open list of telephone numbers" />
+                            <ul className="recall-header__list">
+                                <li className="recall-header__item">
+                                    <a href="tel:88888888888" className="recall-header__link">8-888-888-88-88</a>
+                                </li>
+                                <li className="recall-header__item">
+                                    <a href="tel:77777777777" className="recall-header__link">7-777-777-77-77</a>
+                                </li>
+                                <li className="recall-header__item">
+                                    <a href="tel:66666666666" className="recall-header__link">6-666-666-66-66</a>
+                                </li>
+                                <li className="recall-header__item">
+                                    <a href="tel:55555555555" className="recall-header__link">5-555-555-55-55</a>
+                                </li>
+                            </ul>
                         </div>
                         <Link to={"/favorites"} className="header__favorites favorites-header">
                             <img src={favoritesImg} alt="favorites" />
