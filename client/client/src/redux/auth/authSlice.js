@@ -9,7 +9,8 @@ const initialState = {
     totalSum: 0,
     isLoading: false,
     isError: false,
-    showModal: false
+    showModal: false,
+    searchResult: []
 };
 
 export const register = createAsyncThunk(
@@ -81,6 +82,9 @@ const authSlice = createSlice({
         },
         setShowModal: ( state, action ) => { 
             state.showModal = action.payload;
+        },
+        setSearchResult: (state, action) => {
+            state.searchResult = action.payload;
         }
     },
     extraReducers: {
@@ -117,6 +121,6 @@ const authSlice = createSlice({
     }
 });
 
-export const { logout, changeTotalSum, setShowModal } = authSlice.actions;
+export const { logout, changeTotalSum, setShowModal, setSearchResult } = authSlice.actions;
 
 export default authSlice.reducer;

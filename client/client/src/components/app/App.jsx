@@ -12,6 +12,12 @@ import { CartPage } from "../pages/cortPage/CartPage";
 import { CategoryPage } from "../pages/categoryPage/CategoryPage";
 import { CatalogPage } from "../pages/catalogPage/CatalogPage";
 import { FavoritesPage } from "../pages/favoritesPage/FavoritesPage";
+import { PaymentPage } from "../pages/paymentPage/PaymentPage";
+import { NewsPage } from "../pages/newsPage/NewsPage";
+import { AboutPage } from "../pages/aboutPage/AboutPage";
+import { ContactsPage } from "../pages/contactsPage/ContactsPage";
+import { SearchResultsPage } from "../pages/searchResultsPage/searchResultsPage";
+import { CardDetail } from "../pages/cardDetail/CardDetail";
 import { Modal } from "../modal/Modal";
 
 import { me } from "../../redux/auth/authSlice";
@@ -38,6 +44,14 @@ return (
       <Route path="/category/:categoryName" element={<CategoryPage />}/>
       <Route path="/catalog/:catalogName" element={<CatalogPage />}/>
       <Route path="/favorites" element={<FavoritesPage />}/>
+
+      <Route path="/about" element={<AboutPage />}/>
+      <Route path="/contacts" element={<ContactsPage />}/>
+      <Route path="/payment" element={<PaymentPage />}/>
+      <Route path="/news" element={<NewsPage />}/>
+      <Route path="/search_results" element={<SearchResultsPage />}/>
+      <Route path="/card_detail/:id" element={<CardDetail />}/>
+
       <Route path="/" element={<MainPage/>}/>
 
     </Routes>

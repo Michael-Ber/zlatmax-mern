@@ -1,9 +1,12 @@
 @import '../../../../styles/variables';
 
 .bestsellers, .common {
+    position: relative;
+
     @media(max-width: 575px) {
         padding-bottom: 30px;
     }
+    
     &__container {
         max-width: calc($container-mw + 30px);
         margin: 0 auto;

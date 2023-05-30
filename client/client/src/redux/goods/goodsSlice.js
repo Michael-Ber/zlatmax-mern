@@ -19,7 +19,7 @@ export const getGoods = createAsyncThunk(
 
 export const addToCort = createAsyncThunk(
     'cort/addToCort',
-    async({goodId}) => {
+    async({goodId, amount=1}) => {
         try {
             const resp = await fetch(`${URL}/cort`, {
                 method: "POST",
@@ -27,7 +27,7 @@ export const addToCort = createAsyncThunk(
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + window.localStorage.getItem("token")
                 },
-                body: JSON.stringify({goodId})
+                body: JSON.stringify({goodId, amount})
             })
             const respJSON = await resp.json();
             return respJSON;

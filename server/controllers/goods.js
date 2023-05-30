@@ -17,7 +17,7 @@ export const addItem = async(req, res) => {
         if(!req.body) return res.json({message: "Bad request"});
         const item = await Good.findById(req.body.goodId);
         await Users.findByIdAndUpdate(
-            req.userId, 
+            req.userId,
             { $push: { cort: item } }
         );
         return res.json({message: "Adding item to cart successfully done", item})

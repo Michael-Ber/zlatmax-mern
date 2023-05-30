@@ -9,7 +9,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     }, 
     {
         "name": "Carving-2",
@@ -20,7 +22,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "false",
+        "amount": "1"
     }, 
     {
         "name": "Damask-1",
@@ -31,7 +35,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Damask-2",
@@ -42,7 +48,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Hunting-1",
@@ -53,7 +61,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Hunting-2",
@@ -64,7 +74,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Kitchen-1",
@@ -75,7 +87,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "bestseller"
+        "additional": "bestseller",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Kitchen-2",
@@ -86,7 +100,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "novelty"
+        "additional": "novelty",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Machete-1",
@@ -97,7 +113,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "novelty"
+        "additional": "novelty",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Machete-2",
@@ -108,7 +126,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "novelty"
+        "additional": "novelty",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Steel-1",
@@ -119,7 +139,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "novelty"
+        "additional": "novelty",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Steel-2",
@@ -130,7 +152,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": "novelty"
+        "additional": "novelty",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Tactic-1",
@@ -141,7 +165,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Tactic-2",
@@ -152,7 +178,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Throwing-1",
@@ -163,7 +191,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Throwing-2",
@@ -174,7 +204,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Tourist-1",
@@ -185,7 +217,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "Tourist-2",
@@ -196,7 +230,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "AIR-1",
@@ -207,7 +243,9 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     },
     {
         "name": "AIR-2",
@@ -218,6 +256,8 @@
         "color": "Орех, Алюминий",
         "rating": "5",
         "price": "2179 р.",
-        "additional": ""
+        "additional": "",
+        "available": "true",
+        "amount": "1"
     }
 ]

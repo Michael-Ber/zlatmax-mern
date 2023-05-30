@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export const KnivesCatalog = ({classNames, dataAttr}) => {
+export const KnivesCatalog = ({classNames, dataAttributes, callback}) => {
 
     const goods = useSelector(state => state.goodsSlice.goods);
+    const backBtn = callback && <span onClick={e => callback(e) }className="nav-burger__back back-nav">Назад</span>
 
     const removeDublicateObjects = ( arr ) => {
         const categoryArr = Array.from(new Set(arr.map(item => item.category)));
@@ -17,12 +18,11 @@ export const KnivesCatalog = ({classNames, dataAttr}) => {
         }
         return res
     }
-
-    const dataAttribute = dataAttr ? dataAttr : null;
-    console.log(dataAttribute);
+    const dataRelatedTo = (dataAttributes && dataAttributes.dataRelatedTo) ? dataAttributes.dataRelatedTo : null;
+    const dataOrder = (dataAttributes && dataAttributes.dataOrder) ? dataAttributes.dataOrder : null;
     const renderLiItems = goods && removeDublicateObjects(goods).map((item, i) => {
         return (
-            <li key={goods[i]._id}>
+            <li key={goods[i]._id} className='nav-burger__item nav-burger__item_next item-nav'>
                 <Link to={`/category/${item[0]}`} className={classNames.li}> 
                     { item[1] }
                 </Link>
@@ -31,7 +31,8 @@ export const KnivesCatalog = ({classNames, dataAttr}) => {
     })
 
     return (
-        <ul className={classNames.ul} data-related-to={dataAttribute}>
+        <ul className={classNames.ul} data-related-to={dataRelatedTo} data-order = {dataOrder}>
+            { backBtn }
             { renderLiItems }
         </ul>
     )

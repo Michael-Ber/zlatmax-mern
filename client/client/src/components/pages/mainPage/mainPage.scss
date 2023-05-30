@@ -15,6 +15,7 @@
     }
 
     &__wrapper {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -25,7 +26,7 @@
     }
 
     &__container-inner {
-        position: relative;
+        // position: relative;
         // overflow: hidden;
         display: inline-block;
         width: #{percent(950, 1600)};
@@ -469,6 +470,9 @@
     
 }
 
+.swiper {
+    position: static !important;
+}
 .main__carousel {
     .swiper-button-prev, .swiper-button-next {
         display: none;
