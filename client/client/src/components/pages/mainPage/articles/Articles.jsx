@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './articles.scss';
 
 import knives from '../../../../assets/img/main/about-knives.jpg';
@@ -20,7 +21,7 @@ export const Articles = () => {
                             <img src={ knives } alt='knives'/>
                         </div>
                         <div className="card-articles__contain">
-                            <a href="#" className="card-articles__link">Все о ножах: как правильно выбрать</a>
+                            <Link to={"/"} className="card-articles__link">Все о ножах: как правильно выбрать</Link>
                             <p className="card-articles__date">24.07.2019</p>
                         </div>
                     </article>
@@ -31,7 +32,7 @@ export const Articles = () => {
                             <img src={ flashlight } alt="choose flashlight"/>
                         </div>
                         <div className="card-articles__contain">
-                            <a href="#" className="card-articles__link">Как правильно выбрать фонарь</a>
+                            <Link to={"/flashlight"} className="card-articles__link">Как правильно выбрать фонарь</Link>
                             <p className="card-articles__date">24.07.2019</p>
                         </div>
                     </article>
@@ -42,7 +43,7 @@ export const Articles = () => {
                             <img src={ kitchen } alt="kitchen knives"/>
                         </div>
                         <div className="card-articles__contain">
-                            <a href="#" className="card-articles__link">Кухонные ножи для хозяек</a>
+                            <Link to={"/"} className="card-articles__link">Кухонные ножи для хозяек</Link>
                             <p className="card-articles__date">24.07.2019</p>
                         </div>
                     </article>
@@ -53,7 +54,7 @@ export const Articles = () => {
                             <img src={ another } alt="another knives"/>
                         </div>
                         <div className="card-articles__contain">
-                            <a href="#" className="card-articles__link">Кухонные ножи для хозяек</a>
+                            <Link to={"/"} className="card-articles__link">Кухонные ножи для хозяек</Link>
                             <p className="card-articles__date">24.07.2019</p>
                         </div>
                     </article>
@@ -67,7 +68,7 @@ export const Articles = () => {
                             <p className="card-articles__text">Lorem ipsum dolor sit amet, 
                                 consectetur adipiscing elit.
                             </p>
-                            <a href="#" className="btn btn_md card-articles__btn">Подробнее</a>
+                            <Link to={"/flashlight"} className="btn btn_md card-articles__btn">Подробнее</Link>
                         </div>
                     </article>
                 </li>
@@ -78,7 +79,7 @@ export const Articles = () => {
                             <p className="card-articles__text">Lorem ipsum dolor sit amet, 
                                 consectetur adipiscing elit.
                             </p>
-                            <a href="#" className="card-articles__btn btn btn_md">Подробнее</a>
+                            <Link to={"/flashlight"} className="card-articles__btn btn btn_md">Подробнее</Link>
                         </div>
                     </article>
                 </li>

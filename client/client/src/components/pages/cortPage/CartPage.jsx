@@ -2,97 +2,78 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ControlledCard } from '../../input/ControlledCard';
 import { changeTotalSum } from '../../../redux/auth/authSlice';
-import { makeOrder } from '../../../redux/goods/goodsSlice';
+import { makeOrder, sendOrder } from '../../../redux/goods/goodsSlice';
 
 
 import './cartPage.scss';
 
 export const CartPage = () => {
 
-  const [sumPrice, setSumPrice] = useState({});
-
+  const cart = useSelector(state => state.authSlice.user?.cort);
+  const { order } = useSelector(state => state.goodsSlice);
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.authSlice.user.cort);
-  const goods = useSelector(state => state.goodsSlice.goods);
-  const order = useSelector(state => state.goodsSlice.order);
-
 
   useEffect(() => {
-    dispatch(changeTotalSum(calcSum(Object.values(sumPrice))));
-  }, [sumPrice, dispatch])
-
-
-  const cartSingle = cart && new Set(cart);
-
-  const filterGoods = (arrId, arrGoods) => {
-    const arr = [];
-    if( arrId && arrGoods ) {
-      arrId.forEach(id => {
-        arrGoods.forEach(item => {
-          if(id === item._id) {
-            arr.push(item);
-          }
-        })
-      })
-    }
-    return arr;
-  }
+    dispatch(makeOrder(cart))
+  }, [dispatch, cart])
 
   useEffect(() => {
-    dispatch(makeOrder(filterGoods(cart, goods.map(item => ({...item, amount: 1})))));//добавил в каждый объект массива goods amount=1, менять amount в ControlledCard
-  }, [cart, goods, dispatch])
+    window.scrollTo(0, 0);
+  }, [])
 
-  const calcSum = (arr) => {
-    return arr.reduce((sum, item) => sum + item, 0)
+  const totalSum = order && order.reduce((sum, item) => sum + Number(item.price.replace(/\D/ig, '')) * (item.amount ? item.amount: 1), 0);
+
+  useEffect(() => {
+    dispatch(changeTotalSum(totalSum));
+  }, [totalSum, dispatch])
+
+  //HANDLERS
+  const handleOrder = (e) => {
+    e.preventDefault();
+    console.log({order});
+    dispatch(sendOrder({order}))
   }
 
-  const renderListItems = (cart, goods) => {
-    if(cart && goods && cart.size > 0) {
-      return filterGoods(cart, goods).map(item => {
-        const stars = [...Array(item.rating)].map((elem, i) => {
-          return <div key={i} className="star-item" data-item-val={i+1}>★</div>
-        })
-        return ( 
-          <ControlledCard setSumPrice={ setSumPrice } key={item._id} item={ item } stars={ stars } />
-        )
+  //RENDERS
+
+  const renderListItems = (cart && cart.length > 0) ? cart.map(item => {
+    const stars = [...Array(item.rating)].map((elem, i) => {
+        return <div key={i} className="star-item" data-item-val={i+1}>★</div>
       })
-    }else {
-      return <span>Нет товаров</span>
-    }
-    
-  }
+    return (
+      <ControlledCard key={item._id} item={item} stars={stars}/>
+    )
+  }): <span>Нет товаров</span>
 
-  const renderSublistItems = (order) => {
-    if(order && order.length > 0) {
-      return order.map(item => {
-        return <li key={ item._id } className='cart__sublist-item sublist-item-cart'>
+  const renderSubListItems = (order && order.length > 0) ? order.map(item => {
+    return (
+      <li key={ item._id } className='cart__sublist-item sublist-item-cart'>
           <p className="sublist-item-cart__name">{ item.name }</p>
           <p className="sublist-item-cart__size">{ item.size }</p>
-          <p className="sublist-item-cart__amount">{ item.amount }</p>
-        </li>
-      })
-    }else {
-
-      return <li>Нет товаров</li>
-    }
-  }
+          <p className="sublist-item-cart__amount">{ item.amount ? item.amount : 1 }</p>
+         </li>
+    )
+  }): <span>Нет товаров</span>
 
   return (
     <div className='cart'>
       <h1 className="cart__title">Корзина</h1>
       <div className="cart__content">
         <ul className="cart__list">
-          { renderListItems(cartSingle, goods) }
+          { renderListItems }
         </ul>
-        <form className="cart__form">
+        <form onSubmit={e => handleOrder(e)} className="cart__form">
           <p className="cart__sum">
-            Итого: <span>{ calcSum(Object.values(sumPrice)) } р.</span>
+            Итого: <span>{ totalSum } р.</span>
           </p>
           <ul className="cart__sublist">
-            { renderSublistItems(order) } 
+            { renderSubListItems }
           </ul>
-          <button className="cart__submit">Оформить заказ</button>
+          <button 
+            type='submit'
+            disabled={ (order && order.length > 0) ? false: true }
+            className="cart__submit btn">Оформить заказ</button>
         </form>
       </div>
     </div>

@@ -85,6 +85,14 @@ const authSlice = createSlice({
         },
         setSearchResult: (state, action) => {
             state.searchResult = action.payload;
+        },
+        changeItemAmount : ( state, action ) => {
+            state.user.cort.map(item => {
+                if(item._id === action.payload.id) {
+                    return item.amount = action.payload.amount
+                }
+                return item
+            })
         }
     },
     extraReducers: {
@@ -118,9 +126,16 @@ const authSlice = createSlice({
             state.token = action.payload.token; 
         },
         [me.rejected]: state => { state.isLoading = false; state.isError = true },
+
+        
     }
 });
 
-export const { logout, changeTotalSum, setShowModal, setSearchResult } = authSlice.actions;
+export const { 
+    logout, 
+    changeTotalSum, 
+    setShowModal, 
+    setSearchResult, 
+    changeItemAmount } = authSlice.actions;
 
 export default authSlice.reducer;

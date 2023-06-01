@@ -48,6 +48,9 @@
         align-items: center;
         font-size: 16px;
         color: $fourth-color;
+        &:nth-child(n):not(:last-child) {
+            margin-bottom: 10px;
+        }
     }
 
     &__item {

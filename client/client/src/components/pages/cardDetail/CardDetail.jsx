@@ -1,14 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 
 import { 
+    addToCort,
     addToFavorites, 
-    removeItemFromFavorites, 
-    changeItemAmount, 
-    setSumPrice } from '../../../redux/goods/goodsSlice';
+    removeItemFromFavorites } from '../../../redux/goods/goodsSlice';
 
-import { me } from '../../../redux/auth/authSlice';
+import { me, changeTotalSum } from '../../../redux/auth/authSlice';
 
 
 import './cardDetail.scss';
@@ -18,9 +17,18 @@ export const CardDetail = () => {
     const [amountVal, setAmountVal] = useState(1); 
 
     const goods = useSelector(state => state.goodsSlice.goods);
+    const cort = useSelector(state => state.authSlice.user?.cort)
     const { id } = useParams();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+
+    //REFS
     const ref = useRef(null);
+    const formRef = useRef(null);
 
     const item = goods && goods.filter(elem => elem._id === id)[0]; 
 
@@ -30,6 +38,30 @@ export const CardDetail = () => {
     const price = item && Number(item.price.replace(/\D/ig, '')) * ( amountVal ) + ' p.'
 
     //HANDLERS
+
+    const handleForm = () => {
+        const formdata = new FormData(formRef.current);
+        const obj = {};
+        formdata.forEach((val, key) => {
+            obj[key] = val;
+        })
+        return obj;
+    }
+
+    const handleTab = (e) => {
+        const tabBtn = e.target;
+        const dataAttr = tabBtn.getAttribute('data-tab');
+        const allTabBtns = document.querySelectorAll('.card-item__tab-btn');
+        const allContents = document.querySelectorAll('.card-item__tab-content');
+        const content = document.querySelector(`.card-item__tab-content[data-tab=${dataAttr}]`);
+        
+        allTabBtns.forEach(btn => btn.classList.remove('card-item__tab-btn_active'))
+        allContents.forEach(cont => cont.classList.remove('card-item__tab-content_active'));
+
+        tabBtn.classList.add('card-item__tab-btn_active');
+        content.classList.add('card-item__tab-content_active');
+    }
+
 
     const handleClickFavorites = async(e) => {
         if(window.localStorage.getItem('token')) {
@@ -45,16 +77,24 @@ export const CardDetail = () => {
         }  
     }
 
+    const handleClickCart = async(e) => {
+        const btn = e.target.tagName === 'svg' ? e.target.parentNode : e.target.tagName === 'path' ? e.target.parentNode.parentNode : e.target;
+        const sum = cort.reduce((sum, elem) => sum + (Number(elem.price.replace(/\D/ig, '')))*elem.amount, 0) + (Number(item.price.replace(/\D/ig, ''))*amountVal);
+        if(!btn.disabled && window.localStorage.getItem('token')) {
+            await dispatch(addToCort({goodId: item._id, additional: { amount: amountVal, ...handleForm() }}));
+            await dispatch(me());
+            dispatch(changeTotalSum(sum))
+        }
+        
+    }
+    
+
     const handleOnChangePlus = () => {
         setAmountVal(state => state + 1);
-        dispatch(changeItemAmount( { id: item._id, amount: amountVal + 1 } ));
-        // setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amountVal+1))}))
     }
 
     const handleOnChangeMinus = () => {
         setAmountVal(state => state > 1 ? state - 1: state);
-        dispatch(changeItemAmount( { id: item._id, amount: amountVal > 1 ? amountVal - 1 : amountVal } ));
-        // amountVal > 1 && setSumPrice(state => ({...state, [item._id]: Number(item.price.replace(/\D/ig, '') * (amountVal-1))}))
     }
 
   return (
@@ -64,9 +104,9 @@ export const CardDetail = () => {
                 <div className="card-item__header header-card-item">
                     <div className="header-card-item__links links-common">
                         <Link to={"/"} className="header-card-item__link link-common">Главная
-                        </Link> 
+                        </Link> {'>'}
                         <Link to={`/${item.category}`} className="header-card-item__link link-common">{item.categoryRU}
-                        </Link>
+                        </Link> {'>'}
                         <span className="header-card-item__link header-card-item__link_active link-common link-common_active">{item.name}</span> 
                     </div>
                 </div>
@@ -98,11 +138,11 @@ export const CardDetail = () => {
                                     </div>
                                 </div>
                                 <div className="header-content-card-item__right">
-                                    <div className="header-content-card-item__link footer-slide__link">
+                                    {/* <div className="header-content-card-item__link footer-slide__link">
                                         <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M25.9558 12.5275L25.9337 12.5386L22.2036 3.25484H23.9056C24.2108 3.25484 24.4582 3.00741 24.4582 2.70223C24.4582 2.39706 24.2108 2.14963 23.9056 2.14963H13.5056V0.552604C13.5056 0.247428 13.2582 0 12.953 0C12.6479 0 12.4004 0.247428 12.4004 0.552604V2.1441H2.00595C1.70078 2.1441 1.45335 2.39153 1.45335 2.69671C1.45335 3.00188 1.70078 3.24931 2.00595 3.24931H3.77981L0.0442083 12.5275C0.0165781 12.5922 0.00158874 12.6617 0 12.732C0 15.2697 2.0572 17.3269 4.5949 17.3269C7.13259 17.3269 9.1898 15.2697 9.1898 12.732C9.18821 12.6617 9.17322 12.5922 9.14559 12.5275L5.41552 3.24378H12.4004V20.3303C9.76451 20.5292 7.70329 22.1318 7.70329 24.0714C7.70329 24.3766 7.95072 24.624 8.2559 24.624H17.6502C17.9553 24.624 18.2028 24.3766 18.2028 24.0714C18.2028 22.1318 16.1416 20.5292 13.5056 20.3303V3.24378H20.5624L16.8544 12.5275C16.8268 12.5922 16.8118 12.6617 16.8102 12.732C16.8102 15.2697 18.8674 17.3269 21.4051 17.3269C23.9428 17.3269 26 15.2697 26 12.732C25.9984 12.6617 25.9834 12.5922 25.9558 12.5275ZM4.59214 16.23C2.88058 16.2276 1.42295 14.9852 1.14942 13.2956H8.01275C7.74059 14.977 6.29533 16.2168 4.59214 16.23ZM7.81382 12.1904H1.38151L4.60319 4.17216L7.81382 12.1904ZM16.9981 23.5188H8.90244C9.31137 22.3307 10.9968 21.4134 12.9475 21.4134C14.8982 21.4134 16.5892 22.3307 16.9981 23.5188ZM21.3802 4.17768L24.5909 12.1904H18.1586L21.3802 4.17768ZM21.3802 16.23V16.2355C19.6752 16.2219 18.2294 14.9792 17.9596 13.2956H24.823C24.5494 14.9852 23.0918 16.2276 21.3802 16.23Z" fill="black"/>
                                         </svg>
-                                    </div>
+                                    </div> */}
                                     <div 
                                         ref={ref} 
                                         onClick={e => handleClickFavorites(e)} className="header-content-card-item__link footer-slide__link">
@@ -134,12 +174,16 @@ export const CardDetail = () => {
                                 <span>38</span>
                             </div>
                         </div>
-                        <div className="content-card-item__selects selects-content-card-item">
+                        <form 
+                            ref={formRef} 
+                            onSubmit={e => e.preventDefault()} 
+                            className="content-card-item__selects selects-content-card-item">
+
                             <div className="selects-content-card-item__row">
                                 <span>Сталь</span>
                                 <div className="selects-content-card-item__wrapper">
                                     <select name="steel" id="steel" className="selects-content-card-item__select">
-                                        <option defaultValue={""} className="selects-content-card-item__option">Выбрать сталь</option>
+                                        <option value={"default"} className="selects-content-card-item__option">Выбрать сталь</option>
                                         <option value="100X13M" className="selects-content-card-item__option">100X13M</option>
                                         <option value="100X18M-ШД" className="selects-content-card-item__option">100X18M-ШД</option>
                                         <option value="40Х10С2М(ЭИ-107)" className="selects-content-card-item__option">40Х10С2М(ЭИ-107)</option>
@@ -159,8 +203,8 @@ export const CardDetail = () => {
                             <div className="selects-content-card-item__row">
                                 <span>Рукоять</span>
                                 <div className="selects-content-card-item__wrapper">
-                                    <select name="steel" id="steel" className="selects-content-card-item__select">
-                                        <option defaultValue={""} className="selects-content-card-item__option">Выбрать рукоять</option>
+                                    <select name="handle" id="handle" className="selects-content-card-item__select">
+                                        <option value={"default"}  className="selects-content-card-item__option">Выбрать рукоять</option>
                                         <option value="Рукоять-1" className="selects-content-card-item__option">Рукоять-1</option>
                                         <option value="Рукоять-2" className="selects-content-card-item__option">Рукоять-2</option>
                                         <option value="Рукоять-3" className="selects-content-card-item__option">Рукоять-3</option>
@@ -175,8 +219,8 @@ export const CardDetail = () => {
                             <div className="selects-content-card-item__row">
                                 <span>Гарда и тыльник</span>
                                 <div className="selects-content-card-item__wrapper">
-                                    <select name="steel" id="steel" className="selects-content-card-item__select">
-                                        <option defaultValue={""} className="selects-content-card-item__option">Выбрать гарда и тыльник</option>
+                                    <select name="guard" id="guard" className="selects-content-card-item__select">
+                                        <option value={"default"}  className="selects-content-card-item__option">Выбрать гарда и тыльник</option>
                                         <option value="Гарда-1" className="selects-content-card-item__option">Гарда-1</option>
                                         <option value="Гарда-2" className="selects-content-card-item__option">Гарда-2</option>
                                         <option value="Гарда-3" className="selects-content-card-item__option">Гарда-3</option>
@@ -191,8 +235,8 @@ export const CardDetail = () => {
                             <div className="selects-content-card-item__row">
                                 <span>Обработка клинка</span>
                                 <div className="selects-content-card-item__wrapper">
-                                    <select name="steel" id="steel" className="selects-content-card-item__select">
-                                        <option defaultValue={""} className="selects-content-card-item__option">Выбрать обработку клинка</option>
+                                    <select name="handling" id="handling" className="selects-content-card-item__select">
+                                        <option value={"default"}  className="selects-content-card-item__option">Выбрать обработку клинка</option>
                                         <option value="Обработка-1" className="selects-content-card-item__option">Обработка-1</option>
                                         <option value="Обработка-2" className="selects-content-card-item__option">Обработка-2</option>
                                         <option value="Обработка-3" className="selects-content-card-item__option">Обработка-3</option>
@@ -204,7 +248,9 @@ export const CardDetail = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                            {/* <button onClick={testClick} type='submit'>submit</button> */}
+                        </form>
                         <div className="content-card-item__order order-content-card-item">
                             <div className="order-content-card-item__up">
                                 <p className="order-content-card-item__cost">{ price }</p>
@@ -233,14 +279,17 @@ export const CardDetail = () => {
                                     className="order-content-card-item__input-modify order-content-card-item__input-plus" 
                                     aria-label="increase choosed products">+</button>
                             </div>
-                                <div className="order-content-card-item__btn-cort btn btn_sm">
+                                <button 
+                                    onClick={e => handleClickCart(e)}
+                                    disabled = {(cort && cort.filter(elem => elem._id === item._id).length > 0) ? true : false}
+                                    className="order-content-card-item__btn-cort btn btn_sm">
                                     В корзину
                                     <svg width="22" height="24" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13008 7.76882H29.7121C30.3649 7.76882 30.8427 8.38411 30.681 9.01655L28.7801 16.4506C28.4405 17.7785 27.2442 18.7074 25.8736 18.7074H9.02537M0 1.49957H4.65214C5.63535 1.49957 6.47274 2.21422 6.62728 3.18521L9.6467 22.1562C9.80125 23.1272 10.6386 23.8418 11.6218 23.8418H28.203" stroke="#fff" strokeWidth="2.5"/>
                                         <path d="M15.7689 30.2656C15.7689 31.5678 14.7584 32.5758 13.5695 32.5758C12.3807 32.5758 11.3701 31.5678 11.3701 30.2656C11.3701 28.9634 12.3807 27.9554 13.5695 27.9554C14.7584 27.9554 15.7689 28.9634 15.7689 30.2656Z" stroke="#fff" strokeWidth="2.5"/>
                                         <path d="M28.746 30.2656C28.746 31.5678 27.7354 32.5758 26.5466 32.5758C25.3577 32.5758 24.3472 31.5678 24.3472 30.2656C24.3472 28.9634 25.3577 27.9554 26.5466 27.9554C27.7354 27.9554 28.746 28.9634 28.746 30.2656Z" stroke="#fff" strokeWidth="2.5"/>
                                     </svg>
-                                </div>
+                                </button>
                                 <div className="order-content-card-item__btn-oneclick btn btn_sm btn_black">Купить в 1 клик</div>
                             </div>
                         </div>
@@ -249,20 +298,24 @@ export const CardDetail = () => {
                 <div className="card-item__tab">
                     <div className="card-item__tab-btns">
                         <button 
+                        onClick={e => handleTab(e)}
                             data-tab="descr" 
                             className="card-item__tab-btn card-item__tab-btn_active" aria-label="description button">Описание
                         </button>
                         <button 
+                        onClick={e => handleTab(e)}
                             data-tab="characteristics" 
                             className="card-item__tab-btn" 
                             aria-label="characteristics button">Характеристика
                         </button>
                         <button 
+                        onClick={e => handleTab(e)}
                             data-tab="comments" 
                             className="card-item__tab-btn" 
                             aria-label="comments button">Отзывы
                         </button>
                         <button 
+                        onClick={e => handleTab(e)}
                             data-tab="delivery" 
                             className="card-item__tab-btn" 
                             aria-label="delivery button">Доставка
@@ -376,7 +429,7 @@ export const CardDetail = () => {
                                         <li className="comments-tab-content-card-item__elem">
                                             <div className="comments-tab-content-card-item__left">
                                                 <div className="comments-tab-content-card-item__img">
-                                                    <img src="./assets/img/card/comments-1.jpg" alt="photo" />
+                                                    <img src="./assets/img/card/comments-1.jpg" alt="person" />
                                                 </div>
                                             </div>
                                             <div className="comments-tab-content-card-item__right">
@@ -420,7 +473,7 @@ export const CardDetail = () => {
                                         <li className="comments-tab-content-card-item__elem">
                                             <div className="comments-tab-content-card-item__left">
                                                 <div className="comments-tab-content-card-item__img">
-                                                    <img src="./assets/img/card/comments-1.jpg" alt="photo" />
+                                                    <img src="./assets/img/card/comments-1.jpg" alt="person" />
                                                 </div>
                                             </div>
                                             <div className="comments-tab-content-card-item__right">

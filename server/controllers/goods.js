@@ -15,7 +15,10 @@ export const getGoods = async(req, res) => {
 export const addItem = async(req, res) => {
     try {
         if(!req.body) return res.json({message: "Bad request"});
+        const { amount, ...rest } = req.body.additional;
         const item = await Good.findById(req.body.goodId);
+        item.amount = amount;
+        item.moreInfo = rest;
         await Users.findByIdAndUpdate(
             req.userId,
             { $push: { cort: item } }
@@ -34,7 +37,7 @@ export const removeItem = async(req, res) => {
         const item = await Good.findById(req.body.goodId);
         await Users.findByIdAndUpdate(
             req.userId, 
-            { $pull: { cort: req.body.goodId } }
+            { $pull: { cort: item} }
         );
         return res.json({message: "Removing item from cart successfully done", item})
     } catch (error) {
@@ -49,7 +52,7 @@ export const addItemToFavorites = async(req, res) => {
         const item = await Good.findById(req.body.goodId);
         await Users.findByIdAndUpdate(
             req.userId,
-            { $push: { favorites: item } }
+            { $push: { favorites: item } } 
         )
         return res.json({message: "Adding item to favorites successfully done", item})
     } catch (error) {
@@ -59,6 +62,7 @@ export const addItemToFavorites = async(req, res) => {
 
 //remove item from favorites
 export const removeItemFromFavorites = async(req, res) => {
+    
     try {
         if(!req.body) return res.json({message: "Bad request"});
         const item = await Good.findById(req.body.goodId);
@@ -69,5 +73,26 @@ export const removeItemFromFavorites = async(req, res) => {
         return res.json({message: "Removing item from favorites successfully done", item})
     } catch (error) {
         res.json({message: "Error while adding item to favorites", error})
+    }
+}
+
+//make order
+export const makeOrder = async(req, res) => {
+    try {
+        if(!req.body) return res.json({message: "Вы ничего не заказали"});
+        const order = req.body;
+
+        async function pushToOrder(obj) {
+            await Users.findByIdAndUpdate(
+                req.userId, 
+                { $push: { order: obj } }
+            )
+        }
+
+        await Promise.all(order.map(pushToOrder))
+
+        return res.json({message: "Ваш заказ принят", order})
+    } catch (error) {
+        res.json({message: "Error while making order"})
     }
 }

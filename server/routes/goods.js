@@ -1,7 +1,12 @@
 import { Router } from "express";
 import { getGoods } from "../controllers/goods.js";
 import { checkAuth } from "../utils/checkAuth.js";
-import { addItem, removeItem, addItemToFavorites, removeItemFromFavorites } from "../controllers/goods.js";
+import { 
+    addItem, 
+    removeItem, 
+    addItemToFavorites, 
+    removeItemFromFavorites, 
+    makeOrder } from "../controllers/goods.js";
 
 const router = new Router();
 
@@ -19,5 +24,9 @@ router.post("/favorites", checkAuth, addItemToFavorites);
 
 //REMOVE ITEM FROM FAVORITES
 router.put("/favorites", checkAuth, removeItemFromFavorites);
+
+//MAKE ORDER
+router.post("/order", checkAuth, makeOrder)
+
 
 export default router;

@@ -10,8 +10,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     }, 
     {
         "name": "Carving-2",
@@ -23,8 +22,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "false",
-        "amount": "1"
+        "available": "false"
     }, 
     {
         "name": "Damask-1",
@@ -36,8 +34,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Damask-2",
@@ -49,8 +46,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Hunting-1",
@@ -62,8 +58,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Hunting-2",
@@ -75,8 +70,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Kitchen-1",
@@ -88,8 +82,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "bestseller",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Kitchen-2",
@@ -101,8 +94,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "novelty",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Machete-1",
@@ -114,8 +106,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "novelty",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Machete-2",
@@ -127,8 +118,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "novelty",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Steel-1",
@@ -140,8 +130,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "novelty",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Steel-2",
@@ -153,8 +142,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "novelty",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Tactic-1",
@@ -166,8 +154,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Tactic-2",
@@ -179,8 +166,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Throwing-1",
@@ -192,8 +178,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Throwing-2",
@@ -205,8 +190,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Tourist-1",
@@ -218,8 +202,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "Tourist-2",
@@ -231,8 +214,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "AIR-1",
@@ -244,8 +226,7 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     },
     {
         "name": "AIR-2",
@@ -257,7 +238,6 @@
         "rating": "5",
         "price": "2179 р.",
         "additional": "",
-        "available": "true",
-        "amount": "1"
+        "available": "true"
     }
 ]

@@ -1,6 +1,11 @@
 @import '../../styles/variables';
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
     &__up {
         position: relative;
         padding: 25px 0;
@@ -76,7 +81,12 @@
     }
 
     &__bottom {
+        background-color: #fff;
         padding: 25px 0 20px 0;
+        box-shadow: 0 0 10px 0 $sec-color;
+        @media(max-width: 575px) {
+            display: none;
+        }
     }
 
 
@@ -218,6 +228,25 @@
 
     &__form {
         position: relative;
+    }
+}
+
+.header-card-item {
+    &__links {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    &__link {
+        text-decoration: none;
+        color: $fourth-color;
+        transition: .2s all ease;
+        &:hover {
+            color: $main-color;
+        }
+        &_active {
+            color: $main-color;
+        }
     }
 }
 .burger-header {

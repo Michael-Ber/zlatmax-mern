@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './footer.scss';
 
 import bg from '../../assets/img/main/footer-bg.jpg';
@@ -23,41 +24,42 @@ export const Footer = () => {
                     <div className="footer__block block-footer">
                         <ul className="block-footer__list list-block block-footer__list_1">
                             <span className="list-block__title"> ИНФОРМАЦИЯ </span>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Златоустовские ножи 
+                            <li className="block-footer__item"><Link to={"/"} 
+                                className="block-footer__link">Златоустовские ножи 
                                 в Москве и Московской 
-                                области</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Ножевые стали</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">О нас</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Условия оплаты 
-                            и доставки</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Политика 
-                            конфиденциальности</a></li>
+                                области</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Ножевые стали</Link></li>
+                            <li className="block-footer__item"><Link to={"/about"} className="block-footer__link">О нас</Link></li>
+                            <li className="block-footer__item"><Link to={"/payment"} className="block-footer__link">Условия оплаты 
+                            и доставки</Link></li>
+                            <li className="block-footer__item"><Link to={"/rules"} className="block-footer__link">Политика 
+                            конфиденциальности</Link></li>
                         </ul>
                         <ul className="block-footer__list list-block block-footer__list_2">
                             <span className="list-block__title"> СЛУЖБА ПОДДЕРЖКИ </span>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Контактная информация</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Возврат товара</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Карта сайта</a></li>
+                            <li className="block-footer__item"><Link to={"/contacts"} className="block-footer__link">Контактная информация</Link></li>
+                            <li className="block-footer__item"><Link to={"/payment"} className="block-footer__link">Возврат товара</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Карта сайта</Link></li>
                         </ul>
                         <ul className="block-footer__list list-block block-footer__list_3">
                             <span className="list-block__title"> ДОПОЛНИТЕЛЬНО </span>
-                            <li className="block-footer__item"><a href="" className="block-footer__link">Подарочные сертификаты</a></li>
-                            <li className="block-footer__item"><a href="" className="block-footer__link">Партнеры</a></li>
-                            <li className="block-footer__item"><a href="" className="block-footer__link">Товары со скидкой</a></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Подарочные сертификаты</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Партнеры</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Товары со скидкой</Link></li>
                         </ul>
                         <ul className="block-footer__list list-block  block-footer__list_4">
                             <span className="list-block__title"> ЛИЧНЫЙ КАБИНЕТ </span>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Личный кабинет</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">История заказов</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Мои закладки</a></li>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Рассылка новостей</a></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Личный кабинет</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">История заказов</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Мои закладки</Link></li>
+                            <li className="block-footer__item"><Link to={"/"} className="block-footer__link">Рассылка новостей</Link></li>
                         </ul>
                         {/* <!-- HR ===================================== --> */}
                         <hr/>
                         {/* <!-- /HR======================================= --> */}
                         <ul className="block-footer__list list-block  block-footer__list_5">
                             <span className="list-block__title"> КОНТАКТЫ </span>
-                            <li className="block-footer__item"><a href="tel:88007774967" className="block-footer__link block-footer__link_tel">8 (800) 777-49-67</a></li> 
+                            <li className="block-footer__item"><Link to={"tel:88888888888"} className="block-footer__link block-footer__link_tel">8 (888) 888-88-88</Link></li> 
                             <li className="block-footer__item block-footer__link_schedule">
                                 <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7.5" stroke="#fff"/><rect width="1" height="5" rx=".5" transform="matrix(-1 0 0 1 8 4)" fill="#fff"/><rect width="1" height="4" rx=".5" transform="matrix(0 1 1 0 7 8)" fill="#fff"/></svg>
                                 Пн-Пт 7:00 - 16:00 (МСК)</li>
@@ -67,27 +69,27 @@ export const Footer = () => {
                                 <p>ул. Шоссейная,</p>  
                                 <p>д. 1, офис «6Б»</p> 
                             </li>
-                            <li className="block-footer__item"><a href="mailto:info@zlatmax.ru" className="block-footer__link block-footer__link_mail">info@zlatmax.ru</a></li>
+                            <li className="block-footer__item"><Link to={"mailto:lorem@ipsum.dol"} className="block-footer__link block-footer__link_mail">lorem@ipsum.dol</Link></li>
                             <li className="block-footer__item item-block block-footer__socials block-footer__socials_disable320">
                                 <ul className="item-block__socials socials-item-block">
-                                    <li><a href="#" className="socials-item-block__link link-socials__facebook"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__viber"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__telegram"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__whatsapp"></a></li>
+                                    <li><Link to={"https://facebook.com"} className="socials-item-block__link link-socials__facebook"></Link></li>
+                                    <li><Link to={"https://viber.com"} className="socials-item-block__link link-socials__viber"></Link></li>
+                                    <li><Link to={"https://telegram.com"} className="socials-item-block__link link-socials__telegram"></Link></li>
+                                    <li><Link to={"https://whatsapp.com"} className="socials-item-block__link link-socials__whatsapp"></Link></li>
                                 </ul>
                             </li>
                             
                         </ul>
                         <ul className="block-footer__list list-block  block-footer__list_6">
                             <span className="list-block__title"> ПОЛЕЗНЫЕ ССЫЛКИ </span>
-                            <li className="block-footer__item"><a href="#" className="block-footer__link">Способы оплаты и доставки</a></li>
+                            <li className="block-footer__item"><Link to={"/payment"} className="block-footer__link">Способы оплаты и доставки</Link></li>
                         </ul>
                         <ul className="block-footer__list list-block  block-footer__list_7">
                             <span className="list-block__title"> НАША ГАРАНТИЯ </span>
                             <li className="block-footer__item">Недовольны своей покупкой? 
                                 Вы можете вернуть ее в течении 
                                 30 дней с даты получения,
-                                согласно <a href="#" className="block-footer__rules">нашим правилам</a>
+                                согласно <Link to={"/rules"} className="block-footer__rules">нашим правилам</Link>
                             </li> 
                         </ul>
                         <ul className="block-footer__list list-block block-footer__list_w375  block-footer__list_8">
@@ -112,10 +114,10 @@ export const Footer = () => {
                             </li> 
                             <li className="block-footer__item item-block block-footer__socials block-footer__socials_enable320">
                                 <ul className="item-block__socials socials-item-block">
-                                    <li><a href="#" className="socials-item-block__link link-socials__facebook"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__viber"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__telegram"></a></li>
-                                    <li><a href="#" className="socials-item-block__link link-socials__whatsapp"></a></li>
+                                    <li><Link to={"https://facebook.com"} className="socials-item-block__link link-socials__facebook"></Link></li>
+                                    <li><Link to={"https://viber.com"} className="socials-item-block__link link-socials__viber"></Link></li>
+                                    <li><Link to={"https://telegram.com"} className="socials-item-block__link link-socials__telegram"></Link></li>
+                                    <li><Link to={"https://whatsapp.com"} className="socials-item-block__link link-socials__whatsapp"></Link></li>
                                 </ul>
                             </li>
                         </ul>
@@ -126,7 +128,7 @@ export const Footer = () => {
                             <p> публичной офертой, определяемойположениями Статьи 437 Гражданского кодекса Российской Федерации. </p>
                             <p> При копировании материалов гиперссылка на www.zlatmax.ru обязательна!</p>
                         </div>
-                        <p className="block-footer__site">Златоустовские ножи <a href="#">www.zlatmax.ru</a> &#169;</p>
+                        <p className="block-footer__site">Златоустовские ножи www.zlatmax.ru &#169;</p>
                     </div>
                 </div>
             </div>

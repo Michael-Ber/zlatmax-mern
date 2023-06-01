@@ -18,6 +18,8 @@ import { AboutPage } from "../pages/aboutPage/AboutPage";
 import { ContactsPage } from "../pages/contactsPage/ContactsPage";
 import { SearchResultsPage } from "../pages/searchResultsPage/searchResultsPage";
 import { CardDetail } from "../pages/cardDetail/CardDetail";
+import { Flashlight } from "../pages/Flashlight";
+import { Rules } from "../pages/Rules";
 import { Modal } from "../modal/Modal";
 
 import { me } from "../../redux/auth/authSlice";
@@ -36,26 +38,30 @@ useEffect(() => {
 return (
   <div className="app">
     <Header />
+    <div className="app-container">
+      <Routes>
+        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/cort" element={<CartPage/>}/>
+        <Route path="/category/:categoryName" element={<CategoryPage />}/>
+        <Route path="/catalog/:catalogName" element={<CatalogPage />}/>
+        <Route path="/favorites" element={<FavoritesPage />}/>
 
-    <Routes>
-      <Route path="/register" element={<RegisterPage/>}/>
-      <Route path="/login" element={<LoginPage/>}/>
-      <Route path="/cort" element={<CartPage/>}/>
-      <Route path="/category/:categoryName" element={<CategoryPage />}/>
-      <Route path="/catalog/:catalogName" element={<CatalogPage />}/>
-      <Route path="/favorites" element={<FavoritesPage />}/>
+        <Route path="/about" element={<AboutPage />}/>
+        <Route path="/contacts" element={<ContactsPage />}/>
+        <Route path="/payment" element={<PaymentPage />}/>
+        <Route path="/news" element={<NewsPage />}/>
+        <Route path="/search_results" element={<SearchResultsPage />}/>
+        <Route path="/card_detail/:id" element={<CardDetail />}/>
+        <Route path="/rules" element={<Rules />}/>
+        <Route path="/flashlight" element={<Flashlight />}/>
 
-      <Route path="/about" element={<AboutPage />}/>
-      <Route path="/contacts" element={<ContactsPage />}/>
-      <Route path="/payment" element={<PaymentPage />}/>
-      <Route path="/news" element={<NewsPage />}/>
-      <Route path="/search_results" element={<SearchResultsPage />}/>
-      <Route path="/card_detail/:id" element={<CardDetail />}/>
+        <Route path="/" element={<MainPage/>}/>
 
-      <Route path="/" element={<MainPage/>}/>
-
-    </Routes>
-    <Modal  />
+      </Routes>
+      <Modal  />
+    </div>
+    
 
     <Footer />
   </div>

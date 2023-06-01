@@ -29,6 +29,13 @@ const GoodSchema = new mongoose.Schema(
         price: {
             type: String,
             required: true
+        },
+        amount: {
+            type: Number,
+            required: true
+        },
+        moreInfo: {
+            type: Object
         }
     },
     { timestamps: true }

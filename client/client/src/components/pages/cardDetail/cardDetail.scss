@@ -50,6 +50,7 @@
         font-weight: 600;
         color: rgba($sec-color, .5);
         background-color: #fff;
+
         &_active {
             color: $sec-color;
             &::after {
@@ -71,6 +72,7 @@
         }
         &:hover {
             color: $sec-color;
+            background-color: unset;
         }
         @media(max-width: 991px) {
             & + & {

@@ -178,7 +178,7 @@ return (
                                                 Оружейных Фабрик и компаний, мы являемся официальными поставщиками.
                                             </p>
                                             <div className="slide-main__wrapper wrapper-slide">
-                                                <a href="/hgf" className="btn btn_sm carousel-main__btn">Подробнее</a>
+                                                <Link to={"/about"} className="btn btn_sm carousel-main__btn">Подробнее</Link>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide  className="carousel-main__slide slide-main">
