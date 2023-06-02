@@ -12,7 +12,7 @@ const URL = "http://localhost:3005";
 export const getGoods = createAsyncThunk(
     'goods/fetchGoods',
     async() => {
-        const resp = await fetch("http://localhost:3005");
+        const resp = await fetch(URL);
         return await resp.json();
     }
 );

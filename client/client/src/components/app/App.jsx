@@ -37,6 +37,7 @@ useEffect(() => {
 
 return (
   <div className="app">
+    <div className="app__overlay"></div>
     <Header />
     <div className="app-container">
       <Routes>

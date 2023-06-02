@@ -34,6 +34,9 @@ const GoodSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
+        comments: [
+            { type: mongoose.Types.ObjectId, ref: "Comment" }
+        ],
         moreInfo: {
             type: Object
         }

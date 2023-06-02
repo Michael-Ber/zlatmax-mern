@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 
+import { AddComment } from '../../addComment/AddComment';
+
 import { 
     addToCort,
     addToFavorites, 
@@ -14,7 +16,8 @@ import './cardDetail.scss';
 
 export const CardDetail = () => {
 
-    const [amountVal, setAmountVal] = useState(1); 
+    const [amountVal, setAmountVal] = useState(1);
+    const [showCommentForm, setShowCommentForm] = useState(false); 
 
     const goods = useSelector(state => state.goodsSlice.goods);
     const cort = useSelector(state => state.authSlice.user?.cort)
@@ -426,7 +429,11 @@ export const CardDetail = () => {
                                 </div>
                                 <div className="tab-content-card-item__comments comments-tab-content-card-item">
                                     <ul className="comments-tab-content-card-item__list">
-                                        <li className="comments-tab-content-card-item__elem">
+                                        <button onClick={() => setShowCommentForm(true)} className="tab-content-card-item__writeMsg">
+                                            Написать отзыв
+                                        </button>
+                                        { showCommentForm &&  <AddComment setShowCommentForm={setShowCommentForm}/>}
+                                        {/* <li className="comments-tab-content-card-item__elem">
                                             <div className="comments-tab-content-card-item__left">
                                                 <div className="comments-tab-content-card-item__img">
                                                     <img src="./assets/img/card/comments-1.jpg" alt="person" />
@@ -469,8 +476,8 @@ export const CardDetail = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li className="comments-tab-content-card-item__elem">
+                                        </li> */}
+                                        {/* <li className="comments-tab-content-card-item__elem">
                                             <div className="comments-tab-content-card-item__left">
                                                 <div className="comments-tab-content-card-item__img">
                                                     <img src="./assets/img/card/comments-1.jpg" alt="person" />
@@ -512,7 +519,8 @@ export const CardDetail = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> */}
+                                        
                                     </ul>
                                 </div>
                             </div>

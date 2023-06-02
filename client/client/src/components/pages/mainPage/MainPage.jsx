@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Catalog } from './catalog/Catalog';
@@ -18,6 +18,8 @@ import knives from '../../../assets/img/main/knives.png';
 
 export const MainPage = () => {
 
+    const [activeTab, setActiveTab] = useState('');
+
 
     const onEnterHandler = (e) => {
         const allTabs = document.querySelectorAll('.content-tab-main');
@@ -26,10 +28,13 @@ export const MainPage = () => {
             cont.style.zIndex = '-1';
         })
         content.style.zIndex = '1000';
+        setActiveTab(content.getAttribute('data-tab'));
     }
 
     const onLeaveHandler = (e) => {
-        e.target.style.zIndex = '-1';
+        console.log(e.target);
+        setActiveTab('');
+        document.querySelector(`.contents-tab-main__content[data-tab=${activeTab}]`).style.zIndex = '-1';
     }
 
 return (

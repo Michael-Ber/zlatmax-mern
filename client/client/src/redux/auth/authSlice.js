@@ -74,6 +74,7 @@ const authSlice = createSlice({
             state.user = ''; 
             state.message = ''; 
             state.token = '';
+            state.totalSum = 0;
             state.isLoading = false;
             state.isError = false
         },

@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import authRouter from './routes/auth.js';
 import goodsRouter from './routes/goods.js';
+import commentRouter from "./routes/comment.js";
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors());
 //Routes
 app.use("/api/auth", authRouter);
 app.use("/", goodsRouter);
+app.use("/good/comments", commentRouter);
 
 const start = async() => {
     try {
