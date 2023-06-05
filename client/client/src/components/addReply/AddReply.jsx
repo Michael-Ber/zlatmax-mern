@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getComments, addComment, removeComment } from '../../redux/comments/commentsSlice';
+import { getComments, addComment, removeComment, replyAddComment } from '../../redux/comments/commentsSlice';
 
-import './addComment.scss';
 
-export const AddComment = ({setShowCommentForm, goodId}) => {
+export const AddReply = ({setShowReplyForm, commentId, isReply, goodId}) => {
 
     const [textVal, setTextVal] = useState('');
 
@@ -13,16 +12,16 @@ export const AddComment = ({setShowCommentForm, goodId}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addComment({text: textVal, goodId}));
+        dispatch(addComment({text: textVal, commentId, isReply, goodId }));
         setTextVal('');
-        setShowCommentForm(false);
+        setShowReplyForm(false);
     }
 
     return (
         <form onSubmit={e => handleSubmit(e)} className='add-comment'>
             <textarea 
-                name="comment-text" 
-                id="comment-text" 
+                name="reply-text" 
+                id="reply-text" 
                 value={textVal}
                 onChange={e => setTextVal(e.target.value)}
                 cols="30" 
@@ -31,7 +30,7 @@ export const AddComment = ({setShowCommentForm, goodId}) => {
                 className='add-comment__text'>
             </textarea>
             <button 
-                onClick={() => setShowCommentForm(false)} 
+                onClick={() => setShowReplyForm(false)} 
                 className="add-comment__btn add-comment__cancel">Отменить
             </button>
             <button 

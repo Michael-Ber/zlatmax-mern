@@ -18,6 +18,9 @@ const UsersSchema = new mongoose.Schema(
         ],
         order: [
             { type: Object }
+        ],
+        comments: [
+            { type: mongoose.Types.ObjectId, ref: "Comment" }
         ]
     },
     { timestamps: true }

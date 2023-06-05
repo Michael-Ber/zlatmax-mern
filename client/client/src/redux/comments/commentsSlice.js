@@ -8,11 +8,13 @@ const initialState = {
 
 const URL = "http://localhost:3005/good/comments"
 
+//"http://localhost:3005/good/comments/:id"
+
 export const getComments = createAsyncThunk(
     'comments/getComments',
-    async() => {
+    async(id) => {
         try {
-            const resp = await fetch(URL)
+            const resp = await fetch(`${URL}/${id}`)
             return await resp.json();
         } catch (error) {
             console.log(error)
@@ -22,7 +24,7 @@ export const getComments = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
     'comments/addComment',
-    async({text, goodId}) => {
+    async({text, goodId, isReply=false, commentId=''}) => {
         try {
             
             const resp = await fetch(`${URL}/add_comment`, {
@@ -31,10 +33,9 @@ export const addComment = createAsyncThunk(
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + window.localStorage.getItem('token')
                 },
-                body: JSON.stringify({text, goodId})
+                body: JSON.stringify({text, goodId, isReply, commentId})
             })
             const respJSON = await resp.json();
-            console.log(respJSON);
             return respJSON
         } catch (error) {
             console.log(error)
@@ -44,15 +45,15 @@ export const addComment = createAsyncThunk(
 
 export const removeComment = createAsyncThunk(
     'comments/removeComment',
-    async({commentId}) => {
+    async({commentId, goodId}) => {
         try {
-            const resp = await fetch(`${URL}/remove_comment`, {
+            const resp = await fetch(`${URL}/remove_comment/${goodId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + window.localStorage.getItem('token')
                 },
-                body: JSON.stringify(commentId)
+                body: JSON.stringify({commentId, goodId})
             })
             return await resp.json()
         } catch (error) {
@@ -61,6 +62,25 @@ export const removeComment = createAsyncThunk(
     }
 )
 
+export const replyAddComment = createAsyncThunk(
+    'comments/replyComment',
+    async({commentId, text}) => {
+        try {
+            const resp = await fetch(`${URL}/reply_comment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + window.localStorage.getItem('token')
+                },
+                body: JSON.stringify({commentId, text})
+            });
+            return resp.json()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
+
 const commentsSlice = createSlice({
     name: "comments",
     initialState,
@@ -68,18 +88,27 @@ const commentsSlice = createSlice({
     extraReducers: {
         //GET COMMENTS
         [getComments.pending]: (state) => { state.loading = true },
-        [getComments.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments = action.payload },
+        [getComments.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments = action.payload.comments },
         [getComments.rejected]: (state) => { state.isLoading = false; state.isError = true },
 
         //ADD COMMENT
         [addComment.pending]: (state) => { state.loading = true },
-        [addComment.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments.push(action.payload) },
+        [addComment.fulfilled]: (state, action) => { 
+            state.isLoading = false; 
+            state.isError = false; 
+            state.comments.push(action.payload.newComment);
+        },
         [addComment.rejected]: (state) => { state.isLoading = false; state.isError = true },
 
         //REMOVE COMMENT
         [removeComment.pending]: (state) => { state.loading = true },
-        [removeComment.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments.filter(item => item._id !== action.payload.id) },
+        [removeComment.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments = state.comments.filter(item => item._id !== action.payload.id) },
         [removeComment.rejected]: (state) => { state.isLoading = false; state.isError = true },
+
+        //REPLY COMMENT
+        [replyAddComment.pending]: (state) => { state.loading = true },
+        [replyAddComment.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments.reply.push(action.payload.newReply) },
+        [replyAddComment.rejected]: (state) => { state.isLoading = false; state.isError = true },
     }
 });
 
