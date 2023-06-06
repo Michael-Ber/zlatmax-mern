@@ -14,13 +14,25 @@ export const Comment = ({comment, goodId, children}) => {
 
     const [showReplyForm, setShowReplyForm] = useState(false); 
 
-    const reply = useSelector(state => state.comments?.reply);
+    const comments = useSelector(state => state.commentsSlice.comments);
     const dispatch = useDispatch();
 
     const removeCommentHandler = () => {
         dispatch(removeComment({commentId: comment._id, goodId}))
     }
-    console.log(children)
+
+    const renderChildren = (parentArr, childrenArr) => {
+        const res = [];
+        parentArr.forEach(item => {
+            childrenArr.forEach(id => {
+                if(item._id === id) {
+                    res.push(item);
+                }
+            })
+        })
+        return res;
+    }
+
 
   return (
     <li className="comments-tab-content-card-item__elem">
@@ -61,7 +73,11 @@ export const Comment = ({comment, goodId, children}) => {
 
             </div>
             { showReplyForm && <AddReply isReply={true} goodId={goodId} setShowReplyForm={setShowReplyForm} commentId={comment._id} /> }
+
             
+            <ul className="comments-tab-content-card-item__list">
+                { renderChildren(comments, children).map(comment => <Comment key={comment._id} comment = {comment} goodId={goodId} children={comment.reply}/>) }
+            </ul>
             
         </div>
     </li>

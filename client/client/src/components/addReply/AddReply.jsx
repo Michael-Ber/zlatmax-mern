@@ -10,9 +10,10 @@ export const AddReply = ({setShowReplyForm, commentId, isReply, goodId}) => {
 
     const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(addComment({text: textVal, commentId, isReply, goodId }));
+        await dispatch(addComment({text: textVal, commentId, isReply, goodId }));
+        await dispatch(getComments(goodId));
         setTextVal('');
         setShowReplyForm(false);
     }

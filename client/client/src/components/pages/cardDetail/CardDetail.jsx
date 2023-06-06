@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import Moment from 'react-moment';
@@ -35,6 +35,13 @@ export const CardDetail = () => {
     const { comments } = useSelector(state => state.commentsSlice);
     const dispatch = useDispatch();
 
+
+    const arr = useMemo((item) => {
+        const temp = [];
+        temp.push(item)
+        return temp
+    }, []);
+
     //USE EFFECT
 
     useEffect(() => {
@@ -43,7 +50,7 @@ export const CardDetail = () => {
 
     useEffect(() => {
         dispatch(getComments(id));
-    }, [dispatch, id])
+    }, [dispatch, id, arr])
 
     //REFS
     const ref = useRef(null);
@@ -115,12 +122,70 @@ export const CardDetail = () => {
         setAmountVal(state => state > 1 ? state - 1: state);
     }
 
+    // console.log(comments);
+
+
+    const subArrays = (arrBig, arrSmall) => {
+        arrBig.forEach(item => {
+            arrSmall.forEach(elem => {
+                if(item._id === elem._id) {
+                    arrBig.splice(arrBig.indexOf(item), 1)
+                }
+            })
+        })
+        return arrBig
+    }
+
+    // console.log(subArrays([1, 2, 3, 4], [1, 3]))
+
+  
+
+const test = () => {
+    const recursy = (parentArr, childArr) => {
+        if(childArr.length === 0) {
+            return []
+        }
+        const arr = [];
+        childArr.forEach(id => {
+            const elem = parentArr.filter(item => item._id === id)
+            arr.push(...elem);
+        })
+        console.log(parentArr, arr);
+        let res = subArrays(parentArr, arr);
+        // arr.forEach(obj => {
+        //     parentArr.filter(item => )
+        // })
+        return arr.map(item => {
+            return {...item, reply: recursy(res, item.reply)}
+        })
+    } 
+
+    return comments.map(comment => {
+        return {...comment, reply: recursy(comments, comment.reply)}
+    })
+}
+
+console.log(test());
+
+    
+
+
+
     //RENDER ELEMENTS
     const renderComments = comments && comments.length > 0 ?
-                    comments.map(comment => (comment!== null && comment.reply.length > 0) ? <Comment key={comment._id} comment = {comment} goodId={id} children={comment.reply}/> : <Comment key={comment._id} comment = {comment} goodId={id} children={[]}/>) : 
+                    comments.map(comment => {
+                        if(comment !== null && (arr.filter(id => comment._id === id).length === 0)) {
+                            if(comment.reply.length > 0) {
+                                comment.reply.forEach(id => arr.push(id));
+                                return <Comment key={comment._id} comment = {comment} goodId={id} children={comment.reply}/>
+                            }else {
+                                return <Comment key={comment._id} comment = {comment} goodId={id} children={[]}/>
+                            }
+                        }
+                        return null
+                    }) : 
                     <li style={{fontSize: "22px", color: "gray", textAlign: "center"}}>Отзывов пока нет</li>
 
-    console.log(comments);
   return (
     item && <div className='cardDetail'> 
         <article className="card-item">
@@ -449,11 +514,13 @@ export const CardDetail = () => {
                                         onClick={() => setShowCommentForm(true)}        className="tab-content-card-item__writeMsg">
                                             Написать отзыв
                                     </button>
-                                    <ul className="comments-tab-content-card-item__list">
-                                        { showCommentForm && <AddComment setShowCommentForm={setShowCommentForm} goodId={id}/>}
 
+                                    { showCommentForm && <AddComment setShowCommentForm={setShowCommentForm} goodId={id}/>}
+
+                                    <ul className="comments-tab-content-card-item__list">
                                         { renderComments }
                                     </ul>
+
                                 </div>
                             </div>
                         </div>

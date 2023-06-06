@@ -14,6 +14,7 @@ export const AddComment = ({setShowCommentForm, goodId}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addComment({text: textVal, goodId}));
+        // dispatch(getComments(goodId));
         setTextVal('');
         setShowCommentForm(false);
     }
