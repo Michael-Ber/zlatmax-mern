@@ -37,6 +37,7 @@ export const MainPage = () => {
         document.querySelector(`.contents-tab-main__content[data-tab=${activeTab}]`).style.zIndex = '-1';
     }
 
+
 return (
     <>
         <section className="main">

@@ -126,14 +126,15 @@ export const CardDetail = () => {
 
 
     const subArrays = (arrBig, arrSmall) => {
+        const temp = [...arrBig];
         arrBig.forEach(item => {
             arrSmall.forEach(elem => {
                 if(item._id === elem._id) {
-                    arrBig.splice(arrBig.indexOf(item), 1)
+                    temp.splice(temp.indexOf(item), 1)
                 }
             })
         })
-        return arrBig
+        return temp
     }
 
     // console.log(subArrays([1, 2, 3, 4], [1, 3]))
@@ -150,21 +151,57 @@ const test = () => {
             const elem = parentArr.filter(item => item._id === id)
             arr.push(...elem);
         })
-        console.log(parentArr, arr);
-        let res = subArrays(parentArr, arr);
-        // arr.forEach(obj => {
-        //     parentArr.filter(item => )
-        // })
+        // let res = subArrays(parentArr, arr);
+
         return arr.map(item => {
-            return {...item, reply: recursy(res, item.reply)}
+            return {...item, reply: recursy(parentArr, item.reply)}
         })
     } 
-
-    return comments.map(comment => {
-        return {...comment, reply: recursy(comments, comment.reply)}
+    return test1().map((comment, i, arr) => {
+        return {...comment, reply: recursy(arr, comment.reply)}
     })
 }
 
+function test1 ()  {
+    // const arr1 = comments.map(item => {
+    //     return item._id
+    // });
+    // const arr2 = comments.map(item => {
+    //     return item.reply
+    // })
+    // const arr3 = Array.from(new Set(arr1.concat(...arr2)));
+    
+    // const temp = [];
+    // comments.forEach(item => {
+    //     arr3.forEach(id => {
+    //         if(item._id === id) {
+    //             temp.push(item);
+    //         }
+    //     })
+    // })
+
+    // return temp; 
+
+    const arr2 = comments.map(item => {
+        return item.reply
+    });
+    const some = [].concat(...arr2);
+    const resToDelete = [];
+    some.forEach(item => {
+        comments.forEach(elem => {
+            if(elem._id === item) {
+                resToDelete.push(elem);
+            }
+        })
+    })
+    const res = comments.filter(item => {
+        return resToDelete.indexOf(item) < 0;
+    });
+    
+    return res
+}
+console.log(test1());
+console.log(comments)
 console.log(test());
 
     
