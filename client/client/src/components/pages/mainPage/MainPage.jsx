@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import { Catalog } from './catalog/Catalog';
 import { Bestsellers } from './bestsellers/Bestsellers';
 import { Novelty } from './novelty/Novelty';
@@ -19,7 +21,6 @@ import knives from '../../../assets/img/main/knives.png';
 export const MainPage = () => {
 
     const [activeTab, setActiveTab] = useState('');
-
 
     const onEnterHandler = (e) => {
         const allTabs = document.querySelectorAll('.content-tab-main');

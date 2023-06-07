@@ -60,6 +60,9 @@ export const me = createAsyncThunk(
             }
         })
         const respJSON = await resp.json();
+        if(respJSON.token) {
+            window.localStorage.setItem('token', respJSON.token);
+        }
         return respJSON;
     }
 );

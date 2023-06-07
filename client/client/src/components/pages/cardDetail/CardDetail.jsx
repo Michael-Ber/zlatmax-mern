@@ -36,12 +36,6 @@ export const CardDetail = () => {
     const dispatch = useDispatch();
 
 
-    const arr = useMemo((item) => {
-        const temp = [];
-        temp.push(item)
-        return temp
-    }, []);
-
     //USE EFFECT
 
     useEffect(() => {
@@ -50,16 +44,18 @@ export const CardDetail = () => {
 
     useEffect(() => {
         dispatch(getComments(id));
-    }, [dispatch, id, arr])
+    }, [dispatch, id])
 
     //REFS
     const ref = useRef(null);
     const formRef = useRef(null);
+    const starsWrapperRef = useRef(null);
 
+    //STUFF
     const item = goods && goods.filter(elem => elem._id === id)[0]; 
 
     const stars = item && [...Array(item.rating)].map((elem, i) => {
-        return <div key={i} className="star-item" data-item-val={i+1}>★</div>
+        return <div key={i}  className="star-item" data-item-val={item.rating-i}>★</div>
     })
     const price = item && Number(item.price.replace(/\D/ig, '')) * ( amountVal ) + ' p.'
 
@@ -122,98 +118,69 @@ export const CardDetail = () => {
         setAmountVal(state => state > 1 ? state - 1: state);
     }
 
-    // console.log(comments);
+    const handleStarsRating = () => {
+        const starNode = starsWrapperRef.current.children;
+        const starArray = Array.from(starNode);
+        console.log(starArray);
+        starArray.forEach(item => {
+            item.addEventListener('click', () => {
+                const {itemVal} = item.dataset;
+                starsWrapperRef.current.dataset.totalVal = itemVal;
+            })
+        });
+    }
 
+    //ADDITIONAL FUNCTIONS
 
-    const subArrays = (arrBig, arrSmall) => {
-        const temp = [...arrBig];
-        arrBig.forEach(item => {
-            arrSmall.forEach(elem => {
-                if(item._id === elem._id) {
-                    temp.splice(temp.indexOf(item), 1)
+    function modifiedReplyIdsToObjectsComments() {
+        const recursy = (parentArr, childArr) => {
+            if(childArr.length === 0) {
+                return []
+            }
+            const arr = [];
+            childArr.forEach(id => {
+                const elem = parentArr.filter(item => item._id === id)
+                arr.push(...elem);
+            })
+
+            return arr.map(item => {
+                return {...item, reply: recursy(parentArr, item.reply)}
+            })
+        } 
+        return deleteRepeatingItemsFromComments().map(comment => {
+            return {...comment, reply: recursy(comments, comment.reply)}
+        })
+    }
+
+    function deleteRepeatingItemsFromComments()  {
+
+        const replies = comments.map(item => {
+            return item.reply
+        });
+        const repliesDestructure = [].concat(...replies);
+        const itemsToDeleteFromComments = [];
+        repliesDestructure.forEach(item => {
+            comments.forEach(elem => {
+                if(elem._id === item) {
+                    itemsToDeleteFromComments.push(elem);
                 }
             })
         })
-        return temp
+        const res = comments.filter(item => {
+            return itemsToDeleteFromComments.indexOf(item) < 0;
+        });
+        
+        return res
     }
-
-    // console.log(subArrays([1, 2, 3, 4], [1, 3]))
-
-  
-
-const test = () => {
-    const recursy = (parentArr, childArr) => {
-        if(childArr.length === 0) {
-            return []
-        }
-        const arr = [];
-        childArr.forEach(id => {
-            const elem = parentArr.filter(item => item._id === id)
-            arr.push(...elem);
-        })
-        // let res = subArrays(parentArr, arr);
-
-        return arr.map(item => {
-            return {...item, reply: recursy(parentArr, item.reply)}
-        })
-    } 
-    return test1().map((comment, i, arr) => {
-        return {...comment, reply: recursy(arr, comment.reply)}
-    })
-}
-
-function test1 ()  {
-    // const arr1 = comments.map(item => {
-    //     return item._id
-    // });
-    // const arr2 = comments.map(item => {
-    //     return item.reply
-    // })
-    // const arr3 = Array.from(new Set(arr1.concat(...arr2)));
-    
-    // const temp = [];
-    // comments.forEach(item => {
-    //     arr3.forEach(id => {
-    //         if(item._id === id) {
-    //             temp.push(item);
-    //         }
-    //     })
-    // })
-
-    // return temp; 
-
-    const arr2 = comments.map(item => {
-        return item.reply
-    });
-    const some = [].concat(...arr2);
-    const resToDelete = [];
-    some.forEach(item => {
-        comments.forEach(elem => {
-            if(elem._id === item) {
-                resToDelete.push(elem);
-            }
-        })
-    })
-    const res = comments.filter(item => {
-        return resToDelete.indexOf(item) < 0;
-    });
-    
-    return res
-}
-console.log(test1());
-console.log(comments)
-console.log(test());
-
-    
 
 
 
     //RENDER ELEMENTS
-    const renderComments = comments && comments.length > 0 ?
-                    comments.map(comment => {
-                        if(comment !== null && (arr.filter(id => comment._id === id).length === 0)) {
+    const renderComments = modifiedReplyIdsToObjectsComments() &&  
+                modifiedReplyIdsToObjectsComments().length > 0 ?
+                    modifiedReplyIdsToObjectsComments().map(comment => {
+                        if(comment !== null) {
                             if(comment.reply.length > 0) {
-                                comment.reply.forEach(id => arr.push(id));
                                 return <Comment key={comment._id} comment = {comment} goodId={id} children={comment.reply}/>
                             }else {
                                 return <Comment key={comment._id} comment = {comment} goodId={id} children={[]}/>
@@ -231,7 +198,7 @@ console.log(test());
                     <div className="header-card-item__links links-common">
                         <Link to={"/"} className="header-card-item__link link-common">Главная
                         </Link> {'>'}
-                        <Link to={`/${item.category}`} className="header-card-item__link link-common">{item.categoryRU}
+                        <Link to={`/category/${item.category}`} className="header-card-item__link link-common">{item.categoryRU}
                         </Link> {'>'}
                         <span className="header-card-item__link header-card-item__link_active link-common link-common_active">{item.name}</span> 
                     </div>
@@ -259,7 +226,11 @@ console.log(test());
                             <div className="header-content-card-item__up">
                                 <div className="header-content-card-item__left">
                                     <h2 className="header-content-card-item__name">{ item.name }</h2>
-                                    <div className="stars-wrapper" data-total-val={item.rating}>
+                                    <div 
+                                        ref={starsWrapperRef}
+                                        onClick={handleStarsRating}
+                                        className="stars-wrapper" 
+                                        data-total-val={item.rating}>
                                         {stars}
                                     </div>
                                 </div>

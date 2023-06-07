@@ -14,24 +14,16 @@ export const Comment = ({comment, goodId, children}) => {
 
     const [showReplyForm, setShowReplyForm] = useState(false); 
 
-    const comments = useSelector(state => state.commentsSlice.comments);
+    const { user, token } = useSelector(state => state.authSlice)
     const dispatch = useDispatch();
 
-    const removeCommentHandler = () => {
-        dispatch(removeComment({commentId: comment._id, goodId}))
+    const removeCommentHandler = async() => {
+        await dispatch(removeComment({commentId: [comment._id].concat(comment.reply.map(item => item._id)), goodId}));
+        await dispatch(getComments(goodId))
     }
 
-    const renderChildren = (parentArr, childrenArr) => {
-        const res = [];
-        parentArr.forEach(item => {
-            childrenArr.forEach(id => {
-                if(item._id === id) {
-                    res.push(item);
-                }
-            })
-        })
-        return res;
-    }
+
+    const stylesForDeleteBtn = (token === window.localStorage.getItem('token') && user.username === comment.name) ? {display: 'block'} : {display: 'none'}
 
 
   return (
@@ -63,7 +55,7 @@ export const Comment = ({comment, goodId, children}) => {
                         </svg>
                     </div>
                     <div 
-                        style={window.localStorage.getItem('token') !== '' ? {display: "block"}: {display: "none"}}
+                        style={stylesForDeleteBtn}
                         onClick={removeCommentHandler}
                         className="comments-tab-content-card-item__remove">
                         <img src={remove} alt="remove" />
@@ -76,7 +68,7 @@ export const Comment = ({comment, goodId, children}) => {
 
             
             <ul className="comments-tab-content-card-item__list">
-                { renderChildren(comments, children).map(comment => <Comment key={comment._id} comment = {comment} goodId={goodId} children={comment.reply}/>) }
+                { children.map(comment => <Comment key={comment._id} comment = {comment} goodId={goodId} children={comment.reply}/>) }
             </ul>
             
         </div>

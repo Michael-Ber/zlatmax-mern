@@ -102,7 +102,21 @@ const commentsSlice = createSlice({
 
         //REMOVE COMMENT
         [removeComment.pending]: (state) => { state.loading = true },
-        [removeComment.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.comments = state.comments.filter(item => item._id !== action.payload.id) },
+        [removeComment.fulfilled]: (state, action) => { 
+            state.isLoading = false; 
+            state.isError = false; 
+            // const arrIds = state.comments.map(item => item._id)
+            // const arrWithoutDeletedIds = action.payload.id.filter(id => {
+            //     return arrIds.indexOf(id) < 0
+            // });
+            // const arr = state.comments.filter(item => {
+            //     return arrWithoutDeletedIds.indexOf(item._id) 
+            // });
+            // console.log(arr, state.comments);
+            // state.comments = arr;
+
+            // state.comments = state.comments.filter(item => item._id !== action.payload.id) 
+        },
         [removeComment.rejected]: (state) => { state.isLoading = false; state.isError = true },
 
         //REPLY COMMENT

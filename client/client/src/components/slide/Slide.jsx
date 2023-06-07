@@ -15,6 +15,7 @@ export const Slide = ({item}) => {
         return null
     });
 
+
     const ref = useRef(null);
 
     const favorites = useSelector(state => {
@@ -67,6 +68,18 @@ export const Slide = ({item}) => {
         return <div key={i} className="star-item" data-item-val={i+1}>★</div>
     })
 
+    const defineDeclesion = (num, word) => {
+        switch(num) {
+            case 0: return word + 'ов';
+            case 1: return word;
+            case 2: return word + 'а';
+            case 3: return word + 'а';
+            case 4: return word + 'а';
+            default: return word + 'ов'
+        }
+    }
+
+
     return (
     <>
         <Link to={`/card_detail/${item._id}`} className="card__img-link">
@@ -83,7 +96,7 @@ export const Slide = ({item}) => {
                     { stars }
                 </div>
                 <div className="card__comments">
-                    <span>12</span> отзывов  
+                    <span>{item.comments.length}</span> {defineDeclesion(item.comments.length, 'отзыв')}  
                 </div>
             </div>
             <div className="card__footer footer-slide">
