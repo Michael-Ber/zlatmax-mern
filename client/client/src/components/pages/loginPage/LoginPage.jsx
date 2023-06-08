@@ -1,8 +1,13 @@
 import React, { useState, useEffect }from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../redux/auth/authSlice';
+import { login, setShowModal } from '../../../redux/auth/authSlice';
+
+import { Modal } from '../../modal/Modal';
+
+
 import './loginPage.scss';
 
 export const LoginPage = () => {
@@ -12,12 +17,13 @@ export const LoginPage = () => {
     
 
     const dispatch = useDispatch();
-    const user = useSelector(state => state.authSlice.user)
+    const { user, showModal, message } = useSelector(state => state.authSlice);
     const nav = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
         const data = {username: name, password};
+        dispatch(setShowModal(true))
         dispatch(login(data));
         setName('');
         setPassword('');
@@ -53,6 +59,7 @@ export const LoginPage = () => {
                     className="login__input" />
                 <Button style={{marginTop: "50px"}} btnText={'Войти'} />
             </form>
+            { createPortal(<Modal message={message} showModal={showModal} />, document.getElementById('app')) }
         </div>
       )
 }

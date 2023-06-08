@@ -1,19 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ControlledCard } from '../../input/ControlledCard';
-import { changeTotalSum } from '../../../redux/auth/authSlice';
+import { changeTotalSum, setShowModal, me } from '../../../redux/auth/authSlice';
 import { makeOrder, sendOrder } from '../../../redux/goods/goodsSlice';
 
+import { ErrorBoundary } from '../../errorBoundary/ErrorBoundary';
+import { Modal } from '../../modal/Modal';
+import { Spinner } from '../../spinner/Spinner';
 
 import './cartPage.scss';
 
 export const CartPage = () => {
 
   const cart = useSelector(state => state.authSlice.user?.cort);
+  const { showModal } = useSelector(state => state.authSlice);
+  const { message, isLoading } = useSelector(state => state.goodsSlice);
   const { order } = useSelector(state => state.goodsSlice);
   const dispatch = useDispatch();
 
-
+  console.log(message);
   useEffect(() => {
     dispatch(makeOrder(cart))
   }, [dispatch, cart])
@@ -29,10 +35,11 @@ export const CartPage = () => {
   }, [totalSum, dispatch])
 
   //HANDLERS
-  const handleOrder = (e) => {
+  const handleOrder = async(e) => {
     e.preventDefault();
-    console.log({order});
-    dispatch(sendOrder({order}))
+    await dispatch(sendOrder({order}));
+    await dispatch(setShowModal(true));
+    await dispatch(me());
   }
 
   //RENDERS
@@ -46,7 +53,7 @@ export const CartPage = () => {
     )
   }): <span>Нет товаров</span>
 
-  const renderSubListItems = (order && order.length > 0) ? order.map(item => {
+  const renderSubListItems = (cart && cart.length > 0) ? cart.map(item => {
     return (
       <li key={ item._id } className='cart__sublist-item sublist-item-cart'>
           <p className="sublist-item-cart__name">{ item.name }</p>
@@ -73,9 +80,10 @@ export const CartPage = () => {
           <button 
             type='submit'
             disabled={ (order && order.length > 0) ? false: true }
-            className="cart__submit btn">Оформить заказ</button>
+            className="cart__submit btn">{isLoading ? <Spinner userStyles={{width: "20px"}} /> :<span>Оформить заказ</span>}</button>
         </form>
       </div>
+      { createPortal(<Modal message={message} showModal={showModal} />, document.querySelector('.app'))  }
     </div>
   )
 }

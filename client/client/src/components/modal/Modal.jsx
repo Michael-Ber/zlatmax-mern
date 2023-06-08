@@ -1,13 +1,12 @@
 import React, { useEffect, memo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setShowModal } from '../../redux/auth/authSlice';
 import './modal.scss';
 
-export const Modal = memo(() => {
-
-  const { showModal } = useSelector(state => state.authSlice);
-  const { message } = useSelector(state => state.authSlice)
+export const Modal = memo(({showModal, message}) => {
   const dispatch = useDispatch();
+
+  console.log(message);
   
   const styles = showModal ? 
                   { visibility: 'visible', top: '50%', transform: 'translate(-50%, -50%)' } : 
@@ -16,7 +15,7 @@ export const Modal = memo(() => {
   useEffect(() => {
     const timer = setTimeout(() => {
       closeModal();
-    }, 3000)
+    }, 30000)
     return () => clearTimeout(timer);
   }, [showModal])
 

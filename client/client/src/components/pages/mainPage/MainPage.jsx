@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
 
 import { Catalog } from './catalog/Catalog';
 import { Bestsellers } from './bestsellers/Bestsellers';
@@ -77,58 +76,32 @@ return (
                                             <KnivesCatalog classNames={{ul: "item-catalog__list", li: "item-catalog__link"}} />
                                         </li>
                                         <li className="catalog-tab-main__item item-catalog">
-                                            <ul className="item-catalog__list">
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи АИР</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи ЗИК</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи ЗЗОСС</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи РОСоружие</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи Оружейник</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Булат Сергея Баранова</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Булат Андрея Умерова</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи Златко</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи Стиль-М</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Оружейная компания</a></li>
-                                            </ul>
+                                            
+                                            <KnivesCatalog classNames={{ul: "item-catalog__list", li: "item-catalog__link"}} />
                                         </li>
                                         <li className="catalog-tab-main__item item-catalog">
-                                            <ul className="item-catalog__list">
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали 40х102С2М</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали 95х18</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали 100х13м</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали 110х18м-ШД</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали ЭИ-107 ТЦ</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали 50х14МФ</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали AUS-8</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали К340</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали M390</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Ножи из стали ЭП-766</a></li>
-                                            </ul>
+                                            
+                                            <KnivesCatalog classNames={{ul: "item-catalog__list", li: "item-catalog__link"}} />
+                                            
                                         </li>
                                         <li className="catalog-tab-main__item item-catalog">
-                                            <ul className="item-catalog__list">
-                                                <li><a href="category.html" className="item-catalog__link"> Паста ГОИ</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Алмазная паста</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Бруски и камни для заточки</a></li>
-                                                <li><a href="category.html" className="item-catalog__link"> Заточные системы</a></li>
-                                            </ul>
+                                            
+                                            <KnivesCatalog classNames={{ul: "item-catalog__list", li: "item-catalog__link"}} />
+                                            
                                         </li>
                                         <li className="catalog-tab-main__item item-catalog">
-                                            <ul className="item-catalog__list">
-                                                <li><a href="category.html" className="item-catalog__link">Ножевые клинки</a></li>
-                                                <li><a href="category.html" className="item-catalog__link">Заготовки для ножей</a></li>
-                                                <li><a href="category.html" className="item-catalog__link">Литье для ножей</a></li>
-                                                <li><a href="category.html" className="item-catalog__link">Материалы для рукоятей</a></li>
-                                                <li><a href="category.html" className="item-catalog__link">Уход за рукоятиями ножей</a></li>
-                                            </ul>
+                                            
+                                            <KnivesCatalog classNames={{ul: "item-catalog__list", li: "item-catalog__link"}} />
+                                            
                                         </li>
                                     </ul>
                                 </div>
                                 <ul className="content-tab-main__all all-content">
                                     <li><Link to={"/category/all"} className="all-content__link">Смотреть все</Link></li>
-                                    <li><a href="#" className="all-content__link">Смотреть все</a></li>
-                                    <li><a href="#" className="all-content__link">Смотреть все</a></li>
-                                    <li><a href="#" className="all-content__link">Смотреть все</a></li>
-                                    <li><a href="#" className="all-content__link">Смотреть все</a></li>
+                                    <li><Link to={"/category/all"} className="all-content__link">Смотреть все</Link></li>
+                                    <li><Link to={"/category/all"} className="all-content__link">Смотреть все</Link></li>
+                                    <li><Link to={"/category/all"} className="all-content__link">Смотреть все</Link></li>
+                                    <li><Link to={"/category/all"} className="all-content__link">Смотреть все</Link></li>
                                 </ul>
                             </div>
                             <li onMouseEnter={(e) => onEnterHandler(e)} data-tab="blade" className="btns-tab-main__item">Клинковое оружие</li>
@@ -195,7 +168,7 @@ return (
                                                 Text-2
                                             </p>
                                             <div className="slide-main__wrapper">
-                                                <a href="#" className="btn btn_sm carousel-main__btn">Подробнее</a>
+                                                <Link to={"/about"} className="btn btn_sm carousel-main__btn">Подробнее</Link>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="carousel-main__slide slide-main">
@@ -205,7 +178,7 @@ return (
                                                 Text-3
                                             </p>
                                             <div className="slide-main__wrapper">
-                                                <a href="#" className="btn btn_sm carousel-main__btn">Подробнее</a>
+                                                <Link to={"/about"} className="btn btn_sm carousel-main__btn">Подробнее</Link>
                                             </div>
                                         </SwiperSlide>
                                         <SwiperSlide className="carousel-main__slide slide-main">
@@ -215,7 +188,7 @@ return (
                                                 Text-4
                                             </p>
                                             <div className="slide-main__wrapper">
-                                                <a href="/gdfd" className="btn btn_sm carousel-main__btn">Подробнее</a>
+                                                <Link to={"/about"} className="btn btn_sm carousel-main__btn">Подробнее</Link>
                                             </div>
                                         </SwiperSlide>
                                         

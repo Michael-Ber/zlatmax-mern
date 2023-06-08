@@ -2,13 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Slide } from '../../slide/Slide';
+import { setProcess } from '../../../utils/setProcess';
 
 import './favoritesPage.scss'; 
 
 export const FavoritesPage = () => {
 
     const favoritesArr = useSelector(state => state.authSlice.user?.favorites);
-    const goods = useSelector(state => state.goodsSlice.goods);
+    const  goods  = useSelector(state => state.goodsSlice.goods);
 
     const renderItems = favoritesArr && favoritesArr.map(id => {
         const item = goods.filter(elem => elem._id === id)[0];

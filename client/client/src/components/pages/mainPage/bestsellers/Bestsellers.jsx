@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { setProcess } from '../../../../utils/setProcess';
+
 import './bestsellers.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,28 +15,39 @@ import 'swiper/css/pagination';
 
 
 export const Bestsellers = () => {
-const { goods } = useSelector(state => state.goodsSlice);
-const bestsellersGoods = goods && goods.slice(0, 7);
+    const { goods, process } = useSelector(state => state.goodsSlice); 
+    const bestsellersGoods = goods && goods.slice(0, 7);
 
-const goodsToRender = bestsellersGoods.map(item => {
+    const goodsToRender = bestsellersGoods.map(item => {
+        return (
+            <SwiperSlide key={item._id} className="slide-bestsellers__card card card_height">
+                <Slide item={item} />
+            </SwiperSlide>
+
+        )
+    });
+
+
+
     return (
-        <SwiperSlide key={item._id} className="slide-bestsellers__card card card_height">
-            <Slide item={item} />
-        </SwiperSlide>
 
-    )
-})
-
-return (
-    <section className="bestsellers common">
-        <div className="container">
-            <div className="bestsellers__header common__header">
-                <h2 className="bestsellers__title section-title">Хиты продаж</h2>
-                <Link to={"/catalog/bestseller"} className="bestsellers__link link-more">Перейти в каталог</Link>
+        <section className="bestsellers common">
+            <div className="container">
+                <div className="bestsellers__header common__header">
+                    <h2 className="bestsellers__title section-title">Хиты продаж</h2>
+                    <Link to={"/catalog/bestseller"} className="bestsellers__link link-more">Перейти в каталог</Link>
+                </div>
             </div>
-        </div>
+            { setProcess({FulfilledComponent: <Slider goodsToRender={goodsToRender}/>, process}) }  
+        </section>
+        
+    ) 
+}
+
+const Slider = ({goodsToRender}) => {
+    return (
         <div className="bestsellers__container common__container">
-            { goods.length > 0 ? <div className="bestsellers__slider slider-bestsellers common-slider">
+            { <div className="bestsellers__slider slider-bestsellers common-slider">
                 <Swiper 
                     navigation
                     slideClass='slide-bestsellers__card'
@@ -62,10 +75,9 @@ return (
                     { goodsToRender }
                     <div className="pagination-slider-common slider-bestsellers__pagination  slider-pagination"></div>
                 </Swiper>
-            </div> : <p className='no-goods'>Нет товаров</p> }
+            </div>  } 
             
-            <a href="#" className="bestsellers__link bestsellers__link_bottom link-more common__link common__link_bottom">Перейти в каталог</a>
+            <Link to={"/catalog/bestseller"} className="bestsellers__link bestsellers__link_bottom link-more common__link common__link_bottom">Перейти в каталог</Link>
         </div>
-    </section>
-)
+    )
 }

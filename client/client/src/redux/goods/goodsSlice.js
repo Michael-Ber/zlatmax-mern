@@ -4,7 +4,9 @@ const initialState = {
     goods: [],
     order: [],
     isLoading: false, 
-    isError: false
+    isError: false,
+    process: '',
+    message: ''
 };
 
 const URL = "http://localhost:3005";
@@ -131,34 +133,34 @@ const goodsSlice = createSlice({
     },
     extraReducers: {
         //Getting goods from db
-        [getGoods.pending]: state => { state.isLoading = true },
-        [getGoods.fulfilled]: ( state, action ) => { state.isLoading = false; state.isError = false; state.goods =  action.payload.goods},
-        [getGoods.rejected]: state => { state.isLoading = false; state.isError = true },
+        [getGoods.pending]: state => { state.isLoading = true; state.process = 'pending' },
+        [getGoods.fulfilled]: ( state, action ) => { state.isLoading = false; state.isError = false; state.process = 'fulfilled'; state.goods =  action.payload.goods},
+        [getGoods.rejected]: state => { state.isLoading = false; state.isError = true; state.process = 'rejected' },
 
         //add good to users cart
-        [addToCort.pending]: state => { state.isLoading = true },
-        [addToCort.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; },
-        [addToCort.pending]: state => { state.isLoading = false; state.isError = true },
+        [addToCort.pending]: state => { state.isLoading = true;  },
+        [addToCort.fulfilled]: state => { state.isLoading = false; state.isError = false; },
+        [addToCort.rejected]: state => { state.isLoading = false; state.isError = true;  },
 
         //remove good from user cart
-        [removeItemFromCart.pending]: state => { state.isLoading = true },
-        [removeItemFromCart.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
-        [removeItemFromCart.pending]: state => { state.isLoading = false; state.isError = true },
+        [removeItemFromCart.pending]: state => { state.isLoading = true; },
+        [removeItemFromCart.fulfilled]: state => { state.isLoading = false; state.isError = false; },
+        [removeItemFromCart.rejected]: state => { state.isLoading = false; state.isError = true; },
 
         //add good to favorites
-        [addToFavorites.pending]: state => { state.isLoading = true },
-        [addToFavorites.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
-        [addToFavorites.pending]: state => { state.isLoading = false; state.isError = true },
+        [addToFavorites.pending]: state => { state.isLoading = true;  },
+        [addToFavorites.fulfilled]: state => { state.isLoading = false; state.isError = false;},
+        [addToFavorites.rejected]: state => { state.isLoading = false; state.isError = true; },
 
         //remove good from favorites
-        [removeItemFromFavorites.pending]: state => { state.isLoading = true },
-        [removeItemFromFavorites.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
-        [removeItemFromFavorites.pending]: state => { state.isLoading = false; state.isError = true },
+        [removeItemFromFavorites.pending]: state => { state.isLoading = true;},
+        [removeItemFromFavorites.fulfilled]: state => { state.isLoading = false; state.isError = false; },
+        [removeItemFromFavorites.rejected]: state => { state.isLoading = false; state.isError = true;  },
 
         //send order
-        [sendOrder.pending]: state => { state.isLoading = true },
-        [sendOrder.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false},
-        [sendOrder.pending]: state => { state.isLoading = false; state.isError = true },
+        [sendOrder.pending]: state => { state.isLoading = true; },
+        [sendOrder.fulfilled]: (state, action) => { state.isLoading = false; state.isError = false; state.message = action.payload.message},
+        [sendOrder.rejected]: state => { state.isLoading = false; state.isError = true;  },
 
     }
 });

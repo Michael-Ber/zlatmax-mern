@@ -78,6 +78,10 @@ export const Header = () => {
         setTriggerBurger(false);
     }, [pathname])
 
+    useEffect(() => {
+        
+    }, [])
+
     //Handlers
 
     const handleOpenCloseBurger = () => {

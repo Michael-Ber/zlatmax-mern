@@ -89,9 +89,12 @@ export const makeOrder = async(req, res) => {
             )
         }
 
-        await Promise.all(order.map(pushToOrder))
+        await Promise.all(order.map(pushToOrder));
+        await Users.findByIdAndUpdate(
+            req.userId, 
+            { $set: { cort: [] } })
 
-        return res.json({message: "Ваш заказ принят", order})
+        return res.json({message: "Ваш заказ принят. Скоро мы с вами свяжемся.", order})
     } catch (error) {
         res.json({message: "Error while making order"})
     }
