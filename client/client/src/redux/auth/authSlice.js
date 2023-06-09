@@ -10,7 +10,8 @@ const initialState = {
     isLoading: false,
     isError: false,
     showModal: false,
-    searchResult: []
+    searchResult: [],
+    process: ''
 };
 
 export const register = createAsyncThunk(
@@ -97,7 +98,8 @@ const authSlice = createSlice({
                 }
                 return item
             })
-        }
+        },
+        resetingMessage: state => { state.message = '' }
     },
     extraReducers: {
         //REGISTRATION
@@ -140,6 +142,7 @@ export const {
     changeTotalSum, 
     setShowModal, 
     setSearchResult, 
-    changeItemAmount } = authSlice.actions;
+    changeItemAmount,
+    resetingMessage } = authSlice.actions;
 
 export default authSlice.reducer;

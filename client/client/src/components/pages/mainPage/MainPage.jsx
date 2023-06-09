@@ -32,7 +32,6 @@ export const MainPage = () => {
     }
 
     const onLeaveHandler = (e) => {
-        console.log(e.target);
         setActiveTab('');
         document.querySelector(`.contents-tab-main__content[data-tab=${activeTab}]`).style.zIndex = '-1';
     }

@@ -59,7 +59,7 @@ export const LoginPage = () => {
                     className="login__input" />
                 <Button style={{marginTop: "50px"}} btnText={'Войти'} />
             </form>
-            { createPortal(<Modal message={message} showModal={showModal} />, document.getElementById('app')) }
+            
         </div>
       )
 }

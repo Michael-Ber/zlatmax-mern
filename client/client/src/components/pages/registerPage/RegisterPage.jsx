@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../../redux/auth/authSlice';
+import { register, setShowModal } from '../../../redux/auth/authSlice';
 
 import { Modal } from '../../modal/Modal';
 import './registerPage.scss';
@@ -27,7 +27,7 @@ export const RegisterPage = () => {
     setName('');
     setPassword('');
     dispatch(register(data));
-    
+    dispatch(setShowModal(true));
   }
 
   useEffect(() => {
@@ -60,7 +60,6 @@ export const RegisterPage = () => {
                 className="register__input" />
             <Button style={{marginTop: "50px"}} btnText={'Зарегистрироваться'} />
         </form>
-        { createPortal(<Modal message={message} showModal={showModal} />, document.querySelector('.app')) }
     </div>
   )
 }

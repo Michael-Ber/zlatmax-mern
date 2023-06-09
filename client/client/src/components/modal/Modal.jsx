@@ -1,6 +1,7 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { setShowModal } from '../../redux/auth/authSlice';
+import { setShowModal, resetingMessage as resetingMsgAuth } from '../../redux/auth/authSlice';
+import { resetingMessage as resetingMsgGoods } from '../../redux/goods/goodsSlice';
 import './modal.scss';
 
 export const Modal = memo(({showModal, message}) => {
@@ -21,11 +22,18 @@ export const Modal = memo(({showModal, message}) => {
 
   const closeModal = () => {
     dispatch(setShowModal(false));
+    dispatch(resetingMsgAuth());
+    dispatch(resetingMsgGoods());
   }
+
+  const renderMsg = message.length > 0 && message.map(msg => {
+    
+    return msg !== '' && msg
+  })
 
   return (
     <div style = { styles } className='modal'>
-        <p className="modal__message">{message}</p>
+        <p className="modal__message">{ renderMsg }</p>
         <div onClick = {closeModal} className="modal__close">x</div>
     </div>
   )

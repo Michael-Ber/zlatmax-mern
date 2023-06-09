@@ -60,24 +60,58 @@
         }
     }
 
-    &__logout {
+    &__user-menu {
         display: flex;
         justify-content: flex-start; //center
         align-items: center;
         color: #fff;
         cursor: pointer;
-        &::before {
+        span {
+            display: flex;
+            align-items: center;
+        }
+        span::before {
             content: url('../../assets/icons/main/login.svg');
             margin-right: 15px;
         }
+
+        @media(max-width: 575px) {
+            flex-direction: column;
+            align-items: flex-start;
+            row-gap: 10px;
+        }
     }
 
-    &__logout-link {
+    &__user-menu-list {
         position: absolute;
         top: 25%;
-        left: calc( 100% + 20px);
+        right: 0;
         color: #fff;
+        z-index: 10000;
+        border-radius: 3px;
+        padding: 20px;
+        background-color: $sec-color;
+        box-shadow: 0 0 2px 0 #fff;
+        
+    }
+
+    &__user-menu-item {
+        margin-left: 30px;
         cursor: pointer;
+        
+        &:hover {
+            color: darken(#fff, 20%)
+        }
+        @media(max-width: 575px) {
+            margin-left: 0;
+        }
+    }
+    &__user-menu-link {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            color: darken(#fff, 20%)
+        }
     }
 
     &__bottom {

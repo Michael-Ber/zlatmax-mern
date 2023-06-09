@@ -129,7 +129,8 @@ const goodsSlice = createSlice({
         },
         removeItemFromOrder: (state, action) => {
             state.order.filter(item => item._id !== action.payload.id)
-        }
+        },
+        resetingMessage: state => { state.message = '' }
     },
     extraReducers: {
         //Getting goods from db
@@ -168,4 +169,4 @@ const goodsSlice = createSlice({
 const { reducer } = goodsSlice;
 export default reducer;
 
-export const { makeOrder, removeItemFromOrder } = goodsSlice.actions;
+export const { makeOrder, removeItemFromOrder, resetingMessage } = goodsSlice.actions;

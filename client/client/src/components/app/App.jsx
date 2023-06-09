@@ -1,9 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createPortal } from 'react-dom';
 
 import { Header } from "../header/Header";
 import { Footer } from "../footer/Footer";
+
+import { Modal } from "../modal/Modal";
 
 import { RegisterPage } from "../pages/registerPage/RegisterPage";
 import { LoginPage } from "../pages/loginPage/LoginPage";
@@ -30,6 +33,10 @@ import { getGoods } from "../../redux/goods/goodsSlice";
 const App = memo(() => {
 
 const dispatch = useDispatch();
+const { showModal, message: messageAuth } = useSelector(state => state.authSlice);
+const { message: messageGoods } = useSelector(state => state.goodsSlice); 
+
+
 
 
 useEffect(() => {
@@ -71,6 +78,8 @@ return (
 
       </Routes>
     </div>
+
+    <Modal message={[messageAuth, messageGoods]} showModal={showModal} />
     
     <ErrorBoundary>
       <Footer />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ControlledCard } from '../../input/ControlledCard';
@@ -18,6 +19,7 @@ export const CartPage = () => {
   const { message, isLoading } = useSelector(state => state.goodsSlice);
   const { order } = useSelector(state => state.goodsSlice);
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   console.log(message);
   useEffect(() => {
@@ -40,6 +42,7 @@ export const CartPage = () => {
     await dispatch(sendOrder({order}));
     await dispatch(setShowModal(true));
     await dispatch(me());
+    nav("/");
   }
 
   //RENDERS
@@ -83,7 +86,6 @@ export const CartPage = () => {
             className="cart__submit btn">{isLoading ? <Spinner userStyles={{width: "20px"}} /> :<span>Оформить заказ</span>}</button>
         </form>
       </div>
-      { createPortal(<Modal message={message} showModal={showModal} />, document.querySelector('.app'))  }
     </div>
   )
 }
