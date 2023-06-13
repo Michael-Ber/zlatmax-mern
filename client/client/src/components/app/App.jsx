@@ -23,6 +23,7 @@ import { SearchResultsPage } from "../pages/searchResultsPage/searchResultsPage"
 import { CardDetail } from "../pages/cardDetail/CardDetail";
 import { Flashlight } from "../pages/Flashlight";
 import { Rules } from "../pages/Rules";
+import { SendMail } from "../pages/sendMail/SendMail";
 
 import { ErrorBoundary } from "../errorBoundary/ErrorBoundary";
 import { Page404 } from "../pages/404/Page404";
@@ -71,6 +72,7 @@ return (
         <Route path="/card_detail/:id" element={<ErrorBoundary><CardDetail /></ErrorBoundary>}/>
         <Route path="/rules" element={<ErrorBoundary><Rules /></ErrorBoundary>}/>
         <Route path="/flashlight" element={<ErrorBoundary><Flashlight /></ErrorBoundary>}/>
+        <Route path="/send_mail" element={<ErrorBoundary><SendMail /></ErrorBoundary>}></Route>
 
         <Route path="/" element={<ErrorBoundary><MainPage/></ErrorBoundary>}/>
 

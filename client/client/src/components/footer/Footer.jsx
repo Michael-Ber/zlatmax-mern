@@ -69,7 +69,7 @@ export const Footer = () => {
                                 <p>ул. Шоссейная,</p>  
                                 <p>д. 1, офис «6Б»</p> 
                             </li>
-                            <li className="block-footer__item"><Link to={"mailto:mikeber000@gmail.com?body=Hello"} className="block-footer__link block-footer__link_mail">mikeber000@gmail.com</Link></li>
+                            <li className="block-footer__item"><Link to={"/send_mail"} className="block-footer__link block-footer__link_mail">mikeber000@gmail.com</Link></li>
                             <li className="block-footer__item item-block block-footer__socials block-footer__socials_disable320">
                                 <ul className="item-block__socials socials-item-block">
                                     <li><Link to={"https://facebook.com"} className="socials-item-block__link link-socials__facebook"></Link></li>
