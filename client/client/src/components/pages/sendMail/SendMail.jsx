@@ -37,6 +37,12 @@ export const SendMail = () => {
         return respJSON
     }
 
+    const handleReset = () => {
+        setName('');
+        setEmail('');
+        setText('');
+    }
+
     return (
         <div className="container">
             <div className='sendMail'>
@@ -46,6 +52,7 @@ export const SendMail = () => {
                         Ваше имя: 
                         <input 
                             onChange={e => setName(e.target.value)}
+                            value={name}
                             type="text" 
                             name="name" 
                             id="name" 
@@ -55,6 +62,7 @@ export const SendMail = () => {
                         Ваш email:
                         <input 
                             onChange={e => setEmail(e.target.value)}
+                            value={email}
                             type="text" 
                             name="email" 
                             id="email" 
@@ -64,6 +72,7 @@ export const SendMail = () => {
                         Ваше сообщение:
                         <textarea 
                             onChange={e => setText(e.target.value)}
+                            value={text}
                             name="message" 
                             id="message" 
                             cols="30" 
@@ -72,7 +81,7 @@ export const SendMail = () => {
                     </label>
                     <div className="sendMail__btns">
                         <button type='submit' className="sendMail__submit">Отправить</button>
-                        <button className="sendMail__cancel">Отмена</button>
+                        <button onClick={handleReset} className="sendMail__cancel">Отмена</button>
                     </div>
                 </form>
             </div>  

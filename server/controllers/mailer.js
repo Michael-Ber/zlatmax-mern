@@ -5,27 +5,26 @@ import * as nodemailer from "nodemailer";
 export const sendMail = async(req, res) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
+            host: 'smtp.gmail.com',
             port: 465,
             secure: true,
             // proxy: "http://proxy.ilimbratskdok.local:3128",
-            tls:{
-                rejectUnauthorized:false
-            },
+            // tls:{
+            //     rejectUnauthorized:false
+            // },
             auth: {
-                user: 'gabe.schamberger@ethereal.email',
-                pass: '9St5xtCprZCSCE16J7'
+                user: process.env.MAIL_ADDR,
+                pass: process.env.GOOGLE_PWD
             },
             logger: true,
             debug: true
         });
 
-
         let result = await transporter.sendMail({
-            from: 'gabe.schamberger@ethereal.email',
-            to: 'gabe.schamberger@ethereal.email',
+            from: req.body.email,
+            to: 'mikeber000@gmail.com',
             subject: 'Test message for zlatmax project',
-            text: 'text',
+            text: req.body.text + `\nОтправитель: ${req.body.email}`,
         });
 
         return res.json({message: "Письмо отправлено. Скоро мы с вами свяжемся", res: result.messageId})
