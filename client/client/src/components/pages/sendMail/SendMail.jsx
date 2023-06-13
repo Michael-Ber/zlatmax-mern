@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import "./sendMail.scss";
 
@@ -9,6 +9,12 @@ export const SendMail = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [text, setText] = useState('');
+
+    //USE EFFECT
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     //HANDLERS
 

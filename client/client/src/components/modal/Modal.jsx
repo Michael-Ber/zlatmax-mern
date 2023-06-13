@@ -7,8 +7,6 @@ import './modal.scss';
 export const Modal = memo(({showModal, message}) => {
   const dispatch = useDispatch();
 
-  console.log(message);
-  
   const styles = showModal ? 
                   { visibility: 'visible', top: '50%', transform: 'translate(-50%, -50%)' } : 
                   { visibility: 'hidden', top: '0', transform: 'translate(-50%, -100%)' };

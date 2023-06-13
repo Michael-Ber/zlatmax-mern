@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import * as nodemailer from "nodemailer";
 
 
 
@@ -6,15 +6,20 @@ export const sendMail = async(req, res) => {
     try {
         const transporter = nodemailer.createTransport({
             host: 'smtp.ethereal.email',
-            port: 587,
+            port: 465,
+            secure: true,
+            // proxy: "http://proxy.ilimbratskdok.local:3128",
+            tls:{
+                rejectUnauthorized:false
+            },
             auth: {
                 user: 'gabe.schamberger@ethereal.email',
                 pass: '9St5xtCprZCSCE16J7'
             },
-            tls: {
-                ignoreTLS: true
-            }
+            logger: true,
+            debug: true
         });
+
 
         let result = await transporter.sendMail({
             from: 'gabe.schamberger@ethereal.email',
