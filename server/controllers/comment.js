@@ -52,7 +52,6 @@ export const addComment = async(req, res) => {
 export const removeComment = async(req, res) => {
     try {
         const comments = req.body.commentId;
-        // const comments = await Comment.findById(req.body.commentId);
         const goodPromises = async(id) => {
             return await Good.findByIdAndUpdate(req.body.goodId, 
                 { $pull : { comments: id } } 
@@ -60,9 +59,7 @@ export const removeComment = async(req, res) => {
         }
         await Promise.all(comments.map(goodPromises));
 
-        // await Good.findByIdAndUpdate(req.body.goodId, 
-        //     { $pull : { comments: req.body.commentId } } 
-        // );
+   
 
         const usersPromises = async(id) => {
             return await Users.findByIdAndUpdate(req.userId, {
@@ -70,15 +67,12 @@ export const removeComment = async(req, res) => {
             }); 
         }
         await Promise.all(comments.map(usersPromises))
-        // await Users.findByIdAndUpdate(req.userId, {
-        //     $pull: { comments: req.body.commentId }
-        // });
+
 
         const commentsPromises = async(id) => {
             return await Comment.deleteOne({ _id: id })
         }
         await Promise.all(comments.map(commentsPromises))
-        // await Comment.deleteOne({ _id: req.body.commentId });
         return res.json({message: "Successfull comment delete", id: comments})
     } catch (error) {
         res.json({message: "Error while removing comment"})
