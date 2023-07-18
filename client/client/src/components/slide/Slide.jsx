@@ -45,7 +45,7 @@ export const Slide = ({item}) => {
 
     const handleClickCart = async(e) => {
         const btn = e.target.tagName === 'SPAN' ? e.target.parentNode : e.target;
-        const sum = cort.reduce((sum, elem) => sum + (Number(elem.price.replace(/\D/ig, '')))*elem.amount, 0) + Number(item.price.replace(/\D/ig, '')); //item.amount did not used because item haven't got this property yet
+        const sum = cort && cort.reduce((sum, elem) => sum + (Number(elem.price.replace(/\D/ig, '')))*elem.amount, 0) + Number(item.price.replace(/\D/ig, '')); //item.amount did not used because item haven't got this property yet
         if(!btn.disabled && window.localStorage.getItem('token')) {
             await dispatch(addToCort({goodId: item._id}));
             await dispatch(me());

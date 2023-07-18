@@ -25,7 +25,7 @@ export const SendMail = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         setBtnName(<Spinner userStyles={{width: '20px', height: '20x'}}/>)
-        const resp = await fetch("http://localhost:3005/send_mail", {
+        const resp = await fetch("https://zlatmax.onrender.com/send_mail", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
