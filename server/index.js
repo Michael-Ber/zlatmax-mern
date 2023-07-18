@@ -13,7 +13,7 @@ dotenv.config();
 
 //Constants
 const DB_NAME = process.env.DB_NAME;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3005;
 
 //Middlewares
 app.use(express.json());
@@ -27,7 +27,7 @@ app.use("/send_mail", mailerRouter);
 
 const start = async() => {
     try {
-        await mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
+        await mongoose.connect(`mongodb+srv://mikeber000:11zlatmax22@clusterzlatmax.kdrp7zk.mongodb.net/${process.env.DB_NAME}`);
         app.listen(PORT, () => console.log(`Connect to server on port: ${PORT}`))
     } catch (error) {
         console.log(error)
