@@ -47,7 +47,9 @@
     }
 
     &__submit {
+        position: relative;
         margin-right: 30px;
+        height: 46px;
     }    
 
     &__cancel {

@@ -8,10 +8,6 @@ export const sendMail = async(req, res) => {
             host: 'smtp.gmail.com',
             port: 465,
             secure: true,
-            // proxy: "http://proxy.ilimbratskdok.local:3128",
-            // tls:{
-            //     rejectUnauthorized:false
-            // },
             auth: {
                 user: process.env.MAIL_ADDR,
                 pass: process.env.GOOGLE_PWD

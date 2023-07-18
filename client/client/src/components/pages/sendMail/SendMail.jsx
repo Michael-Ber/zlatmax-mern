@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { Spinner } from '../../spinner/Spinner';
+
 import "./sendMail.scss";
 
 export const SendMail = () => {
@@ -9,6 +11,8 @@ export const SendMail = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [text, setText] = useState('');
+
+    const [btnName, setBtnName] = useState('Отправить');
 
     //USE EFFECT
 
@@ -20,7 +24,7 @@ export const SendMail = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
+        setBtnName(<Spinner userStyles={{width: '20px', height: '20x'}}/>)
         const resp = await fetch("http://localhost:3005/send_mail", {
             method: "POST",
             headers: {
@@ -28,8 +32,10 @@ export const SendMail = () => {
                 "Authorization": "Bearer " + window.localStorage.getItem('token'),
             },
             body: JSON.stringify({name, email, text})
-        })
+        });
+        
         const respJSON = await resp.json();
+        setBtnName('Отправить');
         console.log(respJSON);
         setName('');
         setEmail('');
@@ -80,7 +86,7 @@ export const SendMail = () => {
                             className='sendMail__text'></textarea>
                     </label>
                     <div className="sendMail__btns">
-                        <button type='submit' className="sendMail__submit">Отправить</button>
+                        <button type='submit' className="sendMail__submit">{btnName}</button>
                         <button onClick={handleReset} className="sendMail__cancel">Отмена</button>
                     </div>
                 </form>

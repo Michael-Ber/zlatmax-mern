@@ -1,5 +1,14 @@
 @import '../../styles/variables';
 
+.demo {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;
+    @media(max-width: 575px) {
+        font-size: 26px;
+    }
+}
+
 .header {
     position: fixed;
     top: 0;

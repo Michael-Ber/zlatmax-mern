@@ -208,6 +208,7 @@ export const Header = () => {
             <div className="header__wrapper">
                 <div className="header__up up-header">
                     <div className="container">
+                        <h1 className='demo'>Демонстрационный сайт</h1>
                         <div className="up-header__wrapper">
                             <div className="header__main">
                                 <nav className="header__nav nav-header">
