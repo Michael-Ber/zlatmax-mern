@@ -6,9 +6,9 @@ const initialState = {
     isError: false
 };
 
-const URL = "http://localhost:3005/good/comments"
+const URL = "https://zlatmax.onrender.com/good/comments"
 
-//"http://localhost:3005/good/comments/:id"
+//"https://zlatmax.onrender.com/good/comments/:id"
 
 export const getComments = createAsyncThunk(
     'comments/getComments',

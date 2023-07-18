@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const url = "http://localhost:3005/api/auth";
+const url = "https://zlatmax.onrender.com/api/auth";
 
 const initialState = {
     user: '',

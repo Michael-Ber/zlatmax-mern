@@ -9,7 +9,7 @@ const initialState = {
     message: ''
 };
 
-const URL = "http://localhost:3005";
+const URL = "https://zlatmax.onrender.com";
 
 export const getGoods = createAsyncThunk(
     'goods/fetchGoods',
