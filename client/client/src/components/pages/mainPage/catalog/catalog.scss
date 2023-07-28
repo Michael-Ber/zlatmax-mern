@@ -27,12 +27,10 @@
         box-shadow: 0 0 7px -4px $sec-color;
         padding: 30px 30px 40px 30px;
         @media(max-width: 575px) {
-            flex: 0 0 230px;
+            flex: 0 0 260px;
+            padding: 30px 15px 100px 10px;
         }
         &_1 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 100px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;
@@ -50,9 +48,6 @@
         }
 
         &_2 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 100px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;
@@ -73,9 +68,6 @@
         }
 
         &_3 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 150px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;
@@ -95,9 +87,6 @@
         }
 
         &_4 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 150px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;
@@ -117,9 +106,6 @@
         }
 
         &_5 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 150px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;
@@ -139,9 +125,6 @@
         }
 
         &_6 {
-            @media(max-width: 575px) {
-                padding: 30px 30px 150px 30px;
-            }
             &::before {
                 content: '';
                 position: absolute;

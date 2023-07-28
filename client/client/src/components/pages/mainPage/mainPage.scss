@@ -373,6 +373,9 @@
         color: #ffffff;
         font-size: 20px;
         line-height: 26px;
+        @media(max-width: 575px) {
+            top: 102%;
+        }
     }
     &__current {
         font-size: 24px;
@@ -452,6 +455,9 @@
         @media(max-width: 767px) {
             margin: 50px auto 0 auto;
         }
+        @media(max-width: 575px) {
+            margin: unset;
+        }
     }
     &__pagination {
         position: relative;
@@ -467,6 +473,9 @@
         width: 260px;
         height: 66px;
         margin: 50px 0 0 0;
+        @media(max-width: 575px) {
+            margin: 50px auto 0 auto;
+        }
     }
     
 }
@@ -483,6 +492,9 @@
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
 
     top: 95%;
+    @media(max-width: 575px) {
+        top: 102%;
+    }
 }
 .swiper-pagination {
     text-align: left;
