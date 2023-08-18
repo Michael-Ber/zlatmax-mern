@@ -27,7 +27,7 @@ app.use("/send_mail", mailerRouter);
 
 const start = async() => {
     try {
-        await mongoose.connect(`mongodb+srv://mikeber000:11zlatmax22@clusterzlatmax.kdrp7zk.mongodb.net/${process.env.DB_NAME}`);
+        await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}@clusterzlatmax.kdrp7zk.mongodb.net/${process.env.DB_NAME}`);
         app.listen(PORT, () => console.log(`Connect to server on port: ${PORT}`))
     } catch (error) {
         console.log(error)
